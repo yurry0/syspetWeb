@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include('conexao.php');
 
 if (empty($_POST['usuario']) || empty($_POST['senha'])) {
@@ -19,11 +21,14 @@ $row = mysqli_num_rows($result);
 
 if($row == 1){
  
+    $_SESSION['usuario'] = $usuario;
+    header('Location: painel.php');
+    exit();
 
 }
 else{
-
-
+    $_SESSION['nao_autenticado'] = true;
+    header('Location: index.php');
 
 }
 
