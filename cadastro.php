@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <style>
-        .teste {
-
-
-   
+        footer {
+            width: 100%;
+            height: 28px;
+            border-top: 1px solid #E0E0E0;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            text-align: center;
         }
 
         h1 {
@@ -62,7 +66,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <div class="row mb-3">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
@@ -96,21 +100,21 @@
     <?php
 
 
-        include("includes/footer.php");
+    include("includes/footer.php");
 
     ?>
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
 </body>
 
 </html>
