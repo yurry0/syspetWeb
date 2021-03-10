@@ -71,7 +71,7 @@ session_start();
             </form>
           </div>
           <div class="row">
-            <p> <a href="#">Novo acesso? Faça seu cadastro aqui</a></p>
+            <p> <a href="cadastro.php">Novo acesso? Faça seu cadastro aqui</a></p>
           </div>
         </div>
       </div>
