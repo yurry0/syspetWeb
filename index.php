@@ -15,6 +15,9 @@ session_start();
   <link rel="stylesheet" href="css/all.min.css">
   <link rel="stylesheet" href="css/fontawesome.min.css">
 
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="433744563994-r30u9vtec0j6c4o81ks1k6ghaoacujoi.apps.googleusercontent.com">
+
   <title>Página de Login</title>
 
 </head>
@@ -67,6 +70,7 @@ session_start();
                 <div class="col">
                   <input type="submit" value="Entrar" class="btn">
                 </div>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
               </div>
             </form>
           </div>
