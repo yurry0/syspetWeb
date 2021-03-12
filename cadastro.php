@@ -1,5 +1,9 @@
-<!doctype html>
-<html lang="en">
+<?php
+
+session_start();
+?>
+
+<html>
 
 <head>
     <!-- Required meta tags -->
@@ -10,16 +14,6 @@
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <style>
-        footer {
-            width: 100%;
-            height: 28px;
-            border-top: 1px solid #E0E0E0;
-            position: absolute;
-            bottom: 0px;
-            left: 0px;
-            text-align: center;
-        }
-
         h1 {
 
             display: flex;
@@ -51,39 +45,70 @@
         </div>
         <br>
         <br><br><br>
+        <!-- FORM -->
         <div class="container" style="border-color:#4DA8DA; border-left-style: solid;  border-width: 11px;">
-            <form>
+          
+
+            <form action="cadastrar.php" method="POST">
+
+
+            <?php
+            if ($_SESSION['status_cadastro']):
+            ?>
+
+                <div class="alert alert-success" role="alert">
+                    Usuário cadastrado com sucesso.
+                </div>
+
+            <?php
+            endif;
+            unset($_SESSION['status_cadastro']);
+
+            ?>
+
+                <!-- Campo de Nome -->
                 <div class="row mb-2">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3">
+                        <input name="nome" type="text" class="form-control" id="nome">
                     </div>
                 </div>
+                <!-- Campo de Email -->
                 <div class="row mb-2">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Confirmar Email</label>
+                    <label class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3">
+                        <input type="text" name="email" class="form-control">
+                    </div>
+                </div>
+                <!-- Campo de Confirmação de Email -->
+                <div class="row mb-2">
+                    <label class="col-sm-2 col-form-label">Confirmar Email:</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="confirm_email" class="form-control">
                     </div>
                 </div>
 
 
-
+                <!-- Campo de Senha -->
                 <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
+                    <label class="col-sm-2 col-form-label">Senha:</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="inputPassword3">
+                        <input type="password" name="senha" class="form-control">
                     </div>
                 </div>
+
+                <!-- Campo de Confirmação -->
                 <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Confirmar Senha</label>
+                    <label  class="col-sm-2 col-form-label">Confirmar Senha:</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="inputPassword3">
+                        <input type="password" name="confirm_senha" class="form-control">
                     </div>
                 </div>
+                <!-- Botão de Cadastro -->
                 <div class="container">
                     <div class="row">
                         <div class="col text-center">
-                            <button class="btn btn-default">Cadastrar</button>
+                            <button type="submit" class="btn btn-default">Cadastrar</button>
                         </div>
                     </div>
                 </div>
@@ -95,7 +120,7 @@
     </form>
     </div>
 
-
+    <!-- FOOTER -->
 
     <?php
 
