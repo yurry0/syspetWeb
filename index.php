@@ -35,6 +35,24 @@ session_start();
         <h4 class="company_title"></h4>
       </div>
       <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+      
+      <?php
+            if (isset($_SESSION['status_cadastro'])):
+            ?>
+
+                <div class="alert alert-success" role="alert">
+                    Usuário cadastrado com sucesso.
+                </div>
+
+            <?php
+            endif;
+            unset($_SESSION['status_cadastro']);
+
+            ?>
+      
+      
+      
+      
       <?php 
       if (isset($_SESSION['nao_autenticado'])):
       ?> 

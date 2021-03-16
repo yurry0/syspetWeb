@@ -52,19 +52,7 @@ session_start();
             <form action="cadastrar.php" method="POST">
 
 
-            <?php
-            if (isset($_SESSION['status_cadastro'])):
-            ?>
-
-                <div class="alert alert-success" role="alert">
-                    Usuário cadastrado com sucesso.
-                </div>
-
-            <?php
-            endif;
-            unset($_SESSION['status_cadastro']);
-
-            ?>
+           
 
                 <!-- Campo de Nome -->
                 <div class="row mb-2">
