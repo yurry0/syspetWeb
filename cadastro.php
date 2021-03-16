@@ -47,12 +47,47 @@ session_start();
         <br><br><br>
         <!-- FORM -->
         <div class="container" style="border-color:#4DA8DA; border-left-style: solid;  border-width: 11px;">
-          
+
 
             <form action="cadastrar.php" method="POST">
 
+            <!-- Validação e Alerts do Bootstrap -->
+                <?php
+                if (isset($_SESSION['invalid_email'])) :
+                ?>
 
-           
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                     Campos de e-mail não coincidem.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                <?php
+                endif;
+                unset($_SESSION['invalid_email']);
+
+                ?>
+
+                <?php
+                if (isset($_SESSION['invalid_senha'])) :
+                ?>
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Campos de senha não coincidem.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                <?php
+                endif;
+                unset($_SESSION['invalid_senha']);
+
+                ?>
+
+
+            
 
                 <!-- Campo de Nome -->
                 <div class="row mb-2">
@@ -65,14 +100,14 @@ session_start();
                 <div class="row mb-2">
                     <label class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="email" class="form-control">
+                        <input type="email" name="email" class="form-control">
                     </div>
                 </div>
                 <!-- Campo de Confirmação de Email -->
                 <div class="row mb-2">
                     <label class="col-sm-2 col-form-label">Confirmar Email:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="confirm_email" class="form-control">
+                        <input type="email" name="confirm_email" class="form-control">
                     </div>
                 </div>
 
@@ -87,7 +122,7 @@ session_start();
 
                 <!-- Campo de Confirmação -->
                 <div class="row mb-3">
-                    <label  class="col-sm-2 col-form-label">Confirmar Senha:</label>
+                    <label class="col-sm-2 col-form-label">Confirmar Senha:</label>
                     <div class="col-sm-6">
                         <input type="password" name="confirm_senha" class="form-control">
                     </div>
