@@ -98,16 +98,16 @@ session_start();
                 </div>
                 <!-- Campo de Email -->
                 <div class="row mb-2">
-                    <label class="col-sm-2 col-form-label">Email:</label>
+                    <label class="col-sm-2 col-form-label ">E-mail:</label>
                     <div class="col-sm-6">
-                        <input type="email" name="email" class="form-control">
+                        <input type="email" required name="email" class="form-control"  placeholder="ex: 123@123.com.br" >
                     </div>
                 </div>
                 <!-- Campo de Confirmação de Email -->
                 <div class="row mb-2">
                     <label class="col-sm-2 col-form-label">Confirmar Email:</label>
                     <div class="col-sm-6">
-                        <input type="email" name="confirm_email" class="form-control">
+                        <input type="email" required name="confirm_email" class="form-control">
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@ session_start();
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Senha:</label>
                     <div class="col-sm-6">
-                        <input type="password" name="senha" class="form-control">
+                        <input type="password"  required name="senha" class="form-control" min="1" max="8" placeholder="Mínimo 1, máximo 8 caracteres.">
                     </div>
                 </div>
 
@@ -124,7 +124,7 @@ session_start();
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Confirmar Senha:</label>
                     <div class="col-sm-6">
-                        <input type="password" name="confirm_senha" class="form-control">
+                        <input type="password" required name="confirm_senha" class="form-control">
                     </div>
                 </div>
                 <!-- Botão de Cadastro -->
