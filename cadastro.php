@@ -53,7 +53,7 @@ session_start();
 
 
             <?php
-            if ($_SESSION['status_cadastro']):
+            if (isset($_SESSION['status_cadastro'])):
             ?>
 
                 <div class="alert alert-success" role="alert">
