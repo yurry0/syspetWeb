@@ -1,6 +1,7 @@
 <?php
+session_start();
 include("conexao.php");
-$erro = Array();
+$erro = array();
 if (isset($_POST['ok'])) {
 
     $email = mysqli_real_escape_string($conexao, $_POST['email']);
@@ -15,9 +16,10 @@ if (isset($_POST['ok'])) {
     $dado = $sql_query->fetch_assoc();
     $total = $sql_query->num_rows;
 
-    
+
     if ($total == 0)
         $erro[] = "O e-mail informado não existe no banco de dados";
+
     if (count($erro) == 0 && $total > 0) {
 
         $novasenha = substr(md5(time()), 0, 6);
@@ -28,11 +30,11 @@ if (isset($_POST['ok'])) {
 
             $sql_code = "UPDATE usuario SET senha = '$nscripto' WHERE usuario = '$email'";
             $sql_query = mysqli_query($conexao, $sql_code) or die($mysqli->error);
-            
-            if($sql_query)
-            $erro[] = "Senha Alterada com Sucesso!";
+
+            if ($sql_query)
+                $erro[] = "Senha Alterada com Sucesso!";
         }
-    }   
+    }
 }
 
 ?>
@@ -76,8 +78,12 @@ if (isset($_POST['ok'])) {
 </head>
 
 <body>
+    <?php if (count($erro) > 0)
+        foreach ($erro as $msg) {
 
- 
+            echo "<p>$msg</p>";
+        }
+    ?>
     <br>
 
     <div class="container-sm">
