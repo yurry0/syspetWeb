@@ -100,7 +100,7 @@ session_start();
 
   <!-- Footer -->
   <div class="container-fluid text-center footer">
-    <p>- Creative Code - </p>
+    <p><a href="https://github.com/yurry0/syspetWeb" target="_blank">Syspet Web - Creative Code</a></p>
     <br>
     <p> Modelo de login original por <a href="https://codepen.io/YinkaEnoch/pen/PxqrZV"> Yinka Enoch Adedokun </a></p>
   </div>
