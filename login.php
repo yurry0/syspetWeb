@@ -22,7 +22,7 @@ $row = mysqli_num_rows($result);
 if($row == 1){
  
     $_SESSION['usuario'] = $usuario;
-    header('Location: painel.php');
+    header('Location: admin.php');
     exit();
 
 }
