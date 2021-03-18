@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("conexao.php");
-include("includes/send_email.php");
+
 $erro = array();
 if (isset($_POST['ok'])) {
 
@@ -26,9 +26,9 @@ if (isset($_POST['ok'])) {
         $novasenha = substr(md5(time()), 0, 6);
         $nscripto = md5(md5($novasenha));
 
-        
-        if (mail($email, "Sua nova senha", "Sua nova senha: ".$novasenha)) {
 
+        if  (mail($email, "Sua nova senha", "Sua nova senha: ".$novasenha)) {
+            include("includes/send_email.php");
             $sql_code = "UPDATE usuario SET senha = '$nscripto' WHERE usuario = '$email'";
             $sql_query = mysqli_query($conexao, $sql_code) or die($mysqli->error);
 
