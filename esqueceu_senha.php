@@ -28,7 +28,7 @@ if (isset($_POST['ok'])) {
 
 
         if  (mail($email, "Sua nova senha", "Sua nova senha: ".$novasenha)) {
-            include("includes/send_email.php");
+            
             $sql_code = "UPDATE usuario SET senha = '$nscripto' WHERE usuario = '$email'";
             $sql_query = mysqli_query($conexao, $sql_code) or die($mysqli->error);
 

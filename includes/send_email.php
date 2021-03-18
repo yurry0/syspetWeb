@@ -17,8 +17,8 @@ $mail->SMTPSecure = 'ssl';
 
 //configuração do usuário do gmail
 $mail->SMTPAuth = true; 
-$mail->Username = 'syspetweb@gmail.com'; // usuario gmail.   
-$mail->Password = 'sysadmin!'; // senha do email.
+$mail->Username = ''; // usuario gmail.   
+$mail->Password = ''; // senha do email.
 $mail->SingleTo = true; 
 
 // configuração do email a ver enviado.
