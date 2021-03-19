@@ -1,36 +1,48 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
+    $email = $_POST['email'];
 
-require_once('phpmailer/PHPMailer.php'); //chama a classe de onde você a colocou.
+    require 'PHPMailer/PHPMailerAutoload.php';
 
-$mail = new PHPMailer(); // instancia a classe PHPMailer
 
-$mail->IsSMTP();
+    $mail = new PHPMailer;
+    $mail->isSMTP();
 
-//configuração do gmail
-$mail->Port = '465'; //porta usada pelo gmail.
-$mail->Host = 'smtp.gmail.com'; 
-$mail->IsHTML(true); 
-$mail->Mailer = 'smtp'; 
-$mail->SMTPSecure = 'ssl';
+    //Configurações do Servidor de E-Mail
 
-//configuração do usuário do gmail
-$mail->SMTPAuth = true; 
-$mail->Username = ''; // usuario gmail.   
-$mail->Password = ''; // senha do email.
-$mail->SingleTo = true; 
+    $mail->Host = "smtp.gmail.com";
+    $mail->Port = "587";
+    $mail->SMTPSecure = "tls";
+    $mail->SMTPAuth = true;
+    $mail->Username= "syspetweb@gmail.com";
+    $mail->Password= "sysadmin!";
 
-// configuração do email a ver enviado.
-$mail->From = "Mensagem de email, pode vim por uma variavel."; 
-$mail->FromName = "Nome do remetente."; 
+    
 
-$mail->addAddress("yurimartinsr@gmail.com"); // email do destinatario.
+    //Configuração da mensagem
 
-$mail->Subject = "Aqui vai o assunto do email, pode vim atraves de variavel."; 
-$mail->Body = "Aqui vai a mensagem, que tambem pode vim por variavel.";
+    $mail->setFrom($mail->Username, "SysPet");
+    $mail->addAddress($email); // Destinatário
+    $mail->Subject = utf8_encode(" Solicitacao de Nova Senha ");
+    $conteudo_email ="A sua nova senha é: $novasenha
+    Syspet.
 
-if(!$mail->Send())
-    echo "Erro ao enviar Email:" . $mail->ErrorInfo;
+    ";
+    $mail->isHTML(true);
+    $mail->Body = $conteudo_email;
+
+    if($mail->send()){
+        $_SESSION['email_feito'] = true;
+        echo "E-mail enviado com sucesso";
+        header('Location: esqueceu_senha.php'); 
+
+    }
+
+    else{
+
+        echo "Falha ao enviar e-mail: ".$mail->ErrorInfo;
+
+    }
+
 
     ?>

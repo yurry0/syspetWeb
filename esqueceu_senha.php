@@ -1,6 +1,8 @@
 <?php
 session_start();
 include("conexao.php");
+isset($_SESSION['senha_feita']);
+isset($_SESSION['email_feito']);
 
 $erro = array();
 if (isset($_POST['ok'])) {
@@ -27,13 +29,17 @@ if (isset($_POST['ok'])) {
         $nscripto = md5(md5($novasenha));
 
 
-        if  (mail($email, "Sua nova senha", "Sua nova senha: ".$novasenha)) {
-            
+        if  ($total > 0) {
+            isset($_SESSION['email_success']);
             $sql_code = "UPDATE usuario SET senha = '$nscripto' WHERE usuario = '$email'";
             $sql_query = mysqli_query($conexao, $sql_code) or die($mysqli->error);
-
+            
+            
+            include("includes/send_email.php");
             if ($sql_query)
+                $_SESSION['senha_feita'] = true;
                 $erro[] = "Senha Alterada com Sucesso!";
+                header('Location: esqueceu_senha.php'); 
         }
     }
 }
