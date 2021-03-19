@@ -96,7 +96,7 @@ if (isset($_POST['ok'])) {
     <div class="container-sm">
         <div class="teste">
             <div align='center' class="page-header">
-                <h1 id="cabeca">Recuperar a senha</h1>
+                <h1 id="cabeca">Solicitar uma nova senha</h1>
             </div>
         </div>
         <br>
