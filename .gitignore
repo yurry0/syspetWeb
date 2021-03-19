@@ -40,3 +40,4 @@ Thumbs.db
 /js/coverage/
 /node_modules/
 includes/send_email.php
+
