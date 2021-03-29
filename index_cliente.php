@@ -155,7 +155,7 @@ session_start();
 
                 echo '<td style="text-align:center"> 
                       
-                      <a class="btn btn-primary btn-sm" href="visu_livro.php?id=' . $v['pk_id_cliente'] . '">
+                      <a class="btn btn-primary btn-sm" href="visu_cliente.php?id=' . $v['pk_id_cliente'] . '">
                               <i class="fas fa-folder">
                               </i>
                       </a>
