@@ -7,7 +7,7 @@
             width: 100%;
             height: 28px;
             border-top: 1px solid #E0E0E0;
-            position: absolute;
+            position: relative;
             bottom: 0px;
             left: 0px;
             text-align: center;

@@ -1,21 +1,28 @@
-<?php
-session_start();
 
-?>
 
 <html>
 
 <head>
+
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="dist/css/bootstrap.css">
-  <link rel="stylesheet" href="css/login_style.css">
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/fontawesome.min.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 
   <style>
@@ -49,7 +56,10 @@ session_start();
 
 
 <body>
+
+
   <?php
+  session_start();
   include "conexao_crud.php";
   ?>
 
@@ -68,45 +78,70 @@ session_start();
   <div class="container-fluid">
 
 
-
     <?php
-    if (isset($_SESSION['add'])) :
+
+    if (isset($_SESSION['del'])) {
+
+      $mensagem = $_SESSION['del'];
+      echo "
+                <script>
+                
+                   window.onload = function(){
+                      toastr.info('$mensagem');
+                    };
+                
+                </script>
+                ";
+    } else if (isset($_SESSION['add'])) {
+
+      $mensagem2 = $_SESSION['add'];
+      echo "
+              <script>
+                 window.onload = function(){
+                    toastr.success('$mensagem2');
+                  };
+              
+              </script>
+              ";
+    } else if (isset($_SESSION['edit'])) {
+
+      $mensagem3 = $_SESSION['edit'];
+      echo "
+            <script>
+               window.onload = function(){
+                  toastr.success('$mensagem3');
+                };
+            
+            </script>
+            ";
+    }
+    session_unset();
+
     ?>
-
-      <div class="alert alert-success" role="alert">
-        Cliente cadastrado com sucesso!
-      </div>
-
-    <?php
-    endif;
-    unset($_SESSION['add']);
-
-    ?>
-
 
     <div class="card">
       <div class="container-sm">
-      <div class="row">
-      <div class="col-sm">
-  
-    </div>
-    <div class="col-sm">
-    <?php
-        echo '<td style="text-align:center"> 
+        <div class="row">
+          <div class="col-sm">
+
+          </div>
+          <div class="col-sm">
+            <?php
+            echo '<td style="text-align:center"> 
                       
                  <a class="btn btn-primary btn-sm" href="add_cliente.php?id=">
                          <i class="fas fa-plus"> </i>
                         
                  </a>'
 
-        ?>
-    </div>
-    <div class="col-sm">
-     
-    </div>
-    </div>
+            ?>
+          </div>
+          <div class="col-sm">
+
+          </div>
+        </div>
       </div>
-       
+
       <!-- /.card-header -->
       <div class="card-body">
         <table id="example1" class="table table-bordered table-striped">
@@ -153,11 +188,11 @@ session_start();
                 echo '<td>' . $v['cli_email'] . '</td>';
 
 
+
                 echo '<td style="text-align:center"> 
                       
                       <a class="btn btn-primary btn-sm" href="visu_cliente.php?id=' . $v['pk_id_cliente'] . '">
-                              <i class="fas fa-folder">
-                              </i>
+                      <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
                       <a class="btn btn-info btn-sm" href="c_.php?id=' . $v['pk_id_cliente'] . '">
@@ -165,9 +200,8 @@ session_start();
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="delete_cliente.php?id=' . $v['pk_id_cliente'] . '" data-href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '" data-toggle="modal" data-target="#confirm-delete">
-                      <i class="fas fa-trash-alt">
-                      </i>
+                      <a class="btn btn-danger btn-sm" href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '"data-href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <i class="fas fa-trash-alt"></i>
                       </a>';
                 echo '</tr>';
               }
@@ -177,30 +211,36 @@ session_start();
             $conn = null;
             //echo "</table>";
             ?>
-
-
           </tbody>
-
-
         </table>
       </div>
-
-
-      <!-- /.card-body -->
-
     </div>
-
-
-
-
-
   </div>
 
+  <!-- /.card-body -->
+  <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          Confimar Exclusão
+        </div>
+        <div class="modal-body">
+          Essa ação vai excluir o conteúdo selecionado. Deseja mesmo excluir?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-danger btn-ok">Sim, exclua este conteúdo.</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <?php
 
   include("includes/footer.php");
 
   ?>
+  <!-- SweetAlert2 -->
+  <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
@@ -209,6 +249,32 @@ session_start();
   <script src="dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
+
+
+
+  <script>
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+      $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+  </script>
+
+
+
+
+  <!-- DataTables -->
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/toastr/toastr.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script>
+    $(function() {
+      $("#example1").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
 
 
 </body>
