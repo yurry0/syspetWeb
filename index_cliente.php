@@ -195,7 +195,7 @@
                       <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
-                      <a class="btn btn-info btn-sm" href="c_.php?id=' . $v['pk_id_cliente'] . '">
+                      <a class="btn btn-info btn-sm" href="edit_cliente.php?id=' . $v['pk_id_cliente'] . '">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
