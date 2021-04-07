@@ -21,9 +21,6 @@ try {
     $stmt->bindParam(':cli_bairro', $bairro);
     $stmt->bindParam(':cli_email', $email);
     
-    
-  
-  
   
     $nome = $_POST['nome'];
     $cidade = $_POST['cidade'];
@@ -46,7 +43,7 @@ try {
   $conn = null;
   
   
-  header('Location: index_cliente.php');
+  header('Location: index.php');
   
   
   ?>

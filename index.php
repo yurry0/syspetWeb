@@ -17,6 +17,16 @@ session_start();
 
   <title>Página de Login</title>
 
+  <style> 
+  
+  body {
+
+    background-image: linear-gradient(to right, #108dc7, #ef8e38);
+
+  }
+
+  </style>
+
 </head>
 
 
@@ -71,11 +81,11 @@ session_start();
           <div class="row">
             <form role="form" name="login_index" method="POST" action="login.php" control="" class="form-group">
               <div class="row">
-                <input type="text" name="usuario" id="usuario" class="form__input" placeholder="Usuário">
+                <input type="text" name="usuario" id="usuario" class="form__input" placeholder="Usuário" required>
               </div>
               <div class="row">
                 <!-- <span class="fa fa-lock"></span> -->
-                <input type="password" name="senha" id="senha" class="form__input" placeholder="Senha">
+                <input type="password" name="senha" id="senha" class="form__input" placeholder="Senha" required>
               </div>
               <div class="row">
                 <input type="checkbox" name="remember_me" id="remember_me" class="">
@@ -92,6 +102,10 @@ session_start();
           <div class="row">
             <p> <a href="cadastro.php">Novo acesso? Faça seu cadastro aqui</a></p>
           </div>
+          <div class="row">
+            <p> Perdeu a senha? <a href="esqueceu_senha.php"> Solicite uma nova.</a></p>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -100,9 +114,9 @@ session_start();
 
   <!-- Footer -->
   <div class="container-fluid text-center footer">
-    <p><a href="https://github.com/yurry0/syspetWeb" target="_blank">Syspet Web - Creative Code</a></p>
+    <a href="https://github.com/yurry0/syspetWeb" target="_blank"><i class="fab fa-github"></i>GitHub</a>
     <br>
-    <p> Modelo de login original por <a href="https://codepen.io/YinkaEnoch/pen/PxqrZV"> Yinka Enoch Adedokun </a></p>
+
   </div>
 
   <!-- jQuery -->

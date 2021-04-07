@@ -46,7 +46,7 @@ $confirm_senha = mysqli_real_escape_string($conexao, trim(md5($_POST['confirm_se
         
         $_SESSION['usuario_existe'] = true;
         
-        $header('Location: cadastro.php');
+        header('Location: cadastro.php');
         
         exit;
         
