@@ -12,12 +12,25 @@ isset($_SESSION['email_feito']);
 
 <head>
     <!-- Required meta tags -->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="dist/css/bootstrap.css">
-    <link rel="stylesheet" href="css/login_style.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
         h1 {
 
@@ -43,7 +56,7 @@ isset($_SESSION['email_feito']);
         }
     </style>
 
-    <title>Cadastrar Cliente</title>
+    <title>Cadastrar Pet</title>
 </head>
 
 <body>
@@ -52,7 +65,7 @@ isset($_SESSION['email_feito']);
     <div class="container-sm">
         <div class="teste">
             <div align='center' class="page-header">
-                <h1 id="cabeca">Cadastrar um novo cliente</h1>
+                <h1 id="cabeca">Cadastrar um novo pet!</h1>
             </div>
         </div>
         <br>
@@ -66,7 +79,7 @@ isset($_SESSION['email_feito']);
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" name="add_pet" method="POST" action="cad_pet.php">
+        <form role="form" name="add_pet" method="POST" action="add_pet_action.php">
             <div class="card-body">
                 <!-- <div class="form-group">
                     <label for="id">Código</label>
@@ -74,49 +87,97 @@ isset($_SESSION['email_feito']);
                   </div>
                   <-->
 
+
+                <!-- Campo Raça -->
+
+
+
+                <!-- Campo Sexo -->
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-5">
+                            <label for="raca">Raça</label>
+                            <input type="text" class="form-control rounded-0" name="raca " id="raca" placeholder=".rounded-0">
+                        </div>
+
+
+                        <div class="col-2">
+                            <label for="exampleSelectBorder">Sexo</label>
+                            <select class="custom-select form-control-border" id="exampleSelectBorder">
+                                <option selected disabled> Selecione </option>
+                                <option>Macho</option>
+                                <option>Fêmea</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <!-- Campo RG -->
+                        <div class="col-5">
+
+                            <label for="raca">RG</label>
+                            <input type="number" class="form-control rounded-0" name="rg" id="rg" placeholder="">
+                        </div>
+
+                        <!-- Campo Idade -->
+
+                        <div class="col-2">
+                            <label for="raca">Idade</label>
+                            <input type="number" class="form-control rounded-0" name="idade" id="idade" placeholder="">
+                        </div>
+                        <div class="col-2">
+
+                            <!-- Campo Altura -->
+                            <label for="raca">Altura</label>
+                            <input type="number" class="form-control rounded-0" name="peso" id="peso" placeholder="">
+                        </div>
+
+                        <!-- Campo Peso -->
+                        <div class="col-2">
+
+                            <label for="raca">Peso</label>
+                            <input type="number" class="form-control rounded-0" name="peso" id="peso" placeholder="">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+
+                            <label for="raca">Vacinas</label>
+                            <input type="text" class="form-control form-control-lg rounded-0" name="vacinas" id="vacinas" placeholder="">
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
                 
                 <div class="form-group">
-                    <label for="tituloInput">Raca</label>
-                    <input type="text" name="raca" required class="form-control" id="raca" placeholder="Digite o nome do cliente.">
-                </div>
-                <div class="form-group">
-                    <label for="autorInput">Sexo</label>
-                    <input type="text" name="cidade" required class="form-control" id="cidade" placeholder="Digite o nome da cidade.">
-                </div>
-
-                <div class="form-group">
-                    <label for="autorInput">RG</label>
-                    <input type="text" name="rg" required class="form-control" id="rg" placeholder="Digite o número do RG.">
+                    <div class="row">
+                    <div class="col-6">
+                    <label for="img_pet">Adicionar Foto </label>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="99999999"/>
+                    <div><input name="img_pet" id="img_pet" type="file"/></div>
+                    </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="autorInput">Estado</label>
-                    <input type="text" name="estado" required class="form-control" id="estado" placeholder="Digite nome do estado.">
-                </div>
 
-                <div class="form-group">
-                    <label for="autorInput">CEP</label>
-                    <input type="text" name="cep" required class="form-control" min="1" max="2020" id="cep" placeholder="Digite o CEP.">
-                </div>
-                <div class="form-group">
-                    <label for="autorInput">Endereço</label>
-                    <input type="text" name="endereco" required class="form-control" min="1" max="2020" id="endereco" placeholder="Digite o endereço.">
-                </div>
-
-                <div class="form-group">
-                    <label for="autorInput">Bairro</label>
-                    <input type="text" name="bairro" required class="form-control" min="1" max="2020" id="bairro" placeholder="Digite o bairro.">
-                </div>
-                <div class="form-group">
-                    <label for="autorInput">E-Mail</label>
-                    <input type="email" name="email" required class="form-control" min="1" max="2020" id="bairro" placeholder="Digite o e-mail para contato.">
-                </div>
                 <div class="">
-                    <button type="submit" class="btn btn-success">Adicionar</button>
+                    <button type="submit" class="btn btn-block bg-gradient-success btn-flat">Adicionar</button>
                 </div>
             </div>
 
-
+        </form>
 
 
 
@@ -141,12 +202,16 @@ isset($_SESSION['email_feito']);
 
     <!-- FOOTER -->
 
-    <?php
+    <footer class="text-center text-white" style="background-color: #f1f1f1;">
 
-
-    include("includes/footer.php");
-
-    ?>
+        <!-- Copyright -->
+        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://github.com/yurry0/syspetWeb" role="button" data-mdb-ripple-color="dark"><i class="fab fa-github"></i></a>
+            © 2021:
+            CreativeCode
+        </div>
+        <!-- Copyright -->
+    </footer>
 
 
     <!-- Optional JavaScript -->

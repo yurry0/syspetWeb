@@ -69,7 +69,7 @@
   <div class="container-sm">
     <div class="teste">
       <div align='center' class="page-header">
-        <h1 id="cabeca">Índice de Clientes</h1>
+        <h1 id="cabeca">Índice de Pets</h1>
       </div>
     </div>
   </div>
@@ -131,7 +131,7 @@
             <?php
             echo '<td style=align-items: center;> 
                       
-                 <a id="add" name="add" class="btn btn-primary btn-sm" href="add_cliente_form.php?id=">
+                 <a id="add" name="add" class="btn btn-primary btn-sm" href="add_pet_form.php?id=">
                          <i class="fas fa-plus"> </i>
                         
                  </a>'
@@ -150,14 +150,14 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nome</th>
-              <th>Cidade</th>
+              <th>Raca</th>
+              <th>Sexo</th>
               <th>RG</th>
-              <th>Estado</th>
-              <th>CEP</th>
-              <th>Endereço</th>
-              <th>Bairro</th>
-              <th>E-Mail</th>
+              <th>Idade</th>
+              <th>Vacinas</th>
+              <th>Altura</th>
+              <th>Peso</th>
+              <th>Foto</th>
 
 
 
@@ -172,37 +172,36 @@
 
             try {
               $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              $stmt = $conexao->prepare("SELECT * FROM cliente");
+              $stmt = $conexao->prepare("SELECT * FROM pet");
               $stmt->execute();
 
               // set the resulting array to associative
               $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
               foreach ($stmt->fetchAll() as $k => $v) {
                 echo '<tr>';
-                echo '<td>' . $v['pk_id_cliente'] . '</td>';
-                echo '<td>' . $v['cli_nome'] . '</td>';
-                echo '<td>' . $v['cidade'] . '</td>';
-                echo '<td>' . $v['cli_rg'] . '</td>';
-                echo '<td>' . $v['cli_estado'] . '</td>';
-                echo '<td>' . $v['cli_cep'] . '</td>';
-                echo '<td>' . $v['cli_endereco'] . '</td>';
-                echo '<td>' . $v['cli_bairro'] . '</td>';
-                echo '<td>' . $v['cli_email'] . '</td>';
+                echo '<td>' . $v['pk_id_pet'] . '</td>';
+                echo '<td>' . $v['raca'] . '</td>';
+                echo '<td>' . $v['sexo'] . '</td>';
+                echo '<td>' . $v['idade'] . '</td>';
+                echo '<td>' . $v['vacinas'] . '</td>';
+                echo '<td>' . $v['altura'] . '</td>';
+                echo '<td>' . $v['peso'] . '</td>';
+                echo '<td>' . $v['img_pet'] . '</td>';
 
 
 
                 echo '<td style="text-align:center"> 
                       
-                      <a class="btn btn-primary btn-sm" href="visu_cliente.php?id=' . $v['pk_id_cliente'] . '">
+                      <a class="btn btn-primary btn-sm" href="visu_pet.php?id=' . $v['pk_id_pet'] . '">
                       <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
-                      <a class="btn btn-info btn-sm" href="edit_cliente.php?id=' . $v['pk_id_cliente'] . '">
+                      <a class="btn btn-info btn-sm" href="edit_pet.php?id=' . $v['pk_id_pet'] . '">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '"data-href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="excluir_pet.php?id=' . $v['pk_id_pet'] . '"data-href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
                 echo '</tr>';
@@ -219,7 +218,8 @@
     </div>
  
   </div>
-
+  
+  <!-- Modal de Delete para o Crud -->
   <!-- /.card-body -->
   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
