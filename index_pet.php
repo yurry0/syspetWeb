@@ -131,7 +131,7 @@
             <?php
             echo '<td style=align-items: center;> 
                       
-                 <a id="add" name="add" class="btn btn-primary btn-sm" href="add_pet_form.php?id=">
+                 <a id="add" name="add" class="btn btn-primary btn-sm" href="add_pet_form.php">
                          <i class="fas fa-plus"> </i>
                         
                  </a>'
@@ -152,16 +152,11 @@
               <th>ID</th>
               <th>Raca</th>
               <th>Sexo</th>
-              <th>RG</th>
               <th>Idade</th>
               <th>Vacinas</th>
               <th>Altura</th>
               <th>Peso</th>
               <th>Foto</th>
-
-
-
-
             </tr>
           </thead>
           <tbody>
@@ -186,7 +181,8 @@
                 echo '<td>' . $v['vacinas'] . '</td>';
                 echo '<td>' . $v['altura'] . '</td>';
                 echo '<td>' . $v['peso'] . '</td>';
-                echo '<td>' . $v['img_pet'] . '</td>';
+                echo '<td>'.'<img src="display_image.php?id='.$v['pk_id_pet'].'" />';
+
 
 
 
@@ -201,7 +197,7 @@
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="excluir_pet.php?id=' . $v['pk_id_pet'] . '"data-href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="excluir_pet.php?id=' . $v['pk_id_pet'] . '"data-href="excluir_cliente.php?id=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
                 echo '</tr>';
@@ -218,7 +214,9 @@
     </div>
  
   </div>
-  
+
+
+       
   <!-- Modal de Delete para o Crud -->
   <!-- /.card-body -->
   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

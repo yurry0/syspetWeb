@@ -2,7 +2,6 @@
 
 session_start();
 include "conexao_crud.php";
-
 $conn = conexao();
 
 try {
@@ -10,8 +9,8 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
     // prepare sql and bind parameters
-    $stmt = $conn->prepare("INSERT INTO pet (raca, sexo, idade, vacinas, altura, peso, img_pet)
-    VALUES (:race, :sexo, :idade, :vacinas, :altura, :peso, :img_pet)");
+    $stmt = $conn->prepare("INSERT INTO pet(raca, sexo, idade, vacinas, altura, peso, img_pet)
+    VALUES (:raca, :sexo, :idade,:vacinas, :altura, :peso, :img_pet)");
     $stmt->bindParam(':raca', $raca);
     $stmt->bindParam(':sexo', $sexo);
     $stmt->bindParam(':idade', $idade);
@@ -20,7 +19,6 @@ try {
     $stmt->bindParam(':peso', $peso);
     $stmt->bindParam(':img_pet', $img_pet);
     
-  
     $raca = $_POST['raca'];
     $sexo = $_POST['sexo'];
     $idade = $_POST['idade'];
@@ -28,20 +26,17 @@ try {
     $altura = $_POST['altura'];
     $peso = $_POST['peso'];
     $img_pet = $_POST['img_pet'];
-    
-    
+
     $stmt->execute();
   
+
     
-  
-  $_SESSION['add'] = "Adicionado com sucesso!";
-  } catch(PDOException $e) {
-  $_SESSION['add'] = "Error: " . $e->getMessage();
+
+ $_SESSION['add'] = "Adicionado com sucesso!";
+ } catch(PDOException $e) {
+ $_SESSION['add'] = "Error: " . $e->getMessage();
   }
-  $conn = null;
+ $conn = null;
   
-  
-  header('Location: index.php');
-  
-  
-  ?>
+ 
+header('Location: index_pet.php');

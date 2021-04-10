@@ -71,6 +71,7 @@ isset($_SESSION['email_feito']);
         <br>
         <br><br><br>
     </div>
+   
     <!-- FORM -->
 
     <div class="card card-primary">
@@ -81,6 +82,7 @@ isset($_SESSION['email_feito']);
         <!-- form start -->
         <form role="form" name="add_pet" method="POST" action="add_pet_action.php">
             <div class="card-body">
+
                 <!-- <div class="form-group">
                     <label for="id">Código</label>
                     <input type="int" disabled name = "id" class="form-control" id="id" placeholder="Auto">
@@ -90,21 +92,17 @@ isset($_SESSION['email_feito']);
 
                 <!-- Campo Raça -->
 
-
-
-                <!-- Campo Sexo -->
-
                 <div class="form-group">
                     <div class="row">
                         <div class="col-5">
                             <label for="raca">Raça</label>
-                            <input type="text" class="form-control rounded-0" name="raca " id="raca" placeholder=".rounded-0">
+                            <input type="text" class="form-control rounded-0" name="raca" id="raca" placeholder=".rounded-0">
                         </div>
 
 
                         <div class="col-2">
-                            <label for="exampleSelectBorder">Sexo</label>
-                            <select class="custom-select form-control-border" id="exampleSelectBorder">
+                            <label for="sexo">Sexo</label>
+                            <select class="custom-select form-control-border" name="sexo" id="sexo">
                                 <option selected disabled> Selecione </option>
                                 <option>Macho</option>
                                 <option>Fêmea</option>
@@ -118,12 +116,6 @@ isset($_SESSION['email_feito']);
 
                 <div class="form-group">
                     <div class="row">
-                        <!-- Campo RG -->
-                        <div class="col-5">
-
-                            <label for="raca">RG</label>
-                            <input type="number" class="form-control rounded-0" name="rg" id="rg" placeholder="">
-                        </div>
 
                         <!-- Campo Idade -->
 
@@ -135,14 +127,14 @@ isset($_SESSION['email_feito']);
 
                             <!-- Campo Altura -->
                             <label for="raca">Altura</label>
-                            <input type="number" class="form-control rounded-0" name="peso" id="peso" placeholder="">
+                            <input type="text" class="form-control rounded-0" name="altura" id="altura" placeholder="">
                         </div>
 
                         <!-- Campo Peso -->
                         <div class="col-2">
 
                             <label for="raca">Peso</label>
-                            <input type="number" class="form-control rounded-0" name="peso" id="peso" placeholder="">
+                            <input type="text" class="form-control rounded-0" name="peso" id="peso" placeholder="">
                         </div>
 
                     </div>
@@ -153,52 +145,37 @@ isset($_SESSION['email_feito']);
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6">
-
                             <label for="raca">Vacinas</label>
                             <input type="text" class="form-control form-control-lg rounded-0" name="vacinas" id="vacinas" placeholder="">
                         </div>
                         <div class="col-1"></div>
                     </div>
                 </div>
+              
                 
                 <div class="form-group">
                     <div class="row">
                     <div class="col-6">
-                    <label for="img_pet">Adicionar Foto </label>
-                    <input type="hidden" name="MAX_FILE_SIZE" value="99999999"/>
+                    <label for="img_pet">Adicionar Foto</label>
                     <div><input name="img_pet" id="img_pet" type="file"/></div>
                     </div>
                     </div>
                 </div>
-
+    
 
                 <div class="">
                     <button type="submit" class="btn btn-block bg-gradient-success btn-flat">Adicionar</button>
                 </div>
             </div>
-
-        </form>
-
-
-
-
-    </div>
-
-
-
-
-    </div>
-
-
-
-
-
-
-    <!-- /.card-body -->
-
-
     </form>
+
+
+
     </div>
+
+
+    </div>
+
 
     <!-- FOOTER -->
 

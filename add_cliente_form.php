@@ -68,11 +68,13 @@ isset($_SESSION['email_feito']);
         <!-- form start -->
         <form role="form" name="add_cliente" method="POST" action="cad_cliente.php">
             <div class="card-body">
+
                 <!-- <div class="form-group">
                     <label for="id">Código</label>
                     <input type="int" disabled name = "id" class="form-control" id="id" placeholder="Auto">
                   </div>
                   <-->
+                  
                 <div class="form-group">
                     <label for="tituloInput">Nome</label>
                     <input type="text" name="nome" required class="form-control" id="nome" placeholder="Digite o nome do cliente.">
