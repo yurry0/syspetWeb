@@ -1,0 +1,47 @@
+<?php
+
+session_start();
+include "conexao_crud.php";
+$conn = conexao();
+
+
+try {
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  // prepare sql and bind parameters
+  $stmt = $conn->prepare("UPDATE pet SET pk_id_pet=:pk_id_pet, raca=:raca, sexo=:sexo, idade=:idade, vacinas=:vacinas, altura=:altura, peso=:peso, img_pet=:img_pet WHERE pk_id_pet=:pk_id_pet");
+  $stmt->bindParam(':pk_id_pet', $id);
+  $stmt->bindParam(':raca', $raca);
+  $stmt->bindParam(':sexo', $sexo);
+  $stmt->bindParam(':idade', $idade);
+  $stmt->bindParam(':vacinas', $vacinas);
+  $stmt->bindParam(':altura', $altura);
+  $stmt->bindParam(':peso', $peso);
+  $stmt->bindParam(':img_pet', $img_pet);
+
+  $id = $_GET['id'];
+  $raca = $_POST['raca'];
+  $sexo = $_POST['sexo'];
+  $idade = $_POST['idade'];
+  $vacinas = $_POST['vacinas'];
+  $altura = $_POST['altura'];
+  $peso = $_POST['peso'];
+  $img_pet = $_POST['img_pet'];
+
+  
+  $stmt->execute();
+
+
+
+$_SESSION['edit'] = "Dados editados com sucesso!";
+} catch(PDOException $e) {
+$_SESSION['edit'] = "Error: " . $e->getMessage();
+}
+$conn = null;
+
+
+header('Location: index_pet.php');
+
+
+?>

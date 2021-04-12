@@ -83,7 +83,7 @@ include('conexao_crud.php');
       <div class="container-fluid">
         
      <!-- form start -->
-     <form role="form" name="edit_cliente" method="POST" action="editar_cliente.php?id=<?php echo $id; ?>">
+     <form role="form" name="edit_cliente" method="POST" action="edit_cliente_action.php?id=<?php echo $id; ?>">
             <div class="card-body">
                 <!-- <div class="form-group">
                     <label for="id">Código</label>

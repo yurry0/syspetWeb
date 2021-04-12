@@ -122,17 +122,20 @@
     ?>
 
     <div class="card">
-      <div class="container-sm">
+    <div class="container-sm">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-5">
 
           </div>
-          <div class="col-sm">
+   
+      
+
+          <div class="col-2">
             <?php
             echo '<td style=align-items: center;> 
-                      
-                 <a id="add" name="add" class="btn btn-primary btn-sm" href="add_pet_form.php">
-                         <i class="fas fa-plus"> </i>
+               
+                 <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="add_pet_form.php?id=">
+                         <i class="fas fa-plus"></i>
                         
                  </a>'
 
@@ -192,12 +195,12 @@
                       <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
-                      <a class="btn btn-info btn-sm" href="edit_pet.php?id=' . $v['pk_id_pet'] . '">
+                      <a class="btn btn-info btn-sm" href="edit_pet_form.php?id=' . $v['pk_id_pet'] . '">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="excluir_pet.php?id=' . $v['pk_id_pet'] . '"data-href="excluir_cliente.php?id=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="excluir_pet.php?id=' . $v['pk_id_pet'] . '"data-href="excluir_pet.php?id=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
                 echo '</tr>';
@@ -237,7 +240,7 @@
   </div>
   <?php
 
-include("includes/footer_admin.php");
+                include('includes/footer.php');
 
 ?>
   <!-- SweetAlert2 -->

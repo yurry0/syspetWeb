@@ -122,27 +122,7 @@
     ?>
 
     <div class="card">
-      <div class="container-sm">
-        <div class="row">
-          <div class="col-sm">
-
-          </div>
-          <div class="col-sm">
-            <?php
-            echo '<td style=align-items: center;> 
-                      
-                 <a id="add" name="add" class="btn btn-primary btn-sm" href="add_cliente_form.php?id=">
-                         <i class="fas fa-plus"> </i>
-                        
-                 </a>'
-
-            ?>
-          </div>
-          <div class="col-sm">
-
-          </div>
-        </div>
-      </div>
+      <?php include('includes/add_button.php')?>
 
       <!-- /.card-header -->
       <div class="card-body">
@@ -197,7 +177,7 @@
                       <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
-                      <a class="btn btn-info btn-sm" href="edit_cliente.php?id=' . $v['pk_id_cliente'] . '">
+                      <a class="btn btn-info btn-sm" href="edit_cliente_form.php?id=' . $v['pk_id_cliente'] . '">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
@@ -239,7 +219,7 @@
   </div>
   <?php
 
-include("includes/footer_admin.php");
+include("includes/footer.php");
 
 ?>
   <!-- SweetAlert2 -->

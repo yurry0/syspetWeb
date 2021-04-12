@@ -179,16 +179,7 @@ isset($_SESSION['email_feito']);
 
     <!-- FOOTER -->
 
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-
-        <!-- Copyright -->
-        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://github.com/yurry0/syspetWeb" role="button" data-mdb-ripple-color="dark"><i class="fab fa-github"></i></a>
-            © 2021:
-            CreativeCode
-        </div>
-        <!-- Copyright -->
-    </footer>
+    <?php  include("includes/footer.php")?>
 
 
     <!-- Optional JavaScript -->
