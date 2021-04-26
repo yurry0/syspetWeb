@@ -173,16 +173,16 @@
 
                 echo '<td style="text-align:center"> 
                       
-                      <a class="btn btn-primary btn-sm" href="visu_cliente.php?id=' . $v['pk_id_cliente'] . '">
+                      <a class="btn btn-primary btn-sm" href="cliente_read.php?id=' . $v['pk_id_cliente'] . '">
                       <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
-                      <a class="btn btn-info btn-sm" href="edit_cliente_form.php?id=' . $v['pk_id_cliente'] . '">
+                      <a class="btn btn-info btn-sm" href="cliente_edit_form.php?id=' . $v['pk_id_cliente'] . '">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '"data-href="excluir_cliente.php?id=' . $v['pk_id_cliente'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="cliente_delete.php?id=' . $v['pk_id_cliente'] . '"data-href="cliente_delete.php?id=' . $v['pk_id_cliente'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
                 echo '</tr>';

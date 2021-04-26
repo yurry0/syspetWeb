@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+    session_start();
 
 include('conexao.php');
 
@@ -22,7 +22,7 @@ $row = mysqli_num_rows($result);
 if($row == 1){
  
     $_SESSION['usuario'] = $usuario;
-    header('Location: admin.php');
+    header('Location: painel.php');
     exit();
 
 }

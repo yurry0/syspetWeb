@@ -1,11 +1,3 @@
-<?php
-session_start();
-//include "includes/protect.php";
-//include('verifica_login.php');
-
-
-?>
-
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -14,53 +6,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html lang="en">
 
 <head>
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-html{
-  background-color:#eee;
-}
-.container-box{
-  margin: 20px auto;
-  width:400px;
-  height:400px;
-  background-color:#fff;
-  display:grid;
-  grid-template-columns: 200px 200px;
-  grid-row: auto auto;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  }.box{
-    background-color:#333;
-    padding:20px;
-    border-radius:10px;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    font-family:sans-serif;
-  }
-
-
-
-
-
-
-</style>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Painel Principal</title>
+    <title>AdminLTE 3 | Top Navigation</title>
 
 
-    <?php    include "conexao_crud.php";
+    <?php
+    session_start();
+    include "conexao_crud.php";
     ?>
-
-    
 
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -102,18 +56,16 @@ html{
                     <!-- Left navbar links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="index.php" class="nav-link">Home</a>
+                            <a href="index3.html" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Suporte</a>
+                            <a href="#" class="nav-link">Contact</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">CRUD</a>
+                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                <li><a href="index_cliente.php" class="dropdown-item">Clientes</a></li>
-                                <li><a href="index_pet.php" class="dropdown-item">Pets</a></li>
-                                <li><a href="index_adocao.php" class="dropdown-item">Adoções</a></li>
-                                
+                                <li><a href="#" class="dropdown-item">Some action </a></li>
+                                <li><a href="#" class="dropdown-item">Some other action</a></li>
 
                                 <li class="dropdown-divider"></li>
 
@@ -166,7 +118,7 @@ html{
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Página Inicial - Bem vindo <?php echo $_SESSION['usuario']; ?> </h1>
+                            <h1 class="m-0">Índice de Adoções </h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -180,16 +132,160 @@ html{
 
                         <!-- /.col-md-6 -->
                         <div class="col-lg-12">
-                        <div class="container-box">
-                        
-                        <div class="box"><a href="index_cliente.php">Clientes</a></div>
-                        <div class="box"><a href="index_pet.php">Pets</a></div>
-                        <div class="box" > <a href="index_adocao.php"> Adoções</a></div> 
-                        <div class="box">Catálogo</div>
-                        </div>
+
+
+
+
+                            <?php
+
+                            if (isset($_SESSION['del'])) {
+
+                                $mensagem = $_SESSION['del'];
+                                echo "
+                <script>
+                
+                   window.onload = function(){
+                      toastr.info('$mensagem');
+                    };
+                
+                </script>
+                ";
+                            } else if (isset($_SESSION['add'])) {
+
+                                $mensagem2 = $_SESSION['add'];
+                                echo "
+              <script>
+                 window.onload = function(){
+                    toastr.success('$mensagem2');
+                  };
+              
+              </script>
+              ";
+                            } else if (isset($_SESSION['edit'])) {
+
+                                $mensagem3 = $_SESSION['edit'];
+                                echo "
+            <script>
+               window.onload = function(){
+                  toastr.success('$mensagem3');
+                };
+            
+            </script>
+            ";
+                            }
+                            session_unset();
+
+                            ?>
+
+                            <div class="card">
+                                <div class="container-sm">
+                                    <div class="row">
+                                        <div class="col-1">
+
+                                        </div>
+                                        <div class="col-1">
+
+                                        </div>
+
+                                        <div class="col-4">
+
+                                        </div>
+
+
+
+                                        <div class="col-2">
+                                            <?php
+                                            echo '<td style=align-items: center;> 
+                                            <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="add_adocao_form.php?id=">
+                                    <i class="fas fa-plus"></i></a>'
+
+                                            ?>
+                                        </div>
+                                        <div class="col-sm">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nome</th>
+                                                <th>Cidade</th>
+                                                <th>RG</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <?php
+
+                                            $conexao = conexao();
+
+                                            try {
+                                                $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                                $stmt = $conexao->prepare("SELECT * FROM adocao");
+                                                $stmt->execute();
+
+                                                // set the resulting array to associative
+                                                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                foreach ($stmt->fetchAll() as $k => $v) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $v['pk_id_adocao'] . '</td>';
+                                                    echo '<td>' . $v['id_cliente'] . '</td>';
+                                                    echo '<td>' . $v['id_pet'] . '</td>';
+                                                    echo '<td>' . $v['data_adocao'] . '</td>';
+
+
+
+                                                    echo '<td style="text-align:center"> 
+                      
+                      <a class="btn btn-primary btn-sm" href="visu_cliente.php?id=' . $v['pk_id_adocao'] . '">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                      </a>
+                      
+                      <a class="btn btn-info btn-sm" href="edit_cliente_form.php?id=' . $v['pk_id_adocao'] . '">
+                          <i class="fas fa-pencil-alt">
+                          </i>
+                      </a>
+                       
+                      <a class="btn btn-danger btn-sm" href="excluir_cliente.php?id=' . $v['pk_id_adocao'] . '"data-href="excluir_adocao.php?id=' . $v['pk_pk_id_adocao'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <i class="fas fa-trash-alt"></i>
+                      </a>';
+                                                    echo '</tr>';
+                                                }
+                                            } catch (PDOException $e) {
+                                                echo "Error: " . $e->getMessage();
+                                            }
+                                            $conn = null;
+                                            //echo "</table>";
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
                         </div>
-                        </div>
+
+                        <!-- /.card-body -->
+                        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        Confimar Exclusão
+                                    </div>
+                                    <div class="modal-body">
+                                        Essa ação vai excluir o conteúdo selecionado. Deseja mesmo excluir?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        <a class="btn btn-danger btn-ok">Sim, exclua este conteúdo.</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <?php
 

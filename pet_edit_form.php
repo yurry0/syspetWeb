@@ -88,7 +88,7 @@ include('conexao_crud.php');
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" name="edit_pet" method="POST" action="edit_pet_action.php?id=<?php echo $id; ?>">
+        <form role="form" name="edit_pet" method="POST" action="pet_edit_action.php?id=<?php echo $id; ?>">
             <div class="card-body">
 
               

@@ -191,16 +191,16 @@
 
                 echo '<td style="text-align:center"> 
                       
-                      <a class="btn btn-primary btn-sm" href="visu_pet.php?id=' . $v['pk_id_pet'] . '">
+                      <a class="btn btn-primary btn-sm" href="pet_read.php?id=' . $v['pk_id_pet'] . '">
                       <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
-                      <a class="btn btn-info btn-sm" href="edit_pet_form.php?id=' . $v['pk_id_pet'] . '">
+                      <a class="btn btn-info btn-sm" href="pet_edit_form.php?id=' . $v['pk_id_pet'] . '">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="excluir_pet.php?id=' . $v['pk_id_pet'] . '"data-href="excluir_pet.php?id=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="pet_delete.php?id=' . $v['pk_id_pet'] . '"data-href="pet_delete.php?id=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
                 echo '</tr>';

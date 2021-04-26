@@ -61,7 +61,7 @@ session_start();
         <div class="container" style="border-color:#4DA8DA; border-left-style: solid;  border-width: 11px;">
 
 
-            <form action="cadastrar.php" method="POST">
+            <form action="usuario_add_action.php" method="POST">
 
             <!-- Validação e Alerts do Bootstrap -->
 

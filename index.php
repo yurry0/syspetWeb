@@ -99,13 +99,14 @@ session_start();
               </div>
             </form>
           </div>
-          <div class="row">
-            <p> <a href="cadastro.php">Novo acesso? Faça seu cadastro aqui</a></p>
-          </div>
-          <div class="row">
-            <p> Perdeu a senha? <a href="esqueceu_senha.php"> Solicite uma nova.</a></p>
-          </div>
           
+          <div class="row">
+            <h6> Perdeu a senha? <a href="esqueceu_senha.php"> Solicite uma nova.</a></h6>
+          </div>
+            <p> <br> - - - - - - - - - - - </p>
+          <div class="row">
+            <h6> <a href="usuario_add_form.php">Novo acesso? Faça seu cadastro aqui</a></h6>
+          </div>
         </div>
       </div>
     </div>
