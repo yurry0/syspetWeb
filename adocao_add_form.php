@@ -77,63 +77,122 @@ include('conexao_crud.php');
     </div>
 
     <!-- FORM -->
-
-    <div class="card card-primary">
+    <!-- /.card-header -->
+    <!-- form start -->
+    <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Nova Adoção</h3>
+            <h3 class="card-title">Realizar uma nova adoção</h3>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form role="form" name="add_adocao" method="POST" action="add_adocao_action.php">
-            <div class="card-body">
+        <div class="card-body">
+            <div class="form-group col-4">
 
-                <!-- <div class="form-group">
-                    <label for="id">Código</label>
-                    <input type="int" disabled name = "id" class="form-control" id="id" placeholder="Auto">
-                  </div>
-                  <-->
-
-
-                <!-- Campo Pet -->
-
-
-                <!-- Criando uma conexão para listar os resultados da tabela num campo select -->
-
-
-
-                <div class="form-group">
-                    <div class="row">
-                    
-                    
-                    
-
-
+                <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados!</code></label>
+                <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
+                <div id="listaRaca"></div>
             </div>
-        </form>
+
+            <!-- testanto js para introduzir campos -->
 
 
-
-    </div>
-
-
-    </div>
+        <!-- apaga daqui pra cima -->
+            </div>
 
 
-    <!-- FOOTER -->
-
-    <?php include("includes/footer.php") ?>
+        </div>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+        <!-- FOOTER -->
+
+        <?php include("includes/footer.php") ?>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>]
+    
+        <!-- Bootstrap 4 -->
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="dist/js/demo.js"></script>
 </body>
 
 </html>
+
+<!-- Script para inserir os dados --> 
+<script>
+
+$(document).ready(function(){
+
+$('#raca').keyup(function(){
+
+var query = $(this).val();
+if(query != ''){
+
+$.ajax({
+
+        url: "search.php",
+        method: "POST",
+        data:{query:query},
+        success: function(data){
+
+            $('#listaRaca').fadeIn();
+            $('#listaRaca').html(data);
+
+        }
+})
+
+}
+
+})
+
+})
+
+$(document).on('click', 'li', function(){
+
+$('#raca').val($(this).text());
+$('#listaRaca').fadeOut();
+
+});
+
+
+
+
+</script>
+<!-- Script para carregar novas formas baseada na opção que o usuário escolher -->
+
+<script> 
+
+$("#seeAnotherField").change(function() {
+  if ($(this).val() == "yes") {
+    $('#otherFieldDiv').show();
+    $('#otherField').attr('required', '');
+    $('#otherField').attr('data-error', 'This field is required.');
+  } else {
+    $('#otherFieldDiv').hide();
+    $('#otherField').removeAttr('required');
+    $('#otherField').removeAttr('data-error');
+  }
+});
+$("#seeAnotherField").trigger("change");
+
+$("#seeAnotherFieldGroup").change(function() {
+  if ($(this).val() == "yes") {
+    $('#otherFieldGroupDiv').show();
+    $('#otherField1').attr('required', '');
+    $('#otherField1').attr('data-error', 'This field is required.');
+    $('#otherField2').attr('required', '');
+    $('#otherField2').attr('data-error', 'This field is required.');
+  } else {
+    $('#otherFieldGroupDiv').hide();
+    $('#otherField1').removeAttr('required');
+    $('#otherField1').removeAttr('data-error');
+    $('#otherField2').removeAttr('required');
+    $('#otherField2').removeAttr('data-error');
+  }
+});
+$("#seeAnotherFieldGroup").trigger("change");
+
+</script>

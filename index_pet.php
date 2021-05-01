@@ -134,7 +134,7 @@
             <?php
             echo '<td style=align-items: center;> 
                
-                 <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="add_pet_form.php?id=">
+                 <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="pet_add_form.php?id=">
                          <i class="fas fa-plus"></i>
                         
                  </a>'
@@ -184,11 +184,8 @@
                 echo '<td>' . $v['vacinas'] . '</td>';
                 echo '<td>' . $v['altura'] . '</td>';
                 echo '<td>' . $v['peso'] . '</td>';
-                echo '<td>'.'<img src="display_image.php?id='.$v['pk_id_pet'].'" />';
-
-
-
-
+          
+                echo '<td>'.'<img width="100" src="data:image/png;base64,'.base64_encode($v['img_pet']).'" />'; 
                 echo '<td style="text-align:center"> 
                       
                       <a class="btn btn-primary btn-sm" href="pet_read.php?id=' . $v['pk_id_pet'] . '">

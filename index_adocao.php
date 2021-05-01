@@ -252,7 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="excluir_cliente.php?id=' . $v['pk_id_adocao'] . '"data-href="excluir_adocao.php?id=' . $v['pk_pk_id_adocao'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="excluir_cliente.php?id=' . $v['pk_id_adocao'] . '"data-href="excluir_adocao.php?id=' . $v['pk_id_adocao'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
                                                     echo '</tr>';
