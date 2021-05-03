@@ -60,7 +60,7 @@ include('conexao_crud.php');
         }
     </style>
 
-    <title>Cadastrar Pet</title>
+    <title>Cadastrar Adoção</title>
 </head>
 
 <body>
@@ -86,9 +86,15 @@ include('conexao_crud.php');
         <div class="card-body">
             <div class="form-group col-4">
 
-                <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados!</code></label>
+            <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados!</code></label>
                 <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
                 <div id="listaRaca"></div>
+
+                <label for="cliente"> Cliente <code> - - Selecione um dos Clientes já cadastrados!</code></label>
+                <input type="text" class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
+                <div id="listaCliente"></div>
+
+                
             </div>
 
             <!-- testanto js para introduzir campos -->
@@ -109,7 +115,7 @@ include('conexao_crud.php');
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>]
+        <script src="plugins/jquery/jquery.min.js"></script>
     
         <!-- Bootstrap 4 -->
         <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -148,14 +154,46 @@ $.ajax({
 
 })
 
+});
+
+
+$(document).on("keyup", "#cliente", function(){
+
+    var cliente = $(this).val().trim();
+    if(cliente == ""){
+
+        $("#listaCliente").fadeOut();
+    }
+    else{
+
+        $.ajax({
+
+            url: "search2.php",
+            method: "POST",
+            data: { cliente: cliente},
+            success: function(data){
+
+                $("#listaCliente").fadeIn();
+                $("#listaCliente").html(data);
+            }
+        });
+    }
+});
+
+$(document).on("click", "p", function(){
+
+    $("#cliente").val($(this).text());
+    $("#listaCliente").fadeOut();
 })
+
 
 $(document).on('click', 'li', function(){
 
 $('#raca').val($(this).text());
 $('#listaRaca').fadeOut();
 
-});
+})
+;
 
 
 

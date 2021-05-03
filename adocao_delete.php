@@ -11,7 +11,7 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // prepare sql and bind parameters
-  $stmt = $conn->prepare("DELETE FROM cliente WHERE pk_id_adocao=:pk_id_adocao");
+  $stmt = $conn->prepare("DELETE FROM adocao WHERE pk_id_adocao=:pk_id_adocao");
   $stmt->bindParam(':pk_id_adocao', $id);
 
   $id =$_GET['id'];

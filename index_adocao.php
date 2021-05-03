@@ -196,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-2">
                                             <?php
                                             echo '<td style=align-items: center;> 
-                                            <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="add_adocao_form.php?id=">
+                                            <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="adocao_add_form.php?id=">
                                     <i class="fas fa-plus"></i></a>'
 
                                             ?>

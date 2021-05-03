@@ -14,7 +14,7 @@ if(isset($_POST["query"])){
 
         while($row = mysqli_fetch_array($result)){
 
-            $output .='<li>'.$row["raca"].' , '.$row["pk_id_pet"].' '.'</li>';
+            $output .='<li>'.$row["raca"].' '.'</li>';
 
         }
     }
@@ -28,4 +28,7 @@ if(isset($_POST["query"])){
     echo $output;
 
 }
+
+
+
 ?>
