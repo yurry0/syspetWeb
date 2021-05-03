@@ -212,10 +212,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Nome</th>
-                                                <th>Cidade</th>
-                                                <th>RG</th>
+                                                <th>ID da Adoção</th>
+                                                <th>Nome do Cliente</th>
+                                                <th>Raça do Pet</th>
+                                                <th>Data da Adoção</th>
 
                                             </tr>
                                         </thead>
@@ -227,7 +227,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                             try {
                                                 $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                                $stmt = $conexao->prepare("SELECT * FROM adocao");
+                                                $stmt = $conexao->prepare("SELECT * FROM adocao INNER JOIN cliente ON adocao.id_cliente = cliente.pk_id_cliente INNER JOIN pet ON adocao.id_pet = pet.pk_id_pet");
                                                 $stmt->execute();
 
                                                 // set the resulting array to associative
@@ -235,24 +235,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 foreach ($stmt->fetchAll() as $k => $v) {
                                                     echo '<tr>';
                                                     echo '<td>' . $v['pk_id_adocao'] . '</td>';
-                                                    echo '<td>' . $v['id_cliente'] . '</td>';
-                                                    echo '<td>' . $v['id_pet'] . '</td>';
+                                                    echo '<td>' . $v['cli_nome'] . '</td>';
+                                                    echo '<td>' . $v['raca'] . '</td>';
                                                     echo '<td>' . $v['data_adocao'] . '</td>';
 
 
 
                                                     echo '<td style="text-align:center"> 
                       
-                      <a class="btn btn-primary btn-sm" href="visu_cliente.php?id=' . $v['pk_id_adocao'] . '">
+                      <a class="btn btn-primary btn-sm" href="adocao_read.php?id=' . $v['pk_id_adocao'] . '">
                       <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
-                      <a class="btn btn-info btn-sm" href="edit_cliente_form.php?id=' . $v['pk_id_adocao'] . '">
+                      <a class="btn btn-info btn-sm" href="adocao_edit_form.php?id=' . $v['pk_id_adocao'] . '">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="excluir_cliente.php?id=' . $v['pk_id_adocao'] . '"data-href="excluir_adocao.php?id=' . $v['pk_id_adocao'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '"data-href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
                                                     echo '</tr>';
