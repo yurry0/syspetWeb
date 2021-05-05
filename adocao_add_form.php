@@ -51,11 +51,16 @@ include('conexao_crud.php');
             height: 100px;
             letter-spacing: 10px;
         }
+        
+        label{
+            padding: 2px;
 
+        }
+         
         button {
-
+            margin-top: 10px;
             height: 45px;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
         }
     </style>
@@ -84,153 +89,151 @@ include('conexao_crud.php');
             <h3 class="card-title">Realizar uma nova adoção</h3>
         </div>
         <div class="card-body">
-            <div class="form-group col-4">
+            <form action="adocao_add_action.php" method="POST">
 
-            <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados!</code></label>
-                <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
-                <div id="listaRaca"></div>
+                <div class="form-group col-4">
 
-                <label for="cliente"> Cliente <code> - - Selecione um dos Clientes já cadastrados!</code></label>
-                <input type="text" class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
-                <div id="listaCliente"></div>
+                    <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
+                    <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
+                    <div id="listaRaca"></div>                  
+                    
 
-                
-            </div>
+                    <label for="cliente"> Cliente <code> - - Escreva algo, e a lista de clientes irá aparecer</code></label>
+                    <input type="text" class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
+                    <div id="listaCliente" class="listaCliente"></div>
 
+                    <button type="submit" class="btn btn-block bg-gradient-success btn-flat">Adicionar Nova Adoção</button>
+                </div>
+            </form>
             <!-- testanto js para introduzir campos -->
 
 
-        <!-- apaga daqui pra cima -->
-            </div>
-
-
+            <!-- apaga daqui pra cima -->
         </div>
 
 
-        <!-- FOOTER -->
-
-        <?php include("includes/footer.php") ?>
+    </div>
 
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
-    
-        <!-- Bootstrap 4 -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.min.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
+    <!-- FOOTER -->
+
+    <?php include("includes/footer.php") ?>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
 </body>
 
 </html>
 
-<!-- Script para inserir os dados --> 
+<!-- Script para inserir os dados -->
 <script>
+    $(document).ready(function() {
 
-$(document).ready(function(){
+        $('#raca').keyup(function() {
 
-$('#raca').keyup(function(){
+            var query = $(this).val();
+            if (query != '') {
 
-var query = $(this).val();
-if(query != ''){
+                $.ajax({
 
-$.ajax({
+                    url: "search.php",
+                    method: "POST",
+                    data: {
+                        query: query
+                    },
+                    success: function(data) {
 
-        url: "search.php",
-        method: "POST",
-        data:{query:query},
-        success: function(data){
+                        $('#listaRaca').fadeIn();
+                        $('#listaRaca').html(data);
 
-            $('#listaRaca').fadeIn();
-            $('#listaRaca').html(data);
+                    }
+                })
 
-        }
-})
-
-}
-
-})
-
-});
-
-
-$(document).on("keyup", "#cliente", function(){
-
-    var cliente = $(this).val().trim();
-    if(cliente == ""){
-
-        $("#listaCliente").fadeOut();
-    }
-    else{
-
-        $.ajax({
-
-            url: "search2.php",
-            method: "POST",
-            data: { cliente: cliente},
-            success: function(data){
-
-                $("#listaCliente").fadeIn();
-                $("#listaCliente").html(data);
             }
-        });
-    }
-});
 
-$(document).on("click", "p", function(){
+        })
 
-    $("#cliente").val($(this).text());
-    $("#listaCliente").fadeOut();
-})
+    });
 
 
-$(document).on('click', 'li', function(){
+    $(document).on("keyup", "#cliente", function() {
 
-$('#raca').val($(this).text());
-$('#listaRaca').fadeOut();
+        var cliente = $(this).val().trim();
+        if (cliente == "") {
 
-})
-;
+            $("#listaCliente").fadeOut();
+        } else {
+
+            $.ajax({
+
+                url: "search2.php",
+                method: "POST",
+                data: {
+                    cliente: cliente
+                },
+                success: function(data) {
+
+                    $("#listaCliente").fadeIn();
+                    $("#listaCliente").html(data);
+                }
+            });
+        }
+    });
+
+    $(document).on("click", ".listaCliente", function() {
+
+        $("#cliente").val($(this).text());
+        $("#listaCliente").fadeOut();
+    })
 
 
+    $(document).on('click', 'li', function() {
 
+        $('#raca').val($(this).text());
+        $('#listaRaca').fadeOut();
 
+    });
 </script>
 <!-- Script para carregar novas formas baseada na opção que o usuário escolher -->
 
-<script> 
+<script>
+    $("#seeAnotherField").change(function() {
+        if ($(this).val() == "yes") {
+            $('#otherFieldDiv').show();
+            $('#otherField').attr('required', '');
+            $('#otherField').attr('data-error', 'This field is required.');
+        } else {
+            $('#otherFieldDiv').hide();
+            $('#otherField').removeAttr('required');
+            $('#otherField').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField").trigger("change");
 
-$("#seeAnotherField").change(function() {
-  if ($(this).val() == "yes") {
-    $('#otherFieldDiv').show();
-    $('#otherField').attr('required', '');
-    $('#otherField').attr('data-error', 'This field is required.');
-  } else {
-    $('#otherFieldDiv').hide();
-    $('#otherField').removeAttr('required');
-    $('#otherField').removeAttr('data-error');
-  }
-});
-$("#seeAnotherField").trigger("change");
-
-$("#seeAnotherFieldGroup").change(function() {
-  if ($(this).val() == "yes") {
-    $('#otherFieldGroupDiv').show();
-    $('#otherField1').attr('required', '');
-    $('#otherField1').attr('data-error', 'This field is required.');
-    $('#otherField2').attr('required', '');
-    $('#otherField2').attr('data-error', 'This field is required.');
-  } else {
-    $('#otherFieldGroupDiv').hide();
-    $('#otherField1').removeAttr('required');
-    $('#otherField1').removeAttr('data-error');
-    $('#otherField2').removeAttr('required');
-    $('#otherField2').removeAttr('data-error');
-  }
-});
-$("#seeAnotherFieldGroup").trigger("change");
-
+    $("#seeAnotherFieldGroup").change(function() {
+        if ($(this).val() == "yes") {
+            $('#otherFieldGroupDiv').show();
+            $('#otherField1').attr('required', '');
+            $('#otherField1').attr('data-error', 'This field is required.');
+            $('#otherField2').attr('required', '');
+            $('#otherField2').attr('data-error', 'This field is required.');
+        } else {
+            $('#otherFieldGroupDiv').hide();
+            $('#otherField1').removeAttr('required');
+            $('#otherField1').removeAttr('data-error');
+            $('#otherField2').removeAttr('required');
+            $('#otherField2').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherFieldGroup").trigger("change");
 </script>

@@ -5,13 +5,14 @@ include "conexao.php";
 if(isset($_POST["cliente"])){
 
     $output = '';
-    $query = mysqli_query($conexao, "SELECT pk_id_cliente, cli_nome from cliente WHERE cli_nome LIKE '%'");
+    $query = "SELECT pk_id_cliente, cli_nome from cliente WHERE cli_nome LIKE '%".
+    $_POST["cliente"]."%'";
+    $result = mysqli_query($conexao, $query);
+    $output = '<ul class="list-unstyled">';
 
-    $output = '<ul class="listaCliente">';
+    if(mysqli_num_rows($result) > 0){
 
-    if(mysqli_num_rows($query) > 0){
-
-        while($row = mysqli_fetch_array($query)){
+        while($row = mysqli_fetch_array($result)){
 
             $output .='<p>'.$row["cli_nome"].' '.'</p>';
 
@@ -20,10 +21,10 @@ if(isset($_POST["cliente"])){
 
     else{
 
-        $output .='<li> Cliente não Encontrado! </li>';
+        $output.='<p> Cliente não Encontrado! </p>';
     }
 
-    $output .='<ul>';
+    $output.='<ul>';
     echo $output;
 
 }
