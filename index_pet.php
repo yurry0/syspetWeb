@@ -184,12 +184,8 @@
                 echo '<td>' . $v['vacinas'] . '</td>';
                 echo '<td>' . $v['altura'] . '</td>';
                 echo '<td>' . $v['peso'] . '</td>';
-          
-<<<<<<< HEAD
-                echo '<td>'.'<img width="100" src="Uploads/'.$v['img_pet'].'" />'; 
-=======
-                echo '<td>'.'<img width="100" src="data:image/png;base64,'.base64_encode($v['img_pet']).'" />'; 
->>>>>>> f90e35b6a674cdf0d88bdee7106860c716ba1f9a
+                          echo '<td>'.'<img width="100" src="Uploads/'.$v['img_pet'].'" />'; 
+
                 echo '<td style="text-align:center"> 
                       
                       <a class="btn btn-primary btn-sm" href="pet_read.php?id=' . $v['pk_id_pet'] . '">
