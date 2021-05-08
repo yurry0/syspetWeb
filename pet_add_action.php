@@ -41,18 +41,38 @@ try {
     }
 
     // prepare sql and bind parameters
+<<<<<<< HEAD
     $stmt = $conn->prepare("INSERT INTO pet(raca, sexo, idade, vacinas, altura, peso, img_pet)
     VALUES (:raca, :sexo, :idade,:vacinas, :altura, :peso, :img_pet )");
+=======
+    $stmt = $conn->prepare("INSERT INTO pet(raca, sexo, idade, vacinas, altura, peso, img_pet, tipo)
+    VALUES (:raca, :sexo, :idade,:vacinas, :altura, :peso, :img_pet,  :tipo)");
+>>>>>>> f90e35b6a674cdf0d88bdee7106860c716ba1f9a
     $stmt->bindParam(':raca', $raca);
     $stmt->bindParam(':sexo', $sexo);
     $stmt->bindParam(':idade', $idade);
     $stmt->bindParam(':vacinas', $vacinas);
     $stmt->bindParam(':altura', $altura);
     $stmt->bindParam(':peso', $peso);
+<<<<<<< HEAD
     $stmt->bindParam(':img_pet', $newName);
     
     
   
+=======
+    $stmt->bindParam(':img_pet', $img_pet);
+    $stmt->bindParam(':tipo', $tipo);
+    
+    
+    $raca = $_POST['raca'];
+    $sexo = $_POST['sexo'];
+    $idade = $_POST['idade'];
+    $vacinas = $_POST['vacinas'];
+    $altura = $_POST['altura'];
+    $peso = $_POST['peso'];
+    $img_pet = $_FILES['img_pet'];
+    $tipo = "image/".get_file_extension($img_pet);
+>>>>>>> f90e35b6a674cdf0d88bdee7106860c716ba1f9a
 
     $stmt->execute();
   
