@@ -43,7 +43,7 @@ try {
   $conn = null;
   
   
-  header('Location: index.php');
+  header('Location: index_cliente.php');
   
   
   ?>

@@ -1,5 +1,6 @@
 **/*.min.js
-**/plugins/*
-**/dist/*
-**/build/npm
-ad.js
+**/dist/
+**/vendor/
+/_site/
+/js/coverage/
+/site/static/sw.js

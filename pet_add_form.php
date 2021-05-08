@@ -80,7 +80,7 @@ isset($_SESSION['email_feito']);
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" name="add_pet" method="POST" action="add_pet_action.php">
+        <form role="form" name="add_pet" method="POST" action="pet_add_action.php" enctype="multipart/form-data">
             <div class="card-body">
 
                 <!-- <div class="form-group">

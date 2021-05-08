@@ -51,16 +51,21 @@ include('conexao_crud.php');
             height: 100px;
             letter-spacing: 10px;
         }
+        
+        label{
+            padding: 2px;
 
+        }
+         
         button {
-
+            margin-top: 10px;
             height: 45px;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
         }
     </style>
 
-    <title>Cadastrar Pet</title>
+    <title>Cadastrar Adoção</title>
 </head>
 
 <body>
@@ -77,43 +82,34 @@ include('conexao_crud.php');
     </div>
 
     <!-- FORM -->
-
-    <div class="card card-primary">
+    <!-- /.card-header -->
+    <!-- form start -->
+    <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Nova Adoção</h3>
+            <h3 class="card-title">Realizar uma nova adoção</h3>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form role="form" name="add_adocao" method="POST" action="add_adocao_action.php">
-            <div class="card-body">
+        <div class="card-body">
+            <form action="adocao_add_action.php" method="POST">
 
-                <!-- <div class="form-group">
-                    <label for="id">Código</label>
-                    <input type="int" disabled name = "id" class="form-control" id="id" placeholder="Auto">
-                  </div>
-                  <-->
+                <div class="form-group col-4">
 
-
-                <!-- Campo Pet -->
-
-
-                <!-- Criando uma conexão para listar os resultados da tabela num campo select -->
-
-
-
-                <div class="form-group">
-                    <div class="row">
-                    
-                    
+                    <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
+                    <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
+                    <div id="listaRaca"></div>                  
                     
 
+                    <label for="cliente"> Cliente <code> - - Escreva algo, e a lista de clientes irá aparecer</code></label>
+                    <input type="text" class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
+                    <div id="listaCliente" class="listaCliente"></div>
 
-            </div>
-        </form>
+                    <button type="submit" class="btn btn-block bg-gradient-success btn-flat">Adicionar Nova Adoção</button>
+                </div>
+            </form>
+            <!-- testanto js para introduzir campos -->
 
 
-
-    </div>
+            <!-- apaga daqui pra cima -->
+        </div>
 
 
     </div>
@@ -128,6 +124,7 @@ include('conexao_crud.php');
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
+
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
@@ -137,3 +134,106 @@ include('conexao_crud.php');
 </body>
 
 </html>
+
+<!-- Script para inserir os dados -->
+<script>
+    $(document).ready(function() {
+
+        $('#raca').keyup(function() {
+
+            var query = $(this).val();
+            if (query != '') {
+
+                $.ajax({
+
+                    url: "search.php",
+                    method: "POST",
+                    data: {
+                        query: query
+                    },
+                    success: function(data) {
+
+                        $('#listaRaca').fadeIn();
+                        $('#listaRaca').html(data);
+
+                    }
+                })
+
+            }
+
+        })
+
+    });
+
+
+    $(document).on("keyup", "#cliente", function() {
+
+        var cliente = $(this).val().trim();
+        if (cliente == "") {
+
+            $("#listaCliente").fadeOut();
+        } else {
+
+            $.ajax({
+
+                url: "search2.php",
+                method: "POST",
+                data: {
+                    cliente: cliente
+                },
+                success: function(data) {
+
+                    $("#listaCliente").fadeIn();
+                    $("#listaCliente").html(data);
+                }
+            });
+        }
+    });
+
+    $(document).on("click", ".listaCliente", function() {
+
+        $("#cliente").val($(this).text());
+        $("#listaCliente").fadeOut();
+    })
+
+
+    $(document).on('click', 'li', function() {
+
+        $('#raca').val($(this).text());
+        $('#listaRaca').fadeOut();
+
+    });
+</script>
+<!-- Script para carregar novas formas baseada na opção que o usuário escolher -->
+
+<script>
+    $("#seeAnotherField").change(function() {
+        if ($(this).val() == "yes") {
+            $('#otherFieldDiv').show();
+            $('#otherField').attr('required', '');
+            $('#otherField').attr('data-error', 'This field is required.');
+        } else {
+            $('#otherFieldDiv').hide();
+            $('#otherField').removeAttr('required');
+            $('#otherField').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField").trigger("change");
+
+    $("#seeAnotherFieldGroup").change(function() {
+        if ($(this).val() == "yes") {
+            $('#otherFieldGroupDiv').show();
+            $('#otherField1').attr('required', '');
+            $('#otherField1').attr('data-error', 'This field is required.');
+            $('#otherField2').attr('required', '');
+            $('#otherField2').attr('data-error', 'This field is required.');
+        } else {
+            $('#otherFieldGroupDiv').hide();
+            $('#otherField1').removeAttr('required');
+            $('#otherField1').removeAttr('data-error');
+            $('#otherField2').removeAttr('required');
+            $('#otherField2').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherFieldGroup").trigger("change");
+</script>
