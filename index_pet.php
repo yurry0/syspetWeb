@@ -1,5 +1,3 @@
-
-
 <html>
 
 <head>
@@ -26,7 +24,6 @@
 
 
   <style>
-
     h1 {
 
       display: flex;
@@ -122,13 +119,13 @@
     ?>
 
     <div class="card">
-    <div class="container-sm">
+      <div class="container-sm">
         <div class="row">
           <div class="col-5">
 
           </div>
-   
-      
+
+
 
           <div class="col-2">
             <?php
@@ -149,7 +146,7 @@
 
       <!-- /.card-header -->
       <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="table_pet" class="table table-bordered table-striped">
           <thead>
             <tr>
               <th>ID</th>
@@ -159,11 +156,17 @@
               <th>Vacinas</th>
               <th>Altura</th>
               <th>Peso</th>
+              <th>Especie</th>
+              <th>Pelagem</th>
+              <th>Porte</th>
+              <th>Adotado</th>
+              <th>Data de Cadastro</th>
               <th>Foto</th>
             </tr>
           </thead>
           <tbody>
 
+            <!-- Conexão com o Banco de Dados para puxar todos os dados de Pet -->
             <?php
 
             $conexao = conexao();
@@ -184,7 +187,13 @@
                 echo '<td>' . $v['vacinas'] . '</td>';
                 echo '<td>' . $v['altura'] . '</td>';
                 echo '<td>' . $v['peso'] . '</td>';
-                          echo '<td>'.'<img width="100" src="Uploads/'.$v['img_pet'].'" />'; 
+                echo '<td>' . $v['especie'] . '</td>';
+                echo '<td>' . $v['pelagem'] . '</td>';
+                echo '<td>' . $v['porte'] . '</td>';
+                echo '<td>' . $v['adotado'] . '</td>';
+                echo '<td>' . $v['data_cadastro'] . '</td>';
+
+                echo '<td>' . '<img width="100" src="Uploads/' . $v['img_pet'] . '" />';
 
                 echo '<td style="text-align:center"> 
                       
@@ -212,11 +221,11 @@
         </table>
       </div>
     </div>
- 
+
   </div>
 
 
-       
+
   <!-- Modal de Delete para o Crud -->
   <!-- /.card-body -->
   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -237,9 +246,9 @@
   </div>
   <?php
 
-                include('includes/footer.php');
+  include('includes/footer.php');
 
-?>
+  ?>
   <!-- SweetAlert2 -->
   <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- jQuery -->
