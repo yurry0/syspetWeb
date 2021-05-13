@@ -58,7 +58,27 @@ isset($_SESSION['email_feito']);
             padding: 10px;
             text-align: center;
         }
+
+        #pelagem_cao {
+
+            display: none;
+
+        }
+
+
+        #pelagem_gato {
+
+            display: none;
+
+        }
+
+        #pelagem_cavalo {
+
+            display: none;
+
+        }
     </style>
+
 
     <title>Cadastrar Pet</title>
 </head>
@@ -91,10 +111,6 @@ isset($_SESSION['email_feito']);
 
                 <div class="card-body">
 
-
-
-
-
                     <!-- Campo Raça -->
 
                     <div class="form-group">
@@ -109,26 +125,26 @@ isset($_SESSION['email_feito']);
                             </div>
                             <div class="col-1">
                                 <div class="form-group">
-                                    
+
                                     <label for="id">Código</label>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fab fa-slack-hash"></i></span>
                                         <input type="int" disabled name="id" class="form-control" id="id" placeholder="Auto">
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <div class="col-2">
                                 <label>Espécie</label>
                                 <div class="input-group-prepend">
-                                
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected" disabled>Selecione</option>
-                                    <option>Cão</option>
-                                    <option>Gato</option>
-                                    <option>Cavalo</option>
 
-                                </select>
+                                    <select id="especie" class="form-control select2" style="width: 100%;" onchange="showTextBox()">
+                                        <option selected="selected" disabled>Selecione</option>
+                                        <option value="cachorro">Cão</option>
+                                        <option value="gato">Gato</option>
+                                        <option value="cavalo">Cavalo</option>
+
+                                    </select>
 
                                 </div>
 
@@ -144,9 +160,9 @@ isset($_SESSION['email_feito']);
                                 <label for="sexo">Sexo</label>
                                 <select class="custom-select form-control-border" name="sexo" id="sexo">
                                     <option selected disabled> Selecione </option>
-                                    <option>Macho</option>
-                                    <option>Fêmea</option>
-                                    <option>Outro</option>
+                                    <option value="macho">Macho</option>
+                                    <option value="femea">Fêmea</option>
+                                    <option value="outro">Outro</option>
                                 </select>
                             </div>
 
@@ -195,6 +211,68 @@ isset($_SESSION['email_feito']);
                                 <input type="text" class="form-control rounded-0" name="peso" id="peso" placeholder="">
                             </div>
 
+
+                            <div id="pelagem_cao" class="col-2">
+
+                                <label for="raca">Pelagem</label>
+                                <select class="form-control select2" id="pelo_cao" name="pelo_cao" style="width: 100%;">
+                                    <option selected="selected" disabled>Selecione</option>
+                                    <option>Longa</option>
+                                    <option>Curta</option>
+                                    <option>Ondulado e Longo</option>
+                                    <option>Dupla</option>
+                                    <option>Textura Dura</option>
+                                    <option>Textura Lisa</option>
+                                    <option>Peculiares</option>
+
+                                </select>
+                            </div>
+
+
+                            <div id="pelagem_gato" class="col-2">
+
+                                <label for="">Pelagem</label>
+                                <select class="form-control select2" id="pelo_gato" name="pelo_gato" required style="width: 100%;">
+                                    <option selected="selected" disabled>Selecione</option>
+                                    <option>Sólida</option>
+                                    <option>Branco</option>
+                                    <option>Particolor</option>
+                                    <option>Tabby</option>
+                                    <option>Classic</option>
+                                    <option>Mackerel</option>
+                                    <option>Spotted</option>
+                                    <option>Ticked</option>
+                                    <option>Escaminhas</option>
+                                    <option>Red Point</option>
+                                    <option>Seal Points</option>
+                                    <option>Shaded</option>
+                                    <option>Golden</option>
+
+
+
+                                </select>
+                            </div>
+
+
+                            <div id="pelagem_cavalo" class="col-2">
+
+                                <label for="">Pelagem</label>
+                                <select class="form-control select2" id="pelo_cavalo" name="pelo_cavalo" required style="width: 100%;">
+                                    <option selected="selected" disabled>Selecione</option>
+                                    <option>Alazão</option>
+                                    <option>Gateado</option>
+                                    <option>Baio</option>
+                                    <option>Rosilho</option>
+                                    <option>Tobiano</option>
+                                    <option>Tordilho</option>
+                                    <option>Mouro</option>
+                                    <option>Zaino</option>
+
+
+                                </select>
+                            </div>
+
+
                         </div>
 
                     </div>
@@ -205,24 +283,42 @@ isset($_SESSION['email_feito']);
                             <div class="col-2"></div>
                             <div class="col-6">
 
-                                <label>Vacinas</label>
-                                <select class="select2" multiple="multiple" data-placeholder="Selecione as vacinas" style="width: 100%;">
-                                    <optgroup label="Cães e Gatos">
 
-                                        <option>Antirrábica</option>
-                                        <option>Polivalente </option>
-                                        <option>Giardíase</option>
-                                        <option>Gripe Canina</option>
-                                        <option>Leishmaniose</option>
-                                        
-                                        
-                                    <optgroup label="Felinas">
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
+                                <div class='cao_gato_vacina'>
 
-                                </select>
+                                    <label>Vacinas</label>
+                                    <select class="select" id='vacina_cao_gato' multiple="multiple" data-placeholder="Selecione as vacinas" required style="width: 100%;">
+                                        <optgroup label="Cães e Gatos">
+
+                                            <option>Antirrábica</option>
+                                            <option>Polivalente </option>
+                                            <option>Giardíase</option>
+                                            <option>Gripe Canina</option>
+                                            <option>Vacina Polivalente V3</option>
+                                            <option>Vacina Polivalente V4</option>
+                                            <option>Vacina Polivalente V5</option>
+
+                                    </select>
+
+
+                                </div>
+
+
+                                <div class='cavalo_vacina'>
+                                    <select required class="select2" multiple="multiple" id='vacina_cavalo' data-placeholder="Selecione as vacinas" style="width: 100%;">
+
+                                        <optgroup label="Equinos">
+                                            <option>Tétano</option>
+                                            <option>Influenza</option>
+                                            <option>Encefalomielite</option>
+                                            <option>Raiva</option>
+                                            <option>Rinopneumonite</option>
+
+
+                                    </select>
+                                </div>
+
+
                             </div>
                             <div class="col-1"></div>
                         </div>
@@ -244,7 +340,7 @@ isset($_SESSION['email_feito']);
                             <div class="col-6">
                             </div>
                             <div class="">
-                                <button type="submit" class="btn btn-block bg-gradient-success btn-flat"> <i class="far fa-save"></i> Adicionar</button>
+                                <button type="submit" id="adicionar" class="btn btn-block bg-gradient-success btn-flat"> <i class="far fa-save"></i>Adicionar</button>
                             </div>
 
                         </div>
@@ -269,6 +365,7 @@ isset($_SESSION['email_feito']);
 
     <?php include("includes/footer.php") ?>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -285,6 +382,11 @@ isset($_SESSION['email_feito']);
     <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- Select2 -->
     <script src="plugins/select2/js/select2.full.min.js"></script>
+
+
+
+
+
 
 
 
@@ -307,7 +409,30 @@ isset($_SESSION['email_feito']);
                 theme: 'bootstrap4'
             })
         })
+
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+        })
     </script>
+
+    <script>
+        function showTextBox() {
+            var especie_status = $('#especie').val();
+            if (especie_status == 'cachorro') {
+
+                $('#pelagem_cao').fadeIn(700);
+
+            }
+
+        }
+    </script>
+
 </body>
 
 </html>
