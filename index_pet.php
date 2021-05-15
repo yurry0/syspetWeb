@@ -47,9 +47,11 @@
       text-align: center;
       position: center;
     }
+
+    /* Dicas de funcionalidade do CRUD ao passar o mouse sobre os botões - para melhorar usabilidade */
   </style>
 
-  <title>Clientes</title>
+  <title>Pets</title>
 
 </head>
 
@@ -70,7 +72,6 @@
       </div>
     </div>
   </div>
-
 
 
 
@@ -122,7 +123,6 @@
       <div class="container-sm">
         <div class="row">
           <div class="col-5">
-
           </div>
 
 
@@ -131,7 +131,7 @@
             <?php
             echo '<td style=align-items: center;> 
                
-                 <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="pet_add_form.php?id=">
+                 <a id="add" name="add" title="Clique aqui para adicionar um novo pet." class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="pet_add_form.php?id=">
                          <i class="fas fa-plus"></i>
                         
                  </a>'
@@ -193,18 +193,27 @@
                 echo '<td>' . $v['adotado'] . '</td>';
                 echo '<td>' . $v['data_cadastro'] . '</td>';
 
+
                 echo '<td>' . '<img width="100" src="Uploads/' . $v['img_pet'] . '" />';
 
                 echo '<td style="text-align:center"> 
+                  
+                      <a id="ler" class="btn btn-primary btn-sm"  href="pet_read.php?id=' . $v['pk_id_pet'] . '">
                       
-                      <a class="btn btn-primary btn-sm" href="pet_read.php?id=' . $v['pk_id_pet'] . '">
-                      <i class="fa fa-search" aria-hidden="true"></i>
+                     
+                      <i class="fa fa-search" title="Clique aqui para adicionar um novo pet."  aria-hidden="true">
+                      <div class="tooltip">
+                      <span class="tooltiptext">Clique para visualizar</span>
+                      </div>
+                      </i>
                       </a>
-                      
-                      <a class="btn btn-info btn-sm" href="pet_edit_form.php?id=' . $v['pk_id_pet'] . '">
-                          <i class="fas fa-pencil-alt">
+                   
+
+                      <a id="editar" class="btn btn-info btn-sm" href="pet_edit_form.php?id=' . $v['pk_id_pet'] . '">
+                         <i title="Clique aqui para adicionar um novo pet."  class="fas fa-pencil-alt">
                           </i>
                       </a>
+                      
                        
                       <a class="btn btn-danger btn-sm" href="pet_delete.php?id=' . $v['pk_id_pet'] . '"data-href="pet_delete.php?id=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>

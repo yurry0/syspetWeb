@@ -113,15 +113,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </nav>
         <!-- /.navbar -->
-        
+
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            
+
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container">
-                    
+
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0"> Catalogo - Adoção </h1>
@@ -132,71 +132,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.content-header -->
 
             <!-- Main content -->
-           <div class="content"> 
-          
+            <div class="content">
+
                 <div class="container">
-                  <!--   <div class="row">   -->
-                  <?php 
-                        
-                        
-                        $adocao = new pet_rn();
-                        $dados = $adocao->buscaTotal();
-                        $contador = 0;
-                        $novaLinha = true;
-
-                        while($row = $dados->fetch_assoc()){
+                    <!--   <div class="row">   -->
+                    <?php
 
 
-                            if($novaLinha){
+                    $adocao = new pet_rn();
+                    $dados = $adocao->buscaTotal();
+                    $contador = 0;
+                    $novaLinha = true;
 
-                                
-
-                                echo "<div class='card-deck'>";
-                                $novaLinha = false;
+                    while ($row = $dados->fetch_assoc()) {
 
 
-                            }
+                        if ($novaLinha) {
 
 
 
-                            echo "<div class='card text-center'>";
-                            echo "<img class='mx-auto' scr='img/pet-care.png'";
-                            echo "<div class='card-body'>";
+                            echo "<div class='card-deck'>";
+                            $novaLinha = false;
+                        }
 
-                            echo "<h5 class='card-title'>".$row['raca']."</h5> <br>";
-                            echo "<p class='card=text'>".$row['peso']."</p>";
 
-                            echo "<button type='button' class='modalButton btn btn-primary' data-toggle='modal' data-target='#detailsModal'
+
+                        echo "<div class='card text-center'>";
+                        echo "<img class='mx-auto' scr='img/pet-care.png'";
+                        echo "<div class='card-body'>";
+
+                        echo "<h5 class='card-title'>" . $row['raca'] . "</h5> <br>";
+                        echo "<p class='card=text'>" . $row['peso'] . "</p>";
+
+                        echo "<button type='button' class='modalButton btn btn-primary' data-toggle='modal' data-target='#detailsModal'
                             
-                                data-id='".$row['pk_id_pet']."'
-                                data-img=/img/pet-care.png".$row['img_pet'].".jpg'
-                                data-raca='".$row['raca']."'
-                                data-idade='".$row['idade']."'
-                                data-sexo='".$row['sexo']."'
-                                data-vacinas='".$row['vacinas']."'
-                                data-altura='".$row['altura']."'
-                                data-peso='".$row['peso']."'>
+                                data-id='" . $row['pk_id_pet'] . "'
+                                data-img=Uploads/" . $row['img_pet'] . $row['tipo']."'
+                                data-raca='" . $row['raca'] . "'
+                                data-idade='" . $row['idade'] . "'
+                                data-sexo='" . $row['sexo'] . "'
+                                data-vacinas='" . $row['vacinas'] . "'
+                                data-altura='" . $row['altura'] . "'
+                                data-peso='" . $row['peso'] . "'>
                                 Detalhes
                                 </button>";
-                                echo "</div>";
-                                echo "";
-                                
-                                $contador++;
+                        echo "</div>";
+                        echo "";
+
+                        $contador++;
 
 
-                                if($contador == 3){
+                        if ($contador == 3) {
 
-                                    echo "";
-                                    $novaLinha = true;
-                                    $contador = 0;
-                                }
-
+                            echo "";
+                            $novaLinha = true;
+                            $contador = 0;
                         }
-                        ?>
-                    </div>
+                    }
+                    ?>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -221,78 +218,82 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Modal -->
 <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detalhes do Pet!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <form action="" method="POST">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalhes do Pet!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="adocao_add_form" method="POST">
 
 
-       <img id="imgPet" height ="240" width="400">
-       <div class="form-group">
-        
-       <label for="raca"> Raça: </label>
-       <input type="text" class="form-control" id="raca" readonly>
-        
-       </div>
+                    <img id="imgPet" height="240" width="400">
 
-       <div class="form-group">
-       <label for="sexo"> Sexo: </label>
-       <input type="text" class="form-control" id="sexo" readonly>
-        
-       </div>
-       <div class="form-group">
+                    <div class="row">
+                        <div class="form-group">
 
-       <label for="idade"> Idade: </label>
-       <input type="text" class="form-control" id="idade" readonly>
-        
-       </div>
-       <div class="form-group">
+                            <label for="raca"> Raça: </label>
+                            <input type="text" class="form-control" id="raca" readonly>
 
-       <label for="vacinas"> Vacinas: </label>
-       <input type="text" class="form-control" id="vacinas" readonly>
-        
-       </div>
-       <div class="form-group">
+                        </div>
 
-       <label for="altura"> Altura: </label>
-       <input type="text" class="form-control" id="altura" readonly>
-        
-       </div>
-       <div class="form-group">
+                        <div class="form-group">
+                            <label for="sexo"> Sexo: </label>
+                            <input type="text" class="form-control" id="sexo" readonly>
 
-       <label for="peso"> Peso: </label>
-       <input type="text" class="form-control" id="peso" readonly>
-        
-       </div>
+                        </div>
+                        <div class="form-group">
 
-       
+                            <label for="idade"> Idade: </label>
+                            <input type="text" class="form-control" id="idade" readonly>
 
-       
+                        </div>
 
-       
+                    </div>
+                    <div class="form-group">
 
-       </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary"  type="submit">Adotar</button>
-      </div>
+                        <label for="vacinas"> Vacinas: </label>
+                        <input type="text" class="form-control" id="vacinas" readonly>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="altura"> Altura: </label>
+                        <input type="text" class="form-control" id="altura" readonly>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="peso"> Peso: </label>
+                        <input type="text" class="form-control" id="peso" readonly>
+
+                    </div>
+
+
+
+
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" type="submit">Adotar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
 
 </div>
- <!-- Script do Modal que puxa os detalhes do catálogo -->
+<!-- Script do Modal que puxa os detalhes do catálogo -->
 <script>
-    $(document).on('click', '.modalButton', function(){
+    $(document).on('click', '.modalButton', function() {
 
         var id = $(this).attr('data-id');
         var img = $(this).attr('data-img');
@@ -313,7 +314,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $('.modal').find('#peso').val(peso);
 
     });
-
 </script>
 
 </html>

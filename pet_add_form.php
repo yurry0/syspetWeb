@@ -36,6 +36,12 @@ isset($_SESSION['email_feito']);
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        /* Estilo do Header */
         h1 {
 
             display: flex;
@@ -52,12 +58,14 @@ isset($_SESSION['email_feito']);
             letter-spacing: 10px;
         }
 
+        /* Estilo do Button - Tentando Centralizar */
         button {
-
             height: 45px;
             padding: 10px;
             text-align: center;
         }
+
+        /* Essas são as partes da forma que só serão reveladas quando o JavaScript for executado, na parte de espécie */
 
         #pelagem_cao {
 
@@ -90,6 +98,7 @@ isset($_SESSION['email_feito']);
 
         }
 
+        /* */
         #imagem_syspet {
 
             margin-left: 40px;
@@ -154,11 +163,11 @@ isset($_SESSION['email_feito']);
                             <label>Espécie</label>
                             <div class="input-group-prepend">
 
-                                <select id="especie" class="form-control select2" style="width: 100%;" onchange="showTextBox()">
+                                <select id="especie" name="especie" class="form-control select2" style="width: 100%;" onchange="showTextBox()">
                                     <option selected="selected" disabled>Selecione</option>
-                                    <option value="cachorro">Cão</option>
-                                    <option value="gato">Gato</option>
-                                    <option value="cavalo">Cavalo</option>
+                                    <option value="Cachorro">Cão</option>
+                                    <option value="Gato">Gato</option>
+                                    <option value="Cavalo">Cavalo</option>
 
                                 </select>
 
@@ -176,9 +185,9 @@ isset($_SESSION['email_feito']);
                             <label for="sexo">Sexo</label>
                             <select class="custom-select form-control-border" name="sexo" id="sexo">
                                 <option selected disabled> Selecione </option>
-                                <option value="macho">Macho</option>
-                                <option value="femea">Fêmea</option>
-                                <option value="outro">Outro</option>
+                                <option value="Macho">Macho</option>
+                                <option value="Fêmea">Fêmea</option>
+                                <option value="Outro">Outro</option>
                             </select>
                         </div>
 
@@ -199,6 +208,7 @@ isset($_SESSION['email_feito']);
 
 
                 <div class="form-group">
+
                     <div class="row">
 
                         <!-- Campo Idade -->
@@ -229,7 +239,7 @@ isset($_SESSION['email_feito']);
                         <div id="pelagem_cao" class="col-2">
 
                             <label for="raca">Pelagem</label>
-                            <select class="form-control select2"  id="pelo_cao" name="pelo_cao" style="width: 100%;">
+                            <select class="form-control select2" id="pelo_cao" name="pelo_cao" style="width: 100%;">
                                 <option selected="selected" disabled>Selecione</option>
                                 <option>Longa</option>
                                 <option>Curta</option>
@@ -246,7 +256,9 @@ isset($_SESSION['email_feito']);
                         <div id="pelagem_gato" class="col-2">
 
                             <label for="">Pelagem</label>
-                            <select class="form-control select2" id="pelo_gato" name="pelo_gato"  style="width: 100%;">
+                            <select class="form-control select2" id="pelo_gato" name="pelo_gato" style="width: 100%;">
+        
+
                                 <option selected="selected" disabled>Selecione</option>
                                 <option value="Solida">Sólida</option>
                                 <option value="Branco">Branco</option>
@@ -271,9 +283,9 @@ isset($_SESSION['email_feito']);
                         <div id="pelagem_cavalo" class="col-2">
 
                             <label for="">Pelagem</label>
-                            <select class="form-control select2" id="pelo_cavalo" name="pelo_cavalo"  style="width: 100%;">
+                            <select class="form-control select2" id="pelo_cavalo" name="pelo_cavalo" style="width: 100%;">
                                 <option selected="selected" disabled>Selecione</option>
-                                <option value="Alazao">Alazão</option>
+                                <option value="Alazão">Alazão</option>
                                 <option value="Gateado">Gateado</option>
                                 <option value="Baio">Baio</option>
                                 <option value="Rosilho">Rosilho</option>
@@ -301,7 +313,7 @@ isset($_SESSION['email_feito']);
                             <div id="cao_gato_vacina">
 
                                 <label>Vacinas</label>
-                                <select class="select" id='vacina_cao_gato' multiple="multiple" data-placeholder="Selecione as vacinas"  style="width: 100%;">
+                                <select class="select" id='vacina_cao_gato[]' name='vacina_cao_gato[]' multiple="multiple" data-placeholder="Selecione as vacinas" style="width: 100%;">
                                     <optgroup label="Cães e Gatos">
 
                                         <option value="Antirrabica">Antirrábica</option>
@@ -311,7 +323,7 @@ isset($_SESSION['email_feito']);
                                         <option value="PolivalenteV3">Vacina Polivalente V3</option>
                                         <option value="PolivalenteV4">Vacina Polivalente V4</option>
                                         <option value="PolivalenteV5">Vacina Polivalente V5</option>
-                                        
+
 
                                 </select>
 
@@ -320,7 +332,7 @@ isset($_SESSION['email_feito']);
 
 
                             <div id='cavalo_vacina'>
-                                <select  class="select2" multiple="multiple" id='vacina_cavalo' data-placeholder="Selecione as vacinas" style="width: 100%;">
+                                <select class="select2" multiple="multiple" id='vacina_cavalo[]' name='vacina_cavalo[]' data-placeholder="Selecione as vacinas" style="width: 100%;">
 
                                     <optgroup label="Equinos">
                                         <option>Tétano</option>
@@ -350,6 +362,8 @@ isset($_SESSION['email_feito']);
                     </div>
                 </div>
 
+
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6">
@@ -362,6 +376,7 @@ isset($_SESSION['email_feito']);
                 </div>
                 <!-- DIV do card-->
             </div>
+
         </form>
 
 
@@ -406,7 +421,7 @@ isset($_SESSION['email_feito']);
     <script>
         $(document).ready(function() {
             $("#altura").inputmask("9.99");
-            $("#example2").inputmask();
+
         });
     </script>
 
@@ -447,6 +462,7 @@ isset($_SESSION['email_feito']);
                 $('#pelagem_gato').fadeIn(700);
                 $('#cao_gato_vacina').fadeIn(800);
             }
+
 
             if (especie_status == 'cavalo') {
                 $('#pelagem_cavalo').fadeIn(700);
