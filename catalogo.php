@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Top Navigation</title>
+    <title>Catálogo de Pets!</title>
 
 
     <?php
@@ -17,6 +17,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     require_once 'includes/pet_rn.php';
     ?>
+
+
+    <style>
+        #detalhes {
+            position: relative;
+            margin-top: 0px;
+
+        }
+    </style>
+
 
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -148,9 +158,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                         if ($novaLinha) {
-
-
-
                             echo "<div class='card-deck'>";
                             $novaLinha = false;
                         }
@@ -161,24 +168,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         echo "<img class='mx-auto' scr='img/pet-care.png'";
                         echo "<div class='card-body'>";
 
-                        echo "<h5 class='card-title'>" . $row['raca'] . "</h5> <br>";
-                        echo "<p class='card=text'>" . $row['peso'] . "</p>";
+                        echo '<td>' . '<img width="250" height="250" src="Uploads/' . $row['img_pet'] . '"/>';
+                        echo "<h5 class='card-title'> Raça: " . $row['raca'] . "</h5> <br>";
+                        echo "<p class='card=text'> Peso: " . $row['peso'] . "</p>";
 
-                        echo "<button type='button' class='modalButton btn btn-primary' data-toggle='modal' data-target='#detailsModal'
-                            
-                                data-id='" . $row['pk_id_pet'] . "'
-                                data-img=Uploads/" . $row['img_pet'] . $row['tipo']."'
+                        echo "<button type='button' id='detalhes' class='modalButton btn btn-primary' data-toggle='modal' data-target='#detailsModal'
+                                data-img='" . $row['img_pet'] . "'
+                                data-pk-id-pet='" . $row['pk_id_pet'] . "'
                                 data-raca='" . $row['raca'] . "'
                                 data-idade='" . $row['idade'] . "'
                                 data-sexo='" . $row['sexo'] . "'
                                 data-vacinas='" . $row['vacinas'] . "'
+                                data-peso='" . $row['peso'] . "'
                                 data-altura='" . $row['altura'] . "'
-                                data-peso='" . $row['peso'] . "'>
-                                Detalhes
+                                data-especie='" . $row['especie'] . "'
+                                data-pelagem='" . $row['pelagem'] . "'
+                                data-porte='" . $row['porte'] . "'>
+                                +Detalhes
                                 </button>";
                         echo "</div>";
                         echo "";
-
                         $contador++;
 
 
@@ -217,23 +226,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <!-- Modal -->
-<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalhes do Pet!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="adocao_add_form" method="POST">
+<form action="adocao_add_form.php" method="POST">
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalhes do Pet!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-
-                    <img id="imgPet" height="240" width="400">
 
                     <div class="row">
-                        <div class="form-group">
+                    <label for="id"> ID:</label>
+                    
+                    <input type="text" class="form-control" id="ID" readonly>
+                    
+                    
+                    <div class="form-group">
+
+                            
+
+                            <label for="especie"> Especie: </label>
+                            <input type="text" class="form-control" id="especie" readonly>
+
 
                             <label for="raca"> Raça: </label>
                             <input type="text" class="form-control" id="raca" readonly>
@@ -272,22 +290,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </div>
 
+                    <div class="form-group">
+
+                        <label for="pelagem"> Pelagem: </label>
+                        <input type="text" class="form-control" id="pelagem" readonly>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="pelagem"> Porte: </label>
+                        <input type="text" class="form-control" id="porte" readonly>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <button type="submit" type="submit" class="btn btn-primary">Adotar</button>
+                    </div>
 
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 
-
-
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" type="submit">Adotar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+</form>
 
 
 </div>
@@ -295,7 +327,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
     $(document).on('click', '.modalButton', function() {
 
-        var id = $(this).attr('data-id');
+        var id = $(this).attr('data-pk-id-pet');
         var img = $(this).attr('data-img');
         var raca = $(this).attr('data-raca');
         var sexo = $(this).attr('data-sexo');
@@ -303,15 +335,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
         var vacinas = $(this).attr('data-vacinas');
         var altura = $(this).attr('data-altura');
         var peso = $(this).attr('data-peso');
+        var especie = $(this).attr('data-especie');
+        var pelagem = $(this).attr('data-pelagem');
+        var porte = $(this).attr('data-porte');
+
+
 
         $('.modal').find('#modalTitle').text(raca);
-        $('.modal').find('#imgPet').attr("src", img);
+        $('.modal').find('#imgPet').attr("Uploads/", img);
+        $('.modal').find('#ID').val(id);
         $('.modal').find('#raca').val(raca);
         $('.modal').find('#sexo').val(sexo);
         $('.modal').find('#idade').val(idade);
         $('.modal').find('#vacinas').val(vacinas);
         $('.modal').find('#altura').val(altura);
         $('.modal').find('#peso').val(peso);
+        $('.modal').find('#especie').val(especie);
+        $('.modal').find('#pelagem').val(pelagem);
+        $('.modal').find('#porte').val(porte);
+
+
+
+
 
     });
 </script>

@@ -5,6 +5,8 @@ isset($_SESSION['email_feito']);
 include('conexao_crud.php');
 
 
+$_POST['id']
+
 ?>
 
 <html>

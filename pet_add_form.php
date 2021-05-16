@@ -216,14 +216,14 @@ isset($_SESSION['email_feito']);
                         </div>
                         <div class="col-1">
                             <label for="raca">Idade</label>
-                            <input type="number" class="form-control rounded-0" min="0" max="30" name="idade" id="idade" placeholder="">
+                            <input type="number" required class="form-control rounded-0" min="0" max="30" name="idade" id="idade" placeholder="">
                         </div>
 
                         <div class="col-2">
 
                             <!-- Campo Altura -->
                             <label for="altura">Altura</label> <code> - Em metros;</code>
-                            <input class="form-control rounded-0" name="altura" id="altura" placeholder="" type="text" data-inputmask-clearmaskonlostfocus="false">
+                            <input class="form-control rounded-0"  required name="altura" id="altura" placeholder="" type="text" data-inputmask-clearmaskonlostfocus="false">
 
                         </div>
 
@@ -232,7 +232,7 @@ isset($_SESSION['email_feito']);
                         <div class="col-2">
 
                             <label for="raca">Peso</label> <code> - - - - Em quilos;</code>
-                            <input type="text" class="form-control rounded-0" name="peso" id="peso" placeholder="">
+                            <input type="text" class="form-control rounded-0" name="peso" id="peso" placeholder="ex: 40">
                         </div>
 
 
@@ -257,7 +257,7 @@ isset($_SESSION['email_feito']);
 
                             <label for="">Pelagem</label>
                             <select class="form-control select2" id="pelo_gato" name="pelo_gato" style="width: 100%;">
-        
+
 
                                 <option selected="selected" disabled>Selecione</option>
                                 <option value="Solida">Sólida</option>
@@ -450,23 +450,39 @@ isset($_SESSION['email_feito']);
     <script>
         function showTextBox() {
             var especie_status = $('#especie').val();
-            if (especie_status == 'cachorro') {
+            if (especie_status == 'Cachorro') {
 
                 $('#pelagem_cao').fadeIn(700);
                 $('#cao_gato_vacina').fadeIn(800);
 
+                $('#pelagem_gato').fadeOut(500);
+                $('#cavalo_vacina').fadeOut(500);
+                $('#pelagem_cavalo').fadeOut(500);
+                
+
 
             }
 
-            if (especie_status == 'gato') {
+            if (especie_status == 'Gato') {
                 $('#pelagem_gato').fadeIn(700);
                 $('#cao_gato_vacina').fadeIn(800);
+
+                $('#pelagem_cao').fadeOut(700);
+                $('#pelagem_cavalo').fadeOut(500);
+                $('#cavalo_vacina').fadeOut(500);
+
             }
 
 
-            if (especie_status == 'cavalo') {
+            if (especie_status == 'Cavalo') {
                 $('#pelagem_cavalo').fadeIn(700);
                 $('#cavalo_vacina').fadeIn(800);
+
+                $('#cao_gato_vacina').fadeOut(800);
+                $('#pelagem_cao').fadeOut(700);
+                $('#pelagem_gato').fadeOut(700);
+
+
             }
 
         }

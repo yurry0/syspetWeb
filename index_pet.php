@@ -149,6 +149,7 @@
         <table id="table_pet" class="table table-bordered table-striped">
           <thead>
             <tr>
+              <th>Foto</th>
               <th>ID</th>
               <th>Raca</th>
               <th>Sexo</th>
@@ -161,7 +162,7 @@
               <th>Porte</th>
               <th>Adotado</th>
               <th>Data de Cadastro</th>
-              <th>Foto</th>
+            
             </tr>
           </thead>
           <tbody>
@@ -180,6 +181,7 @@
               $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
               foreach ($stmt->fetchAll() as $k => $v) {
                 echo '<tr>';
+                echo '<td>' . '<img width="100" src="Uploads/' . $v['img_pet'] . '" />';
                 echo '<td>' . $v['pk_id_pet'] . '</td>';
                 echo '<td>' . $v['raca'] . '</td>';
                 echo '<td>' . $v['sexo'] . '</td>';
@@ -194,29 +196,25 @@
                 echo '<td>' . $v['data_cadastro'] . '</td>';
 
 
-                echo '<td>' . '<img width="100" src="Uploads/' . $v['img_pet'] . '" />';
 
                 echo '<td style="text-align:center"> 
                   
                       <a id="ler" class="btn btn-primary btn-sm"  href="pet_read.php?id=' . $v['pk_id_pet'] . '">
                       
                      
-                      <i class="fa fa-search" title="Clique aqui para adicionar um novo pet."  aria-hidden="true">
-                      <div class="tooltip">
-                      <span class="tooltiptext">Clique para visualizar</span>
-                      </div>
+                      <i class="fa fa-search" title="Visualizar mais detalhes sobre o pet." aria-hidden="true">
                       </i>
                       </a>
                    
 
                       <a id="editar" class="btn btn-info btn-sm" href="pet_edit_form.php?id=' . $v['pk_id_pet'] . '">
-                         <i title="Clique aqui para adicionar um novo pet."  class="fas fa-pencil-alt">
+                         <i title="Editar as informações do pet."  class="fas fa-pencil-alt">
                           </i>
                       </a>
                       
                        
                       <a class="btn btn-danger btn-sm" href="pet_delete.php?id=' . $v['pk_id_pet'] . '"data-href="pet_delete.php?id=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
-                      <i class="fas fa-trash-alt"></i>
+                      <i title="Excluir pet." class="fas fa-trash-alt"></i>
                       </a>';
                 echo '</tr>';
               }
