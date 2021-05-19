@@ -66,7 +66,7 @@ isset($_SESSION['email_feito']);
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" name="add_cliente" method="POST" action="cad_cliente.php">
+        <form role="form" name="add_cliente" method="POST" action="cliente_add_action.php">
             <div class="card-body">
 
                 <!-- <div class="form-group">

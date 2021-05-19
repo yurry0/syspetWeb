@@ -22,7 +22,7 @@ try {
 
 
 
-
+    $nome = $_POST['nome'];
     $raca = $_POST['raca'];
     $sexo = $_POST['sexo'];
     $idade = $_POST['idade'];
@@ -47,9 +47,10 @@ try {
     }
 
 
-    $stmt = $conn->prepare("INSERT INTO pet(raca, sexo, idade, vacinas, altura, peso, img_pet, tipo, especie, pelagem, porte)
-    VALUES (:raca, :sexo, :idade, :vacinas , :altura, :peso, :img_pet, :tipo, :especie, :pelagem, :porte)");
+    $stmt = $conn->prepare("INSERT INTO pet(nome, raca, sexo, idade, vacinas, altura, peso, img_pet, tipo, especie, pelagem, porte)
+    VALUES (:nome, :raca, :sexo, :idade, :vacinas , :altura, :peso, :img_pet, :tipo, :especie, :pelagem, :porte)");
 
+    $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':raca', $raca);
     $stmt->bindParam(':sexo', $sexo);
     $stmt->bindParam(':idade', $idade);

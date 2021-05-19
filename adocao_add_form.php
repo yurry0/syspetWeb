@@ -5,7 +5,33 @@ isset($_SESSION['email_feito']);
 include('conexao_crud.php');
 
 
-$_POST['id']
+$id = $_POST['ID'];
+$nome = $_POST['nome'];
+$raca = $_POST['raca'];
+$sexo = $_POST['sexo'];
+$idade = $_POST['idade'];
+$altura = $_POST['altura'];
+$peso = $_POST['peso'];
+$porte = $_POST['porte'];
+$vacinas = $_POST['vacinas'];
+$especie = $_POST['especie'];
+
+
+$conn = conexao();
+try {
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT * FROM pet WHERE pk_id_pet=:pk_id_pet");
+    $stmt->bindParam(':pk_id_cliente', $id);
+    $stmt->execute();
+    // set the resulting array to associative
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    foreach ($stmt->fetchAll() as $k => $v) {
+    }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+$conn = null;
+//echo "</table>";
 
 ?>
 
@@ -53,12 +79,12 @@ $_POST['id']
             height: 100px;
             letter-spacing: 10px;
         }
-        
-        label{
+
+        label {
             padding: 2px;
 
         }
-         
+
         button {
             margin-top: 10px;
             height: 45px;
@@ -93,12 +119,60 @@ $_POST['id']
         <div class="card-body">
             <form action="adocao_add_action.php" method="POST">
 
+                <div class="row">
+                    <div class="col-1">
+                        <label for="ID">ID:</label>
+                        <input type="text" id="" readonly class="form-control" value="<?php echo $id;?>" placeholder=""> 
+                    </div>
+                    <div class="col-3">
+                        <label for="Raça">Especie:</label>
+                        <input type="text" readonly class="form-control" value="<?php echo $especie ;?>" placeholder="">
+                    </div>
+
+                    <div class="col-4">
+                        <label for="Raça">Raça:</label>
+                        <input type="text" id="raca" name="raca" value="<?php echo $raca;?>" readonly class="form-control" placeholder=""> 
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <br>
+                    <div class="col-2">
+                        <label for="Raça">Sexo:</label>
+                        <input type="text" id="sexo" name="sexo" value="<?php echo  $sexo;?>"  readonly class="form-control" placeholder="">
+                    </div>
+
+                    <div class="col-2">
+                        <label for="idade">Idade:</label>
+                        <input type="text" readonly class="form-control" value="<?php echo $idade;?>" placeholder="">
+                    </div>
+
+                    <div class="col-2">
+                        <label for="idade">Vacinas:</label>
+                        <input type="text" readonly class="form-control"  value="<?php echo $vacinas;?>" placeholder="">
+                    </div>
+
+                    <div class="col-2">
+                        <label for="idade">Altura:</label>
+                        <input type="text" readonly class="form-control"  value="<?php echo $altura;?>" placeholder="">
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+
                 <div class="form-group col-4">
 
                     <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
                     <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
-                    <div id="listaRaca"></div>                  
-                    
+                    <div id="listaRaca"></div>
+
 
                     <label for="cliente"> Cliente <code> - - Escreva algo, e a lista de clientes irá aparecer</code></label>
                     <input type="text" class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">

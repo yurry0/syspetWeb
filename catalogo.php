@@ -25,6 +25,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             margin-top: 0px;
 
         }
+
+        #adotar{
+
+            margin-top: 25px;
+
+        }
     </style>
 
 
@@ -175,6 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         echo "<button type='button' id='detalhes' class='modalButton btn btn-primary' data-toggle='modal' data-target='#detailsModal'
                                 data-img='" . $row['img_pet'] . "'
                                 data-pk-id-pet='" . $row['pk_id_pet'] . "'
+                                data-nome='" . $row['nome'] . "'
                                 data-raca='" . $row['raca'] . "'
                                 data-idade='" . $row['idade'] . "'
                                 data-sexo='" . $row['sexo'] . "'
@@ -226,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <!-- Modal -->
-<form action="adocao_add_form.php" method="POST">
+<form action="adocao_add_form.php" method="post">
     <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -240,83 +247,131 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                     <div class="row">
-                    <label for="id"> ID:</label>
-                    
-                    <input type="text" class="form-control" id="ID" readonly>
-                    
-                    
-                    <div class="form-group">
+                        <div class="col-2">
+                            <label for="id" style="float:inline-end"> ID:</label>
 
-                            
-
-                            <label for="especie"> Especie: </label>
-                            <input type="text" class="form-control" id="especie" readonly>
-
-
-                            <label for="raca"> Raça: </label>
-                            <input type="text" class="form-control" id="raca" readonly>
+                            <input type="text" style="float: right;" class="form-control" name="ID" id="ID" readonly>
 
                         </div>
 
                         <div class="form-group">
-                            <label for="sexo"> Sexo: </label>
-                            <input type="text" class="form-control" id="sexo" readonly>
+                            <div class="row">
+
+                                <div class="col-1">
+
+                                </div>
+
+                                <div class="col-3">
+                                    <label for="especie"> Nome: </label>
+                                    <input type="text" class="form-control" name="nome" id="nome" readonly>
+                                </div>
+
+                                <div class="col-3">
+                                    <label for="especie"> Especie: </label>
+                                    <input type="text" class="form-control" name="especie" id="especie" readonly>
+                                </div>
+
+
+
+                                <div class="col-3">
+                                    <label for="raca"> Raça: </label>
+                                    <input type="text" class="form-control" name="raca" id="raca" readonly>
+                                </div>
+
+                            </div>
+
 
                         </div>
-                        <div class="form-group">
+                    </div>
 
-                            <label for="idade"> Idade: </label>
-                            <input type="text" class="form-control" id="idade" readonly>
+
+
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-1"></div>
+
+                            <div class="col-3">
+                                <label for="sexo"> Sexo: </label>
+                                <input type="text" class="form-control" name="sexo" id="sexo" readonly>
+                            </div>
+
+                            <div class="col-3">
+                                <label for="pelagem"> Porte: </label>
+                                <input type="text" class="form-control" name="porte" id="porte" readonly>
+                            </div>
+
+
+
+
+                            <div class="col-3">
+                                <label for="idade"> Idade: </label>
+                                <input type="text" class="form-control" name="idade" id="idade" readonly>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+
+                            <div class="col-1">
+
+                            </div>
+
+                            <div class="col-3">
+                                <label for="altura"> Altura: </label>
+                                <input type="text" class="form-control" name="altura" id="altura" readonly>
+                            </div>
+
+                            <div class="col-3">
+                                <label for="peso"> Peso: </label>
+                                <input type="text" class="form-control" name="peso" id="peso" readonly>
+                            </div>
+
+                            <div class="col-3">
+                                <label for="pelagem"> Pelagem: </label>
+                                <input type="text" class="form-control" name="pelagem" id="pelagem" readonly>
+
+                            </div>
 
                         </div>
 
                     </div>
-                    <div class="form-group">
 
-                        <label for="vacinas"> Vacinas: </label>
-                        <input type="text" class="form-control" id="vacinas" readonly>
+           
+                
+                <div class="col-1">
 
+                </div>
+
+                <div class="col-8">
+                    <label for="vacinas"> Vacinas: </label>
+                    <input type="text" class="form-control" name="vacinas" id="vacinas" readonly>
+                </div>
+
+                <div class="row">
+
+
+                </div>
+                <div class="form-group">
+                    <div class="col-9">
+                        <button type="submit" id="adotar" type="submit" class="btn btn-primary">Adotar</button>
                     </div>
-                    <div class="form-group">
-
-                        <label for="altura"> Altura: </label>
-                        <input type="text" class="form-control" id="altura" readonly>
-
-                    </div>
-                    <div class="form-group">
-
-                        <label for="peso"> Peso: </label>
-                        <input type="text" class="form-control" id="peso" readonly>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="pelagem"> Pelagem: </label>
-                        <input type="text" class="form-control" id="pelagem" readonly>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="pelagem"> Porte: </label>
-                        <input type="text" class="form-control" id="porte" readonly>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <button type="submit" type="submit" class="btn btn-primary">Adotar</button>
-                    </div>
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 
                 </div>
+
             </div>
+
+            </div>
+
+
+
         </div>
+    </div>
     </div>
 
 </form>
@@ -329,6 +384,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         var id = $(this).attr('data-pk-id-pet');
         var img = $(this).attr('data-img');
+        var nome = $(this).attr('data-nome');
         var raca = $(this).attr('data-raca');
         var sexo = $(this).attr('data-sexo');
         var idade = $(this).attr('data-idade');
@@ -344,6 +400,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $('.modal').find('#modalTitle').text(raca);
         $('.modal').find('#imgPet').attr("Uploads/", img);
         $('.modal').find('#ID').val(id);
+        $('.modal').find('#nome').val(nome);
         $('.modal').find('#raca').val(raca);
         $('.modal').find('#sexo').val(sexo);
         $('.modal').find('#idade').val(idade);

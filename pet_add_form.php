@@ -153,12 +153,24 @@ isset($_SESSION['email_feito']);
 
                                 <label for="id">Código</label>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fab fa-slack-hash"></i></span>
+                                   
                                     <input type="int" disabled name="id" class="form-control" id="id" placeholder="Auto">
                                 </div>
 
                             </div>
                         </div>
+
+                        <div class="col-3">
+                            <div class="form-group">
+
+                                <label for="label-nome">Nome</label>
+                                <div class="input-group-prepend">
+                                    <input type="text" required name="nome" class="form-control" id="nome" placeholder="Digite o nome do pet!">
+                                </div>
+
+                            </div>
+                        </div>
+
                         <div class="col-2">
                             <label>Espécie</label>
                             <div class="input-group-prepend">
@@ -191,17 +203,7 @@ isset($_SESSION['email_feito']);
                             </select>
                         </div>
 
-                        <div class="col-2">
-                            <label>Porte</label>
-                            <select class="form-control select2" id="porte" name="porte" style="width: 100%;">
-                                <option selected="selected" disabled>Selecione</option>
-                                <option>Pequeno</option>
-                                <option>Médio</option>
-                                <option>Grande</option>
-                                <option>Gigante</option>
-                            </select>
-
-                        </div>
+                       
                     </div>
                 </div>
 
@@ -210,10 +212,22 @@ isset($_SESSION['email_feito']);
                 <div class="form-group">
 
                     <div class="row">
+                    <div class="col-2">
+
+                    </div>
+
+                    <div class="col-2">
+                            <label>Porte</label>
+                            <select class="form-control select2" id="porte" name="porte" style="width: 100%;">
+                                <option selected="selected" disabled>Selecione</option>
+                                <option>Pequeno</option>
+                                <option>Médio</option>
+                                <option>Grande</option>
+                                <option>Gigante</option>
+                            </select>
+                        </div>
 
                         <!-- Campo Idade -->
-                        <div class="col-2">
-                        </div>
                         <div class="col-1">
                             <label for="raca">Idade</label>
                             <input type="number" required class="form-control rounded-0" min="0" max="30" name="idade" id="idade" placeholder="">
