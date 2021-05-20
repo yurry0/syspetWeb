@@ -227,7 +227,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                             try {
                                                 $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                                $stmt = $conexao->prepare("SELECT * FROM adocao INNER JOIN cliente ON adocao.id_cliente = cliente.pk_id_cliente INNER JOIN pet ON adocao.id_pet = pet.pk_id_pet");
+                                                $stmt = $conexao->prepare("SELECT * FROM adocao INNER JOIN cliente ON adocao.fk_id_cliente = cliente.pk_id_cliente INNER JOIN pet ON adocao.fk_id_pet = pet.pk_id_pet");
                                                 $stmt->execute();
 
                                                 // set the resulting array to associative

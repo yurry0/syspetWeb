@@ -16,7 +16,6 @@ $porte = $_POST['porte'];
 $vacinas = $_POST['vacinas'];
 $especie = $_POST['especie'];
 
-
 $conn = conexao();
 try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -120,72 +119,100 @@ $conn = null;
             <form action="adocao_add_action.php" method="POST">
 
                 <div class="row">
+
                     <div class="col-1">
                         <label for="ID">ID:</label>
-                        <input type="text" id="" readonly class="form-control" value="<?php echo $id;?>" placeholder=""> 
-                    </div>
-                    <div class="col-3">
-                        <label for="Raça">Especie:</label>
-                        <input type="text" readonly class="form-control" value="<?php echo $especie ;?>" placeholder="">
+                        <input type="text" id="id" name="id" readonly class="form-control" value="<?php echo $id; ?>" placeholder="">
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-2">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="nome" name="nome" readonly class="form-control" value="<?php echo $nome; ?>" placeholder="">
+                    </div>
+
+                    <div class="col-3">
+                        <label for="Raça">Especie:</label>
+                        <input type="text" name="especie" readonly class="form-control" value="<?php echo $especie; ?>" placeholder="">
+                    </div>
+
+                    <div class="col-2">
                         <label for="Raça">Raça:</label>
-                        <input type="text" id="raca" name="raca" value="<?php echo $raca;?>" readonly class="form-control" placeholder=""> 
+                        <input type="text" id="raca" name="raca" value="<?php echo $raca; ?>" readonly class="form-control" placeholder="">
                     </div>
 
                 </div>
 
                 <div class="row">
+
+
+                </div>
+
+
+                <div class="row">
                     <br>
                     <div class="col-2">
                         <label for="Raça">Sexo:</label>
-                        <input type="text" id="sexo" name="sexo" value="<?php echo  $sexo;?>"  readonly class="form-control" placeholder="">
+                        <input type="text" id="sexo" name="sexo" value="<?php echo  $sexo; ?>" readonly class="form-control" placeholder="">
                     </div>
 
                     <div class="col-2">
                         <label for="idade">Idade:</label>
-                        <input type="text" readonly class="form-control" value="<?php echo $idade;?>" placeholder="">
+                        <input type="text" id="idade" name="idade" readonly class="form-control" value="<?php echo $idade; ?>" placeholder="">
                     </div>
 
-                    <div class="col-2">
-                        <label for="idade">Vacinas:</label>
-                        <input type="text" readonly class="form-control"  value="<?php echo $vacinas;?>" placeholder="">
-                    </div>
 
-                    <div class="col-2">
+
+                    <div class="col-1">
                         <label for="idade">Altura:</label>
-                        <input type="text" readonly class="form-control"  value="<?php echo $altura;?>" placeholder="">
+                        <input type="text" id="altura" name="altura" readonly class="form-control" value="<?php echo $altura; ?>" placeholder="">
                     </div>
 
+                </div>
 
-
-
-
-
+                <div class="row">
+                    <div class="col-5">
+                        <label for="idade">Vacinas:</label>
+                        <input type="text" id="vacinas" name="vacinas" readonly class="form-control" value="<?php echo $vacinas; ?>" placeholder="">
+                    </div>
 
                 </div>
 
+                <div class="row">
+                    <div class="col-4">
 
-                <div class="form-group col-4">
-
-                    <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
+                        <!-- <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
                     <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
-                    <div id="listaRaca"></div>
+                    <div id="listaRaca"></div> -->
+
+                        <label for="cliente"> Cliente <code> - - Escreva algo, e a lista de clientes irá aparecer</code></label>
+                        <input type="text" class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
+                        <div id="listaCliente" class="listaCliente"></div>
+                    </div>
+
+                    <div class="col-1"></div>
 
 
-                    <label for="cliente"> Cliente <code> - - Escreva algo, e a lista de clientes irá aparecer</code></label>
-                    <input type="text" class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
-                    <div id="listaCliente" class="listaCliente"></div>
-
-                    <button type="submit" class="btn btn-block bg-gradient-success btn-flat">Adicionar Nova Adoção</button>
                 </div>
-            </form>
-            <!-- testanto js para introduzir campos -->
 
+                <div class="row">
+                    <div class="col-3">
+                    </div>
+                    <div class="col-2">
+                    </div>
 
-            <!-- apaga daqui pra cima -->
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-block bg-gradient-success btn-flat">Adicionar Nova Adoção</button>
+                    </div>
+
+                </div>
+
         </div>
+        </form>
+        <!-- testanto js para introduzir campos -->
+
+
+        <!-- apaga daqui pra cima -->
+    </div>
 
 
     </div>
@@ -212,7 +239,9 @@ $conn = null;
 </html>
 
 <!-- Script para inserir os dados -->
+
 <script>
+    /** 
     $(document).ready(function() {
 
         $('#raca').keyup(function() {
@@ -240,7 +269,7 @@ $conn = null;
         })
 
     });
-
+*/
 
     $(document).on("keyup", "#cliente", function() {
 
@@ -272,13 +301,14 @@ $conn = null;
         $("#listaCliente").fadeOut();
     })
 
+    /** 
+        $(document).on('click', 'li', function() {
 
-    $(document).on('click', 'li', function() {
+            $('#raca').val($(this).text());
+            $('#listaRaca').fadeOut();
 
-        $('#raca').val($(this).text());
-        $('#listaRaca').fadeOut();
-
-    });
+        });
+        */
 </script>
 <!-- Script para carregar novas formas baseada na opção que o usuário escolher -->
 

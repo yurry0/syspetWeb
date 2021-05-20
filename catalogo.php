@@ -26,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         }
 
-        #adotar{
+        #adotar {
 
             margin-top: 25px;
 
@@ -262,7 +262,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
 
                                 <div class="col-3">
-                                    <label for="especie"> Nome: </label>
+                                    <label for="especie">Nome:</label>
                                     <input type="text" class="form-control" name="nome" id="nome" readonly>
                                 </div>
 
@@ -339,32 +339,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </div>
 
-           
-                
-                <div class="col-1">
-
-                </div>
-
-                <div class="col-8">
-                    <label for="vacinas"> Vacinas: </label>
-                    <input type="text" class="form-control" name="vacinas" id="vacinas" readonly>
-                </div>
-
-                <div class="row">
 
 
-                </div>
-                <div class="form-group">
-                    <div class="col-9">
-                        <button type="submit" id="adotar" type="submit" class="btn btn-primary">Adotar</button>
+                    <div class="col-1">
+
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+                    <div class="col-8">
+                        <label for="vacinas"> Vacinas: </label>
+                        <input type="text" class="form-control" name="vacinas" id="vacinas" readonly>
+                    </div>
+
+                    <div class="row">
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-9">
+                            <button type="submit" id="adotar" type="submit" class="btn btn-primary">Adotar</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+                    </div>
 
                 </div>
-
-            </div>
 
             </div>
 

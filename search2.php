@@ -6,7 +6,7 @@ if(isset($_POST["cliente"])){
 
     $output = '';
     $query = "SELECT pk_id_cliente, cli_nome from cliente WHERE cli_nome LIKE '%".
-    $_POST["cliente"]."%'";
+    $_POST["cliente"]."%' LIMIT 1";
     $result = mysqli_query($conexao, $query);
     $output = '<ul class="list-unstyled">';
 
@@ -14,14 +14,14 @@ if(isset($_POST["cliente"])){
 
         while($row = mysqli_fetch_array($result)){
 
-            $output .='<p>'.$row["cli_nome"].' '.'</p>';
+            $output .='<li>'.$row["cli_nome"].''.'</li>';
 
         }
     }
 
     else{
 
-        $output.='<p> Cliente não Encontrado! </p>';
+        $output.='<li> Cliente não Encontrado! </li>';
     }
 
     $output.='<ul>';
