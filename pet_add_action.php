@@ -17,8 +17,13 @@ try {
 
     // prepare sql and bind parameters
 
+    if (!$_POST['vacina_cao_gato'] == NULL) {
+        $result =  implode(" , ", $_POST['vacina_cao_gato']);
+    } else {
 
-    $result =  implode(" , ", $_POST['vacina_cao_gato']);
+        $result2 = implode(",", $_POST['vacina_cavalo']);
+    }
+
 
 
 
@@ -26,7 +31,14 @@ try {
     $raca = $_POST['raca'];
     $sexo = $_POST['sexo'];
     $idade = $_POST['idade'];
-    $vacinas = $result;
+
+    if ($result2 == NULL) {
+        $vacinas = $result;
+    } else {
+        $vacinas = $result2;
+    }
+
+
     $altura = $_POST['altura'];
     $peso = $_POST['peso'];
     $img_pet = $_FILES['img_pet'];
