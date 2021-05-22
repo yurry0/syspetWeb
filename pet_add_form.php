@@ -175,7 +175,7 @@ isset($_SESSION['email_feito']);
                             <label>Espécie</label>
                             <div class="input-group-prepend">
 
-                                <select id="especie" name="especie" class="form-control select2" style="width: 100%;" onchange="showTextBox()">
+                                <select id="especie" name="especie" required class="form-control select2" style="width: 100%;" onchange="showTextBox()">
                                     <option selected="selected" disabled>Selecione</option>
                                     <option value="Cachorro">Cão</option>
                                     <option value="Gato">Gato</option>
@@ -189,13 +189,13 @@ isset($_SESSION['email_feito']);
 
                         <div class="col-2">
                             <label for="raca">Raça</label>
-                            <input type="text" class="form-control rounded-0" name="raca" id="raca" placeholder="">
+                            <input type="text" class="form-control rounded-0" required name="raca" id="raca" placeholder="">
                         </div>
 
 
                         <div class="col-2">
                             <label for="sexo">Sexo</label>
-                            <select class="custom-select form-control-border" name="sexo" id="sexo">
+                            <select class="custom-select form-control-border" required name="sexo" id="sexo">
                                 <option selected disabled> Selecione </option>
                                 <option value="Macho">Macho</option>
                                 <option value="Fêmea">Fêmea</option>
@@ -218,7 +218,7 @@ isset($_SESSION['email_feito']);
 
                     <div class="col-2">
                             <label>Porte</label>
-                            <select class="form-control select2" id="porte" name="porte" style="width: 100%;">
+                            <select class="form-control select2" id="porte" required name="porte" style="width: 100%;">
                                 <option selected="selected" disabled>Selecione</option>
                                 <option>Pequeno</option>
                                 <option>Médio</option>
@@ -237,7 +237,7 @@ isset($_SESSION['email_feito']);
 
                             <!-- Campo Altura -->
                             <label for="altura">Altura</label> <code> - Em metros;</code>
-                            <input class="form-control rounded-0"  required name="altura" id="altura" placeholder="" type="text" data-inputmask-clearmaskonlostfocus="false">
+                            <input class="form-control rounded-0" required name="altura" id="altura" placeholder="" type="text" data-inputmask-clearmaskonlostfocus="false">
 
                         </div>
 
@@ -246,7 +246,7 @@ isset($_SESSION['email_feito']);
                         <div class="col-2">
 
                             <label for="raca">Peso</label> <code> - - - - Em quilos;</code>
-                            <input type="text" class="form-control rounded-0" name="peso" id="peso" placeholder="ex: 40">
+                            <input type="text" required class="form-control rounded-0" name="peso" id="peso" placeholder="ex: 40">
                         </div>
 
 

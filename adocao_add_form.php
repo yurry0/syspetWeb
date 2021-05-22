@@ -121,23 +121,23 @@ $conn = null;
                 <div class="row">
 
                     <div class="col-1">
-                        <label for="ID">ID:</label>
-                        <input type="text" id="id" name="id" readonly class="form-control" value="<?php echo $id; ?>" placeholder="">
+                        <label for="id">ID:</label>
+                        <input type="text" id="ID" name="ID" readonly class="form-control" value="<?php echo $id;?>" placeholder="">
                     </div>
 
                     <div class="col-2">
-                        <label for="name">Nome:</label>
-                        <input type="text" id="nome" name="nome" readonly class="form-control" value="<?php echo $nome; ?>" placeholder="">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" readonly class="form-control" value="<?php echo $nome;?>" placeholder="">
                     </div>
 
                     <div class="col-3">
-                        <label for="Raça">Especie:</label>
-                        <input type="text" name="especie" readonly class="form-control" value="<?php echo $especie; ?>" placeholder="">
+                        <label for="especie">Especie:</label>
+                        <input type="text" name="especie" readonly class="form-control" value="<?php echo $especie;?>" placeholder="">
                     </div>
 
                     <div class="col-2">
-                        <label for="Raça">Raça:</label>
-                        <input type="text" id="raca" name="raca" value="<?php echo $raca; ?>" readonly class="form-control" placeholder="">
+                        <label for="raca">Raça:</label>
+                        <input type="text" id="raca" name="raca" value="<?php echo $raca;?>" readonly class="form-control" placeholder="">
                     </div>
 
                 </div>
@@ -151,19 +151,19 @@ $conn = null;
                 <div class="row">
                     <br>
                     <div class="col-2">
-                        <label for="Raça">Sexo:</label>
-                        <input type="text" id="sexo" name="sexo" value="<?php echo  $sexo; ?>" readonly class="form-control" placeholder="">
+                        <label for="sexo">Sexo:</label>
+                        <input type="text" id="sexo" name="sexo" value="<?php echo $sexo;?>" readonly class="form-control" placeholder="">
                     </div>
 
                     <div class="col-2">
                         <label for="idade">Idade:</label>
-                        <input type="text" id="idade" name="idade" readonly class="form-control" value="<?php echo $idade; ?>" placeholder="">
+                        <input type="text" id="idade" name="idade" readonly class="form-control" value="<?php echo $idade;?>" placeholder="">
                     </div>
 
 
 
                     <div class="col-1">
-                        <label for="idade">Altura:</label>
+                        <label for="altura">Altura:</label>
                         <input type="text" id="altura" name="altura" readonly class="form-control" value="<?php echo $altura; ?>" placeholder="">
                     </div>
 
@@ -171,7 +171,7 @@ $conn = null;
 
                 <div class="row">
                     <div class="col-5">
-                        <label for="idade">Vacinas:</label>
+                        <label for="vacinas">Vacinas:</label>
                         <input type="text" id="vacinas" name="vacinas" readonly class="form-control" value="<?php echo $vacinas; ?>" placeholder="">
                     </div>
 
@@ -185,7 +185,7 @@ $conn = null;
                     <div id="listaRaca"></div> -->
 
                         <label for="cliente"> Cliente <code> - - Escreva algo, e a lista de clientes irá aparecer</code></label>
-                        <input type="text" class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
+                        <input type="text" required class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
                         <div id="listaCliente" class="listaCliente"></div>
                     </div>
 
@@ -209,7 +209,6 @@ $conn = null;
         </div>
         </form>
         <!-- testanto js para introduzir campos -->
-
 
         <!-- apaga daqui pra cima -->
     </div>
