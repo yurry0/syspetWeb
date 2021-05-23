@@ -88,7 +88,7 @@ try {
 
 $conn = null;
 
-
+/**
 echo "Raça: ";
 echo $raca;
 echo '<br>';
@@ -119,7 +119,7 @@ echo "Porte: ";
 echo $porte;
 echo '<br>';
 echo '<br>';
+ */
 
 
-
-//header('Location: index_pet.php');
+header('Location: index_pet.php');

@@ -26,6 +26,8 @@
   <style>
     h1 {
 
+      margin-top: 10px;
+
       display: flex;
       justify-content: center;
       /* align horizontal */
@@ -57,6 +59,12 @@
 
 
 <body>
+
+<?php 
+
+include('includes/navbar.php');
+
+?>
 
 
   <?php

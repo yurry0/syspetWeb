@@ -20,7 +20,7 @@ $conn = conexao();
 try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT * FROM pet WHERE pk_id_pet=:pk_id_pet");
-    $stmt->bindParam(':pk_id_cliente', $id);
+    $stmt->bindParam(':pk_id_pet', $id);
     $stmt->execute();
     // set the resulting array to associative
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -122,22 +122,22 @@ $conn = null;
 
                     <div class="col-1">
                         <label for="id">ID:</label>
-                        <input type="text" id="ID" name="ID" readonly class="form-control" value="<?php echo $id;?>" placeholder="">
+                        <input type="text" id="ID" name="ID" readonly class="form-control" value="<?php echo $id; ?>" placeholder="">
                     </div>
 
                     <div class="col-2">
                         <label for="nome">Nome:</label>
-                        <input type="text" id="nome" name="nome" readonly class="form-control" value="<?php echo $nome;?>" placeholder="">
+                        <input type="text" id="nome" name="nome" readonly class="form-control" value="<?php echo $nome; ?>" placeholder="">
                     </div>
 
                     <div class="col-3">
                         <label for="especie">Especie:</label>
-                        <input type="text" name="especie" readonly class="form-control" value="<?php echo $especie;?>" placeholder="">
+                        <input type="text" name="especie" readonly class="form-control" value="<?php echo $especie; ?>" placeholder="">
                     </div>
 
                     <div class="col-2">
                         <label for="raca">Raça:</label>
-                        <input type="text" id="raca" name="raca" value="<?php echo $raca;?>" readonly class="form-control" placeholder="">
+                        <input type="text" id="raca" name="raca" value="<?php echo $raca; ?>" readonly class="form-control" placeholder="">
                     </div>
 
                 </div>
@@ -152,12 +152,12 @@ $conn = null;
                     <br>
                     <div class="col-2">
                         <label for="sexo">Sexo:</label>
-                        <input type="text" id="sexo" name="sexo" value="<?php echo $sexo;?>" readonly class="form-control" placeholder="">
+                        <input type="text" id="sexo" name="sexo" value="<?php echo $sexo; ?>" readonly class="form-control" placeholder="">
                     </div>
 
                     <div class="col-2">
                         <label for="idade">Idade:</label>
-                        <input type="text" id="idade" name="idade" readonly class="form-control" value="<?php echo $idade;?>" placeholder="">
+                        <input type="text" id="idade" name="idade" readonly class="form-control" value="<?php echo $idade; ?>" placeholder="">
                     </div>
 
 

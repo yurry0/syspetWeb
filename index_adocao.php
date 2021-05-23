@@ -3,12 +3,12 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Top Navigation</title>
+    <title>Índice de Adoções</title>
 
 
     <?php
@@ -40,76 +40,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
-            <div class="container">
-                <a href="../../index3.html" class="navbar-brand">
-                    <img src="img/pet-care.png" alt="PET" class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">Syspet</span>
-                </a>
+      <?php
+      
+      
+      include('includes/navbar.php');
 
-                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-                    <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="index3.html" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Contact</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                <li><a href="#" class="dropdown-item">Some action </a></li>
-                                <li><a href="#" class="dropdown-item">Some other action</a></li>
-
-                                <li class="dropdown-divider"></li>
-
-                                <!-- Level two dropdown-->
-                                <li class="dropdown-submenu dropdown-hover">
-                                    <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                                    <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                        <li>
-                                            <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                                        </li>
-
-                                        <!-- Level three dropdown-->
-                                        <li class="dropdown-submenu">
-                                            <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                                            <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                                <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                                <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- End Level three -->
-
-                                        <li><a href="#" class="dropdown-item">level 2</a></li>
-                                        <li><a href="#" class="dropdown-item">level 2</a></li>
-                                    </ul>
-                                </li>
-                                <!-- End Level two -->
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <!-- SEARCH FORM -->
-
-                </div>
-
-                <!-- Right navbar links -->
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                    <!-- Messages Dropdown Menu -->
-
-
-
-                </ul>
-            </div>
-        </nav>
-        <!-- /.navbar -->
+      ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -196,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-2">
                                             <?php
                                             echo '<td style=align-items: center;> 
-                                            <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="adocao_add_form.php?id=">
+                                            <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="catalogo.php">
                                     <i class="fas fa-plus"></i></a>'
 
                                             ?>
@@ -214,9 +150,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <tr>
                                                 <th>ID da Adoção</th>
                                                 <th>Nome do Cliente</th>
-                                                <th>Raça do Pet</th>
+                                                <th>ID do Cliente</th>                     
+                                                <th>Nome do Pet</th>
+                                                <th>ID do Pet</th>
                                                 <th>Data da Adoção</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -227,17 +164,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                             try {
                                                 $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                                $stmt = $conexao->prepare("SELECT * FROM adocao INNER JOIN cliente ON adocao.fk_id_cliente = cliente.pk_id_cliente INNER JOIN pet ON adocao.fk_id_pet = pet.pk_id_pet");
+                                                $stmt = $conexao->prepare("SELECT * FROM adocao INNER JOIN cliente ON adocao.id_cliente = cliente.pk_id_cliente INNER JOIN pet  ON adocao.id_pet = pet.pk_id_pet");
                                                 $stmt->execute();
 
                                                 // set the resulting array to associative
                                                 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                                 foreach ($stmt->fetchAll() as $k => $v) {
+
+                                                    $valid_date = date( 'd/m/y g:i A', strtotime($v['data_adocao']));
                                                     echo '<tr>';
                                                     echo '<td>' . $v['pk_id_adocao'] . '</td>';
                                                     echo '<td>' . $v['cli_nome'] . '</td>';
-                                                    echo '<td>' . $v['raca'] . '</td>';
-                                                    echo '<td>' . $v['data_adocao'] . '</td>';
+                                                    echo '<td>' . $v['pk_id_cliente'] . '</td>';
+                                                    echo '<td>' . $v['nome'] . '</td>';
+                                                    echo '<td>' . $v['pk_id_pet'] . '</td>';
+                                                    echo '<td>' . $valid_date . '</td>';
 
 
 

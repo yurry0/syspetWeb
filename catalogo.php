@@ -31,6 +31,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             margin-top: 25px;
 
         }
+
+        .modal-header {
+            padding: 9px 15px;
+            border-bottom: 1px solid #eee;
+            background-color: #0480be;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            color: white;
+        }
     </style>
 
 
@@ -59,75 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
-            <div class="container">
-                <a href="../../index3.html" class="navbar-brand">
-                    <img src="img/pet-care.png" alt="PET" class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">Syspet</span>
-                </a>
-
-                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-                    <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="index3.html" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Contact</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                <li><a href="#" class="dropdown-item">Some action </a></li>
-                                <li><a href="#" class="dropdown-item">Some other action</a></li>
-
-                                <li class="dropdown-divider"></li>
-
-                                <!-- Level two dropdown-->
-                                <li class="dropdown-submenu dropdown-hover">
-                                    <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                                    <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                        <li>
-                                            <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                                        </li>
-
-                                        <!-- Level three dropdown-->
-                                        <li class="dropdown-submenu">
-                                            <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                                            <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                                <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                                <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- End Level three -->
-
-                                        <li><a href="#" class="dropdown-item">level 2</a></li>
-                                        <li><a href="#" class="dropdown-item">level 2</a></li>
-                                    </ul>
-                                </li>
-                                <!-- End Level two -->
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <!-- SEARCH FORM -->
-
-                </div>
-
-                <!-- Right navbar links -->
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                    <!-- Messages Dropdown Menu -->
-
-
-
-                </ul>
-            </div>
-        </nav>
+        <?php include('includes/navbar.php') ?>
         <!-- /.navbar -->
 
 
@@ -174,9 +119,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         echo "<img class='mx-auto' scr='img/pet-care.png'";
                         echo "<div class='card-body'>";
 
-                        echo '<td>' . '<img width="250" height="250" src="Uploads/' . $row['img_pet'] . '"/>';
-                        echo "<h5 class='card-title'> Raça: " . $row['raca'] . "</h5> <br>";
-                        echo "<p class='card=text'> Peso: " . $row['peso'] . "</p>";
+                        echo '<td>' . '<img width="250" style="align-self: center;" height="250" src="Uploads/' . $row['img_pet'] . '"/>';
+                        echo "<h5 class='card-title'> Nome: " . $row['nome'] . "</h5> <br>";
+                        echo "<p class='card=text'> Raça: " . $row['raca'] . "</p>";
 
                         echo "<button type='button' id='detalhes' class='modalButton btn btn-primary' data-toggle='modal' data-target='#detailsModal'
                                 data-img='" . $row['img_pet'] . "'
@@ -213,11 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
 
 
-    <?php
-
-    include("includes/footer.php");
-
-    ?>
+    
     <!-- SweetAlert2 -->
     <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- jQuery -->
@@ -228,6 +169,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+
+
+
 
 </body>
 
@@ -247,9 +191,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                     <div class="row">
-                        <div class="col-2">
-                            <label for="id" style="float:inline-end"> ID:</label>
 
+                        <div class="col-5">
+
+                        </div>
+
+                        <div class="col-2">
+                            <label for="id"> ID:</label>
                             <input type="text" style="float: right;" class="form-control" name="ID" id="ID" readonly>
 
                         </div>
@@ -345,7 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </div>
 
-                    <div class="col-8">
+                    <div class="col-10">
                         <label for="vacinas"> Vacinas: </label>
                         <input type="text" class="form-control" name="vacinas" id="vacinas" readonly>
                     </div>
@@ -355,7 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </div>
                     <div class="form-group">
-                        <div class="col-9">
+                        <div class="col-9" style="padding-top: 15px;">
                             <button type="submit" id="adotar" type="submit" class="btn btn-primary">Adotar</button>
                         </div>
                     </div>
@@ -376,7 +324,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </form>
 
+<?php
 
+    include("includes/footer.php");
+
+
+    ?>
 </div>
 <!-- Script do Modal que puxa os detalhes do catálogo -->
 <script>

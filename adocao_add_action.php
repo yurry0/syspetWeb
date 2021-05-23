@@ -17,6 +17,8 @@ try {
 
   $id_cliente = substr($_POST['cliente'], 0, 1);
   $id_pet =  $_POST['ID'];
+  $nome = $_POST['nome'];
+
 
   $stmt = $conn->prepare("INSERT INTO adocao(id_cliente, id_pet) VALUES (:id_cliente , :id_pet)");
 
@@ -25,6 +27,11 @@ try {
 
 
   $stmt->execute();
+
+  $stmt = $conn->prepare("INSERT INTO pet(adotado) VALUES(TRUE) WHERE nome = :nome");
+  $stmt->bindParam(':nome', $nome);
+  $stmt->execute();
+
 
 
 

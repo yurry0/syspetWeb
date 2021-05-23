@@ -125,7 +125,7 @@ session_start();
                 <div class="row mb-2">
                     <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
                     <div class="col-sm-6">
-                        <input name="nome" type="text" class="form-control" id="nome">
+                        <input name="nome" required type="text" class="form-control" id="nome">
                     </div>
                 </div>
                 <!-- Campo de Email -->
