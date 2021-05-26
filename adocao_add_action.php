@@ -19,6 +19,7 @@ try {
   $id_pet =  $_POST['ID'];
   $nome = $_POST['nome'];
 
+  $adotado = true;
 
   $stmt = $conn->prepare("INSERT INTO adocao(id_cliente, id_pet) VALUES (:id_cliente , :id_pet)");
 
@@ -28,18 +29,21 @@ try {
 
   $stmt->execute();
 
-  $stmt = $conn->prepare("INSERT INTO pet(adotado) VALUES(TRUE) WHERE nome = :nome");
-  $stmt->bindParam(':nome', $nome);
-  $stmt->execute();
-
-
-
-
-
   $_SESSION['add'] = "Adicionado com sucesso!";
 } catch (PDOException $e) {
   $_SESSION['error'] = "Error: " . $e->getMessage();
 }
+
+try {
+  $stmt = $conn->prepare("UPDATE pet SET adotado = true WHERE pk_id_pet = :pk_id_pet");
+  $stmt->bindParam(':pk_id_pet', $id_pet);
+  $stmt->execute();
+} catch (PDOException $e) {
+  $_SESSION['error'] = "Error: " . $e->getMessage();
+}
+
+
+
 $conn = null;
 
 echo 'Id do PET: ' . $id_pet;

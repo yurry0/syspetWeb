@@ -2,6 +2,8 @@
 
 
 class pet_rn{
+
+
 function buscaTotal(){
 
     require_once "includes/pet_data.php";
@@ -9,6 +11,8 @@ function buscaTotal(){
     $petData = new petData();
 
     $dados = $petData->buscaTotal();
+
+    
 
     if ($dados){
 

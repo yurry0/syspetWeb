@@ -105,6 +105,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     $contador = 0;
                     $novaLinha = true;
 
+                    
                     while ($row = $dados->fetch_assoc()) {
 
 

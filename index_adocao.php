@@ -19,6 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
@@ -40,12 +41,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
 
-      <?php
-      
-      
-      include('includes/navbar.php');
+        <?php
 
-      ?>
+
+        include('includes/navbar.php');
+
+        ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -145,12 +146,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="example1" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th>ID da Adoção</th>
                                                 <th>Nome do Cliente</th>
-                                                <th>ID do Cliente</th>                     
+                                                <th>ID do Cliente</th>
                                                 <th>Nome do Pet</th>
                                                 <th>ID do Pet</th>
                                                 <th>Data da Adoção</th>
@@ -171,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                                 foreach ($stmt->fetchAll() as $k => $v) {
 
-                                                    $valid_date = date( 'd/m/y g:i A', strtotime($v['data_adocao']));
+                                                    $valid_date = date('d/m/y g:i A', strtotime($v['data_adocao']));
                                                     echo '<tr>';
                                                     echo '<td>' . $v['pk_id_adocao'] . '</td>';
                                                     echo '<td>' . $v['cli_nome'] . '</td>';
@@ -230,7 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <?php
 
-                        include("includes/footer.php");
+                        //include("includes/footer.php");
 
                         ?>
                         <!-- SweetAlert2 -->
@@ -261,6 +262,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
                         <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
                         <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+                        <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+                        <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+                        <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+                        <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+                        <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
                         <script>
                             $(function() {
                                 $("#example1").DataTable({
