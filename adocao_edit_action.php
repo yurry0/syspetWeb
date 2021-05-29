@@ -22,12 +22,12 @@ try {
   $stmt->bindParam(':id_pet', $id_pet);
 
 
-  $stmt->execute();
+  $stmt->execute(); 
   
 
 
 
-$_SESSION['edit'] = "Dados editados com sucesso!";
+$_SESSION['edit'] = "Dados editados com sucesso! ";
 } catch(PDOException $e) {
 $_SESSION['edit'] = "Error: " . $e->getMessage();
 }

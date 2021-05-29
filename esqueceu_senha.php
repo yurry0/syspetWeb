@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include("conexao.php");
 isset($_SESSION['senha_feita']);
@@ -29,21 +30,20 @@ if (isset($_POST['ok'])) {
         $nscripto = md5(md5($novasenha));
 
 
-        if  ($total > 0) {
+        if ($total > 0) {
             isset($_SESSION['email_success']);
             $sql_code = "UPDATE usuario SET senha = '$nscripto' WHERE usuario = '$email'";
             $sql_query = mysqli_query($conexao, $sql_code) or die($mysqli->error);
-            
-            
+
+
             include("includes/send_email.php");
             if ($sql_query)
                 $_SESSION['senha_feita'] = true;
-                $erro[] = "Senha Alterada com Sucesso!";
-                header('Location: esqueceu_senha.php'); 
+            $erro[] = "Senha Alterada com Sucesso!";
+            header('Location: esqueceu_senha.php');
         }
     }
 }
-
 ?>
 
 <html>
@@ -51,11 +51,21 @@ if (isset($_POST['ok'])) {
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="dist/css/bootstrap.css">
-    <link rel="stylesheet" href="css/login_style.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
         h1 {
 
@@ -85,12 +95,7 @@ if (isset($_POST['ok'])) {
 </head>
 
 <body>
-    <?php if (count($erro) > 0)
-        foreach ($erro as $msg) {
 
-            echo "<p>$msg</p>";
-        }
-    ?>
     <br>
 
     <div class="container-sm">
@@ -103,7 +108,7 @@ if (isset($_POST['ok'])) {
         <br><br><br>
         <!-- FORM -->
         <div class="container" style="border-color:#4DA8DA; border-left-style: solid;  border-width: 11px;">
-            <form method="POST">
+            <form method="POST" action="envia-email.php">
                 <div class="form-group">
                     <label for="exampleInputEmail1">E-mail de acesso</label>
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Digite aqui o seu e-mail de acesso">

@@ -11,7 +11,7 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // prepare sql and bind parameters
-  $stmt = $conn->prepare("DELETE FROM adocao WHERE pk_id_adocao=:pk_id_adocao");
+  $stmt = $conn->prepare("INSERT INTO adocao(deletado) VALUES('sim') WHERE pk_id_adocao=:pk_id_adocao");
   $stmt->bindParam(':pk_id_adocao', $id);
 
   $id =$_GET['id'];
@@ -19,7 +19,7 @@ try {
   $stmt->execute();
 
   
-  $_SESSION['del'] = "Deletado com sucesso";
+  $_SESSION['del'] = "Deletado com sucesso.";
   } catch(PDOException $e) {
   $_SESSION['del'] = "Error: " . $e->getMessage();
 }

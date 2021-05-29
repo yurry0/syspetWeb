@@ -1,9 +1,9 @@
+
 <?php
 
     $email = $_POST['email'];
 
     require 'PHPMailer/PHPMailerAutoload.php';
-
 
     $mail = new PHPMailer;
     $mail->isSMTP();
@@ -26,7 +26,6 @@
     $mail->Subject = utf8_encode(" Solicitacao de Nova Senha ");
     $conteudo_email ="A sua nova senha é: $novasenha
     Syspet.
-
     ";
     $mail->isHTML(true);
     $mail->Body = $conteudo_email;

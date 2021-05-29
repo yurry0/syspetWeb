@@ -6,25 +6,25 @@ session_start();
 <html>
 
 <head>
-   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="plugins/toastr/toastr.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
         h1 {
 
@@ -63,14 +63,14 @@ session_start();
 
             <form action="usuario_add_action.php" method="POST">
 
-            <!-- Validação e Alerts do Bootstrap -->
+                <!-- Validação e Alerts do Bootstrap -->
 
-            <?php
+                <?php
                 if (isset($_SESSION['usuario_existe'])) :
                 ?>
 
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                     Email de acesso já existe no banco de dados.
+                        Email de acesso já existe no banco de dados.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -89,7 +89,7 @@ session_start();
                 ?>
 
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                     Campos de e-mail não coincidem.
+                        Campos de e-mail não coincidem.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -100,6 +100,44 @@ session_start();
                 unset($_SESSION['invalid_email']);
 
                 ?>
+
+
+
+                <?php
+                if (isset($_SESSION['nome_vazio'])) :
+                ?>
+
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        Campo de nome está vazio ou inserido com somente espaços!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                <?php
+                endif;
+                unset($_SESSION['nome_vazio']);
+
+                ?>
+
+
+                <?php
+                if (isset($_SESSION['senha_vazia'])) :
+                ?>
+
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        Campo de senha está vazio ou inserido com somente espaços!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                <?php
+                endif;
+                unset($_SESSION['senha_vazia']);
+
+                ?>
+
 
                 <?php
                 if (isset($_SESSION['invalid_senha'])) :
@@ -119,7 +157,7 @@ session_start();
                 ?>
 
 
-            
+
 
                 <!-- Campo de Nome -->
                 <div class="row mb-2">
@@ -132,7 +170,7 @@ session_start();
                 <div class="row mb-2">
                     <label class="col-sm-2 col-form-label ">E-mail:</label>
                     <div class="col-sm-6">
-                        <input type="email" required name="email" class="form-control"  placeholder="ex: 123@123.com.br" >
+                        <input type="email" required name="email" class="form-control" placeholder="ex: 123@123.com.br">
                     </div>
                 </div>
                 <!-- Campo de Confirmação de Email -->
@@ -148,7 +186,7 @@ session_start();
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Senha:</label>
                     <div class="col-sm-6">
-                        <input type="password"  required name="senha" class="form-control" min="1" max="8" placeholder="Mínimo 1, máximo 8 caracteres.">
+                        <input type="password" required name="senha" pattern="[0-9a-fA-F]{1,8}[^' ']+" class="form-control" min="1" max="8" placeholder="Mínimo 1, máximo 8 caracteres.">
                     </div>
                 </div>
 
@@ -175,10 +213,11 @@ session_start();
     </form>
     </div>
 
+
+
     <!-- FOOTER -->
 
     <?php
-
 
     include("includes/footer.php");
 

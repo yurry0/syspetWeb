@@ -89,36 +89,7 @@ try {
 $conn = null;
 
 /**
-echo "Raça: ";
-echo $raca;
-echo '<br>';
-echo "Sexo: ";
-echo $sexo;
-echo '<br>';
-echo "Idade: ";
-echo $idade;
-echo '<br>';
-echo "Peso: ";
-echo $peso;
-echo '<br>';
-echo $altura;
-echo '<br>';
-echo 'Imagem:';
-echo (implode(' ', $img_pet));
-echo '<br>';
-echo 'Vacinas:';
-echo $vacinas;
-echo '<br>';
-echo "Tipo: ";
-echo $tipo;
-echo '<br>';
-echo "Especie: ";
-echo $especie;
-echo '<br>';
-echo "Porte: ";
-echo $porte;
-echo '<br>';
-echo '<br>';
+
  */
 
 

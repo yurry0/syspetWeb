@@ -55,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Índice de Adoções </h1>
+                            <h1 class="m-0">Índice de Adoções</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -189,7 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <i class="fa fa-search" aria-hidden="true"></i>
                       </a>
                       
-                      <a class="btn btn-info btn-sm" href="adocao_edit_form.php?id=' . $v['pk_id_adocao'] . '">
+                      <a class="btn btn-info btn-sm" href="adocao_edit_form.php?id=' . $v['pk_id_pet'] . '">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>

@@ -46,12 +46,6 @@ try {
 
 $conn = null;
 
-echo 'Id do PET: ' . $id_pet;
-echo '<br>';
-echo '<br>';
-echo 'ID do cliente: ' . $id_cliente;
-echo '<br>';
 
 
-  
-//header('Location: index_adocao.php');
+header('Location: index_adocao.php');

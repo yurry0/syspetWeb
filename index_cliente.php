@@ -63,6 +63,13 @@
   <?php
   session_start();
   include "conexao_crud.php";
+  $_SESSION['usuario'];
+
+
+
+  include('includes/navbar.php');
+
+ 
   ?>
 
 
