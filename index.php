@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 ?>
@@ -7,7 +7,7 @@ session_start();
 
 <head>
 
-  
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="dist/css/bootstrap.css">
@@ -17,14 +17,12 @@ session_start();
 
   <title>Página de Login</title>
 
-  <style> 
-  
-  body {
+  <style>
+    body {
 
-    background-image: linear-gradient(to right, #108dc7, #ef8e38);
+      background-image: linear-gradient(to right, #108dc7, #ef8e38);
 
-  }
-
+    }
   </style>
 
 </head>
@@ -45,35 +43,35 @@ session_start();
         <h4 class="company_title"></h4>
       </div>
       <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
-      
-      <?php
-            if (isset($_SESSION['status_cadastro'])):
-            ?>
 
-                <div class="alert alert-success" role="alert">
-                    Usuário cadastrado com sucesso.
-                </div>
-
-            <?php
-            endif;
-            unset($_SESSION['status_cadastro']);
-
-            ?>
-      
-      
-      
-      
-      <?php 
-      if (isset($_SESSION['nao_autenticado'])):
-      ?> 
-      <div class="alert alert-danger" role="alert">
-          Usuário ou Senha inválidos.
-        </div>
-      <?php
-      endif;  
-      unset($_SESSION['nao_autenticado']);
+        <?php
+        if (isset($_SESSION['status_cadastro'])) :
         ?>
-      
+
+          <div class="alert alert-success" role="alert">
+            Usuário cadastrado com sucesso.
+          </div>
+
+        <?php
+        endif;
+        unset($_SESSION['status_cadastro']);
+
+        ?>
+
+
+
+
+        <?php
+        if (isset($_SESSION['nao_autenticado'])) :
+        ?>
+          <div class="alert alert-danger" role="alert">
+            Usuário ou Senha inválidos.
+          </div>
+        <?php
+        endif;
+        unset($_SESSION['nao_autenticado']);
+        ?>
+
         <div class="container-fluid">
           <div class="row">
             <h2>Entrar</h2>
@@ -95,15 +93,15 @@ session_start();
                 <div class="col">
                   <input type="submit" value="Entrar" class="btn">
                 </div>
-               
+
               </div>
             </form>
           </div>
-          
+
           <div class="row">
             <h6> Perdeu a senha? <a href="esqueceu_senha.php"> Solicite uma nova.</a></h6>
           </div>
-            <p> <br> - - - - - - - - - - - </p>
+          <p> <br> - - - - - - - - - - - </p>
           <div class="row">
             <h6> <a href="usuario_add_form.php">Novo acesso? Faça seu cadastro aqui</a></h6>
           </div>

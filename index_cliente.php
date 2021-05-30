@@ -62,8 +62,9 @@
 
   <?php
   session_start();
-  include "conexao_crud.php";
   $_SESSION['usuario'];
+  include "conexao_crud.php";
+
 
 
 
@@ -76,7 +77,7 @@
   <div class="container-sm">
     <div class="teste">
       <div align='center' class="page-header">
-        <h1 id="cabeca">Índice de Clientes</h1>
+        <h1 id="cabeca">Índice de Clientes</h1></h1>
       </div>
     </div>
   </div>

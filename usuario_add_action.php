@@ -7,21 +7,19 @@ include("conexao.php");
 
 //Obtenção de campos do form:
 
-    if(empty(trim(($_POST['nome'])))){
+if (empty(trim(($_POST['nome'])))) {
 
-        $_SESSION['nome_vazio'] = true;
-        header('Location: usuario_add_form.php');
+    $_SESSION['nome_vazio'] = true;
+    header('Location: usuario_add_form.php');
+}
 
-    }
+if (empty(trim(($_POST['senha'])))) {
 
-    if(empty(trim(($_POST['senha'])))){
+    $_SESSION['senha_vazia'] = true;
+    header('Location: usuario_add_form.php');
+}
 
-        $_SESSION['senha_vazia'] = true;
-        header('Location: usuario_add_form.php');
 
-    }
-
-    
 
 
 $nome = mysqli_real_escape_string($conexao, trim($_POST['nome']));
@@ -74,5 +72,5 @@ if ($conexao->query($sql) === TRUE) {
 
 $conexao->close();
 
-header('Location: index.php');
+header('Location: index2.php');
 exit;

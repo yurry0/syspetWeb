@@ -37,11 +37,6 @@ $conn = null;
 <html>
 
 <head>
-
-
-
-
-
     <!-- Required meta tags -->
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
