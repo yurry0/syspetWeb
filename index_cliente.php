@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+include "conexao_crud.php";
+?>
 
 <html>
 
@@ -26,7 +29,6 @@
 
 
   <style>
-
     h1 {
 
       display: flex;
@@ -60,24 +62,19 @@
 <body>
 
 
+
   <?php
-  session_start();
-  $_SESSION['usuario'];
-  include "conexao_crud.php";
-
-
-
-
   include('includes/navbar.php');
 
- 
+
   ?>
 
 
   <div class="container-sm">
     <div class="teste">
       <div align='center' class="page-header">
-        <h1 id="cabeca">Índice de Clientes</h1></h1>
+        <h1 id="cabeca">Índice de Clientes</h1>
+        </h1>
       </div>
     </div>
   </div>
@@ -102,6 +99,7 @@
                 
                 </script>
                 ";
+                session_unset('del');
     } else if (isset($_SESSION['add'])) {
 
       $mensagem2 = $_SESSION['add'];
@@ -113,6 +111,7 @@
               
               </script>
               ";
+              session_unset('add');
     } else if (isset($_SESSION['edit'])) {
 
       $mensagem3 = $_SESSION['edit'];
@@ -124,13 +123,14 @@
             
             </script>
             ";
+            session_unset('edit');
     }
-    session_unset();
+  
 
     ?>
 
     <div class="card">
-      <?php include('includes/add_button.php')?>
+      <?php include('includes/add_button.php') ?>
 
       <!-- /.card-header -->
       <div class="card-body">
@@ -205,7 +205,7 @@
         </table>
       </div>
     </div>
- 
+
   </div>
 
   <!-- /.card-body -->
@@ -227,9 +227,9 @@
   </div>
   <?php
 
-include("includes/footer.php");
+  include("includes/footer.php");
 
-?>
+  ?>
   <!-- SweetAlert2 -->
   <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- jQuery -->

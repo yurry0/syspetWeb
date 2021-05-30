@@ -106,6 +106,17 @@ isset($_SESSION['email_feito']);
         }
     </style>
 
+    <script> 
+    
+    function keypresshandler(event)
+    {
+         var charCode = event.keyCode;
+         //Non-numeric character range
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+         return false;
+    }
+    
+    </script>
 
     <title>Cadastrar Pet</title>
 </head>
@@ -153,7 +164,7 @@ isset($_SESSION['email_feito']);
 
                                 <label for="id">Código</label>
                                 <div class="input-group-prepend">
-                                   
+
                                     <input type="int" disabled name="id" class="form-control" id="id" placeholder="Auto">
                                 </div>
 
@@ -165,7 +176,7 @@ isset($_SESSION['email_feito']);
 
                                 <label for="label-nome">Nome</label>
                                 <div class="input-group-prepend">
-                                    <input type="text" required name="nome" class="form-control" id="nome" placeholder="Digite o nome do pet!">
+                                    <input type="text" required name="nome" onkeypress='keypresshandler(event)' class="form-control" id="nome" placeholder="Digite o nome do pet!">
                                 </div>
 
                             </div>
@@ -203,7 +214,7 @@ isset($_SESSION['email_feito']);
                             </select>
                         </div>
 
-                       
+
                     </div>
                 </div>
 
@@ -212,11 +223,11 @@ isset($_SESSION['email_feito']);
                 <div class="form-group">
 
                     <div class="row">
-                    <div class="col-2">
+                        <div class="col-2">
 
-                    </div>
+                        </div>
 
-                    <div class="col-2">
+                        <div class="col-2">
                             <label>Porte</label>
                             <select class="form-control select2" id="porte" required name="porte" style="width: 100%;">
                                 <option selected="selected" disabled>Selecione</option>
@@ -435,8 +446,18 @@ isset($_SESSION['email_feito']);
     <script>
         $(document).ready(function() {
             $("#altura").inputmask("9.99");
-
         });
+
+        function myFunction() {
+            var e = event || window.event; // get event object
+            var key = e.keyCode || e.which; // get key cross-browser
+
+            if (key < 48 || key > 57) { //if it is not a number ascii code
+                //Prevent default action, which is inserting character
+                if (e.preventDefault) e.preventDefault(); //normal browsers
+                e.returnValue = false; //IE
+            }
+        }
     </script>
 
     <script>
@@ -472,7 +493,7 @@ isset($_SESSION['email_feito']);
                 $('#pelagem_gato').fadeOut(500);
                 $('#cavalo_vacina').fadeOut(500);
                 $('#pelagem_cavalo').fadeOut(500);
-                
+
 
 
             }

@@ -67,13 +67,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="content">
                 <div class="container">
                     <div class="row">
-
                         <!-- /.col-md-6 -->
                         <div class="col-lg-12">
-
-
-
-
                             <?php
 
                             if (isset($_SESSION['del'])) {
@@ -88,6 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 
                 </script>
                 ";
+                                session_unset('del');
                             } else if (isset($_SESSION['add'])) {
 
                                 $mensagem2 = $_SESSION['add'];
@@ -99,6 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               
               </script>
               ";
+                                session_unset('add');
                             } else if (isset($_SESSION['edit'])) {
 
                                 $mensagem3 = $_SESSION['edit'];
@@ -110,6 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             </script>
             ";
+                                session_unset('edit');
                             }
                             session_unset();
 

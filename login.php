@@ -1,7 +1,6 @@
 <?php
 
     session_start();
-    $logged = false;
 include('conexao.php');
 
 if (empty($_POST['usuario']) || empty($_POST['senha'])) {
@@ -29,6 +28,8 @@ if($row == 1){
 }
 else{
     $_SESSION['nao_autenticado'] = true;
+    unset($_SESSION['usuario']);
+    unset($_SESSION['senha']);
     header('Location: index2.php');
 
 }

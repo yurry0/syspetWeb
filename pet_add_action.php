@@ -31,6 +31,7 @@ try {
     $raca = $_POST['raca'];
     $sexo = $_POST['sexo'];
     $idade = $_POST['idade'];
+    $adotado = 0;
 
     if ($result2 == NULL) {
         $vacinas = $result;
@@ -59,8 +60,8 @@ try {
     }
 
 
-    $stmt = $conn->prepare("INSERT INTO pet(nome, raca, sexo, idade, vacinas, altura, peso, img_pet, tipo, especie, pelagem, porte)
-    VALUES (:nome, :raca, :sexo, :idade, :vacinas , :altura, :peso, :img_pet, :tipo, :especie, :pelagem, :porte)");
+    $stmt = $conn->prepare("INSERT INTO pet(nome, raca, sexo, idade, vacinas, altura, peso, img_pet, tipo, especie, pelagem, porte, adotado)
+    VALUES (:nome, :raca, :sexo, :idade, :vacinas , :altura, :peso, :img_pet, :tipo, :especie, :pelagem, :porte, :adotado)");
 
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':raca', $raca);
@@ -74,6 +75,7 @@ try {
     $stmt->bindParam(':pelagem', $pelagem);
     $stmt->bindParam(':porte', $porte);
     $stmt->bindParam(':img_pet', $newName);
+    $stmt->bindParam(':adotado', $adotado);
 
     $especie = $_POST['especie'];
     $pelagem = $_POST['pelo_cao'];
