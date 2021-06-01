@@ -6,6 +6,13 @@ session_start();
 <html>
 
 <head>
+    <script type="text/javascript">
+        function blockSpecialChar(e) {
+            var k;
+            document.all ? k = e.keyCode : k = e.which;
+            return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+        }
+    </script>
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -163,7 +170,7 @@ session_start();
                 <div class="row mb-2">
                     <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
                     <div class="col-sm-6">
-                        <input name="nome" required type="text" class="form-control" id="nome">
+                        <input name="nome" required type="text" onkeypress="return blockSpecialChar(event)" class="form-control" id="nome">
                     </div>
                 </div>
                 <!-- Campo de Email -->
@@ -201,7 +208,7 @@ session_start();
                 <div class="container">
                     <div class="row">
                         <div class="col text-center">
-                            <button type="submit" class="btn btn-default">Cadastrar</button>
+                            <button type="submit" title="Cadastrar Usuário" class="btn btn-default">Cadastrar Usuário</button>
                         </div>
                     </div>
                 </div>
@@ -222,6 +229,10 @@ session_start();
     include("includes/footer.php");
 
     ?>
+
+
+
+
 
 
     <!-- Optional JavaScript -->

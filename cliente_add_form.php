@@ -12,12 +12,26 @@ isset($_SESSION['email_feito']);
 
 <head>
     <!-- Required meta tags -->
+    <!-- Select2 -->
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="dist/css/bootstrap.css">
-    <link rel="stylesheet" href="css/login_style.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
         h1 {
 
@@ -60,62 +74,41 @@ isset($_SESSION['email_feito']);
     </div>
     <!-- FORM -->
 
-    <div class="card card-primary">
+    <!-- /.card -->
+    <!-- Horizontal Form -->
+    <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Adicionar Cliente</h3>
+            <h3 class="card-title">Horizontal Form</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" name="add_cliente" method="POST" action="cliente_add_action.php">
+        <form class="form-horizontal">
             <div class="card-body">
-
-                <!-- <div class="form-group">
-                    <label for="id">Código</label>
-                    <input type="int" disabled name = "id" class="form-control" id="id" placeholder="Auto">
-                  </div>
-                  <-->
-                  
-                <div class="form-group">
-                    <label for="tituloInput">Nome</label>
-                    <input type="text" name="nome" required class="form-control" id="nome" placeholder="Digite o nome do cliente.">
+                <div class="form-group row">
+                    <label for="nomeLabel" class="col-sm-2 col-form-label">Nome</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira seu nome aqui">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="autorInput">Cidade</label>
-                    <input type="text" name="cidade" required class="form-control" id="cidade" placeholder="Digite o nome da cidade.">
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="senha"  placeholder="Password">
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="autorInput">RG</label>
-                    <input type="text" name="rg" required class="form-control" id="rg" placeholder="Digite o número do RG.">
-                </div>
-
-                <div class="form-group">
-                    <label for="autorInput">Estado</label>
-                    <input type="text" name="estado" required class="form-control" id="estado" placeholder="Digite nome do estado.">
-                </div>
-
-                <div class="form-group">
-                    <label for="autorInput">CEP</label>
-                    <input type="text" name="cep" required class="form-control" min="1" max="2020" id="cep" placeholder="Digite o CEP.">
-                </div>
-                <div class="form-group">
-                    <label for="autorInput">Endereço</label>
-                    <input type="text" name="endereco" required class="form-control" min="1" max="2020" id="endereco" placeholder="Digite o endereço.">
-                </div>
-
-                <div class="form-group">
-                    <label for="autorInput">Bairro</label>
-                    <input type="text" name="bairro" required class="form-control" min="1" max="2020" id="bairro" placeholder="Digite o bairro.">
-                </div>
-                <div class="form-group">
-                    <label for="autorInput">E-Mail</label>
-                    <input type="email" name="email" required class="form-control" min="1" max="2020" id="bairro" placeholder="Digite o e-mail para contato.">
-                </div>
-                <div class="">
-                    <button type="submit" class="btn btn-success">Adicionar</button>
+                <div class="form-group row">
+                   
                 </div>
             </div>
-
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-info">Sign in</button>
+                <button type="submit" class="btn btn-default float-right">Cancel</button>
+            </div>
+            <!-- /.card-footer -->
+        </form>
+    </div>
+    <!-- /.card -->
 
 
 
@@ -159,6 +152,7 @@ isset($_SESSION['email_feito']);
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+
 </body>
 
 </html>

@@ -99,7 +99,7 @@ include "conexao_crud.php";
                 
                 </script>
                 ";
-                session_unset('del');
+      unset($_SESSION['del']);
     } else if (isset($_SESSION['add'])) {
 
       $mensagem2 = $_SESSION['add'];
@@ -111,7 +111,7 @@ include "conexao_crud.php";
               
               </script>
               ";
-              session_unset('add');
+      unset($_SESSION['add']);
     } else if (isset($_SESSION['edit'])) {
 
       $mensagem3 = $_SESSION['edit'];
@@ -123,9 +123,9 @@ include "conexao_crud.php";
             
             </script>
             ";
-            session_unset('edit');
+      unset($_SESSION['edit']);
     }
-  
+
 
     ?>
 

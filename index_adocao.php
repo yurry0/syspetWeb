@@ -82,8 +82,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     };
                 
                 </script>
-                ";
-                                session_unset('del');
+                ";               unset($_SESSION['del']);
+                            
                             } else if (isset($_SESSION['add'])) {
 
                                 $mensagem2 = $_SESSION['add'];
@@ -94,8 +94,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   };
               
               </script>
-              ";
-                                session_unset('add');
+              ";                  unset($_SESSION['add']);
+                              
                             } else if (isset($_SESSION['edit'])) {
 
                                 $mensagem3 = $_SESSION['edit'];
@@ -107,9 +107,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             </script>
             ";
-                                session_unset('edit');
+                                unset($_SESSION['edit']);
                             }
-                            session_unset();
+                        
 
                             ?>
 

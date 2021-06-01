@@ -25,14 +25,6 @@ try {
     }
 
 
-
-
-    $nome = $_POST['nome'];
-    $raca = $_POST['raca'];
-    $sexo = $_POST['sexo'];
-    $idade = $_POST['idade'];
-    $adotado = 0;
-
     if ($result2 == NULL) {
         $vacinas = $result;
     } else {
@@ -60,6 +52,10 @@ try {
     }
 
 
+
+
+
+
     $stmt = $conn->prepare("INSERT INTO pet(nome, raca, sexo, idade, vacinas, altura, peso, img_pet, tipo, especie, pelagem, porte, adotado)
     VALUES (:nome, :raca, :sexo, :idade, :vacinas , :altura, :peso, :img_pet, :tipo, :especie, :pelagem, :porte, :adotado)");
 
@@ -77,9 +73,26 @@ try {
     $stmt->bindParam(':img_pet', $newName);
     $stmt->bindParam(':adotado', $adotado);
 
+    $nome = $_POST['nome'];
+    $raca = $_POST['raca'];
+    $sexo = $_POST['sexo'];
+    $idade = $_POST['idade'];
+    $adotado = 0;
     $especie = $_POST['especie'];
-    $pelagem = $_POST['pelo_cao'];
     $porte = $_POST['porte'];
+
+    if (!empty($_POST['pelo_cao'])) {
+
+        $pelagem = $_POST['pelo_cao'];
+    
+      } else if (!empty($_POST['pelo_gato'])) {
+        $pelagem = $_POST['pelo_gato'];
+      } else if (!empty($_POST['pelo_cavalo'])) {
+
+        $pelagem = $_POST['pelo_cavalo'];
+      }
+
+ 
     $tipo = "image/" . get_file_extension($img_pet);
 
     $stmt->execute();
@@ -90,9 +103,4 @@ try {
 
 $conn = null;
 
-/**
-
- */
-
-
-header('Location: index_pet.php');
+//header('Location: index_pet.php');
