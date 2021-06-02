@@ -75,11 +75,6 @@ try {
   $sexo = $_POST['sexo'];
   $idade = $_POST['idade'];
   $especie = $_POST['especie'];
-  $pelagem = $_POST['pelagem'];
-  $adotado = 0;
-  $tipo = "image/" . get_file_extension($img_pet);
-  $stmt->execute();
-
   if (!empty($_POST['pelo_cao'])) {
 
     $pelagem = $_POST['pelo_cao'];
@@ -90,6 +85,12 @@ try {
 
     $pelagem = $_POST['pelo_cavalo'];
   }
+  $porte = $_POST['porte'];
+  $adotado = 0;
+  $tipo = "image/" . get_file_extension($img_pet);
+  $stmt->execute();
+
+  
 
 
 

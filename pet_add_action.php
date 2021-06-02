@@ -6,7 +6,6 @@ $conn = conexao();
 
 function get_file_extension($img_pet)
 {
-
     return pathinfo($img_pet, PATHINFO_EXTENSION);
 }
 
@@ -103,4 +102,4 @@ try {
 
 $conn = null;
 
-//header('Location: index_pet.php');
+header('Location: index_pet.php');

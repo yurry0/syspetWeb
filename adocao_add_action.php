@@ -12,7 +12,6 @@ try {
 
   // prepare sql and bind parameters
 
-
   //$id_cliente = $_POST['cliente'];
 
   $id_cliente = substr($_POST['cliente'], 0, 1);

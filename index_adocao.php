@@ -173,11 +173,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                     $valid_date = date('d/m/y g:i A', strtotime($v['data_adocao']));
                                                     echo '<tr>';
-                                                    echo '<td>' . $v['pk_id_adocao'] . '</td>';
+                                                    echo '<td>' . $v['pk_id_adocao'].'</td>';
                                                     echo '<td>' . $v['cli_nome'] . '</td>';
                                                     echo '<td>' . $v['pk_id_cliente'] . '</td>';
-                                                    echo '<td>' . $v['nome'] . '</td>';
-                                                    echo '<td>' . $v['pk_id_pet'] . '</td>';
+                                                    echo '<td>' . $v['nome'].'</td>';
+                                                    echo '<td>' . $v['pk_id_pet'].'</td>';
                                                     echo '<td>' . $valid_date . '</td>';
 
 

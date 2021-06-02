@@ -14,7 +14,7 @@ if(isset($_POST["cliente"])){
 
         while($row = mysqli_fetch_array($result)){
 
-            $output .='<li>'.$row["pk_id_cliente"].','. $row['cli_nome'].'</li>';
+            $output .='<li>'.$row["pk_id_cliente"].'-'. $row['cli_nome'].'</li>';
 
         }
     }

@@ -144,6 +144,9 @@ $conn = null;
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- JQuery Form Validation -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+
 
 </head>
 
@@ -185,7 +188,7 @@ $conn = null;
             <!-- /.card-header -->
             <!-- form start -->
 
-            <form role="form" name="edit_pet" method="POST" action="pet_edit_action.php" enctype="multipart/form-data">
+            <form role="form" name="edit_pet" id="fpet_edit" method="POST" action="pet_edit_action.php" enctype="multipart/form-data">
 
               <div class="card-body">
 
@@ -239,14 +242,14 @@ $conn = null;
 
                     <div class="col-2">
                       <label for="raca">Raça</label>
-                      <input type="text" class="form-control rounded-0"   required name="raca" id="raca" placeholder="" value="<?php echo $raca;?>">
+                      <input type="text" class="form-control rounded-0"  required name="raca" id="raca" placeholder="" value="<?php echo $raca;?>">
                     </div>
 
 
                     <div class="col-2">
                       <label for="sexo">Sexo</label>
-                      <select class="custom-select form-control-border"  required name="sexo" id="sexo">
-                        <option selected disabled> Selecione </option>
+                      <select class="custom-select form-control-border" required name="sexo" id="sexo">
+                        <option value="" selected disabled> Selecione </option>
                         <option value="Macho">Macho</option>
                         <option value="Fêmea">Fêmea</option>
                         <option value="Outro">Outro</option>
@@ -280,14 +283,14 @@ $conn = null;
                     <!-- Campo Idade -->
                     <div class="col-1">
                       <label for="raca">Idade</label>
-                      <input type="number" required class="form-control rounded-0" min="0" max="30" name="idade" id="idade"  value= "<?php echo $idade;?>" placeholder="">
+                      <input type="number" required class="form-control rounded-0" min="0" max="30" name="idade" id="idade"  placeholder="">
                     </div>
 
                     <div class="col-2">
 
                       <!-- Campo Altura -->
                       <label for="altura">Altura</label> <code> - Em metros;</code>
-                      <input class="form-control rounded-0" required name="altura" id="altura" placeholder=""  value= "<?php echo $altura;?>" type="text" data-inputmask-clearmaskonlostfocus="false">
+                      <input class="form-control rounded-0" required name="altura" id="altura" placeholder=""  type="text" data-inputmask-clearmaskonlostfocus="false">
 
                     </div>
 
@@ -296,7 +299,7 @@ $conn = null;
                     <div class="col-2">
 
                       <label for="raca">Peso</label> <code> - - - - Em quilos;</code>
-                      <input type="text" required class="form-control rounded-0" name="peso" id="peso"  value= "<?php echo $peso;?>" placeholder="ex: 40">
+                      <input type="text" required class="form-control rounded-0" name="peso" id="peso"  placeholder="ex: 40">
                     </div>
 
 
@@ -421,7 +424,7 @@ $conn = null;
                     <div class="col-2"></div>
                     <div class="col-6">
                       <label for="img_pet">Adicionar Foto</label>
-                      <div><input name="img_pet" id="img_pet" type="file"/></div>
+                      <div><input name="img_pet" required id="img_pet" type="file"/></div>
                     </div>
                   </div>
                 </div>
@@ -431,7 +434,7 @@ $conn = null;
                     <div class="col-6">
                     </div>
                     <div>
-                      <button type="submit" id="adicionar" class="btn btn-block bg-gradient-success btn-flat"> <i class="far fa-save"></i>Editar Pet</button>
+                      <button type="submit" id="editar" class="btn btn-block bg-gradient-success btn-flat"> <i class="far fa-save"></i>Editar Pet</button>
                     </div>
 
                   </div>
@@ -480,8 +483,11 @@ $conn = null;
   <!-- Select2 -->
   <script src="plugins/select2/js/select2.full.min.js"></script>
 
-
+  <script src="includes/validate.js"></script>
   <script>
+
+
+
     $(document).ready(function() {
       $("#altura").inputmask("9.99");
     });

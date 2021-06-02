@@ -38,12 +38,17 @@ try {
   
   $_SESSION['add'] = "Adicionado com sucesso!";
   } catch(PDOException $e) {
-  $_SESSION['add'] = "Error: " . $e->getMessage();
+  //$_SESSION['add'] = "Error: " . $e->getMessage();
+
+  echo $e->getMessage();
   }
   $conn = null;
   
   
-  header('Location: index_cliente.php');
+  
+
+
+  //header('Location: index_cliente.php');
   
   
   ?>

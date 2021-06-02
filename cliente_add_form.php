@@ -33,6 +33,12 @@ isset($_SESSION['email_feito']);
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        /* Estilo do Header */
         h1 {
 
             display: flex;
@@ -49,13 +55,62 @@ isset($_SESSION['email_feito']);
             letter-spacing: 10px;
         }
 
+        /* Estilo do Button - Tentando Centralizar */
         button {
-
             height: 45px;
             padding: 10px;
             text-align: center;
         }
+
+        /* Essas são as partes da forma que só serão reveladas quando o JavaScript for executado, na parte de espécie */
+
+        #pelagem_cao {
+
+            display: none;
+
+        }
+
+
+        #pelagem_gato {
+
+            display: none;
+
+        }
+
+        #pelagem_cavalo {
+
+            display: none;
+
+        }
+
+        #cao_gato_vacina {
+
+            display: none;
+
+        }
+
+        #cavalo_vacina {
+
+            display: none;
+
+        }
+
+        /* */
+        #imagem_syspet {
+
+            margin-left: 40px;
+
+        }
     </style>
+
+    <script>
+        function keypresshandler(event) {
+            var charCode = event.keyCode;
+            //Non-numeric character range
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+        }
+    </script>
 
     <title>Cadastrar Cliente</title>
 </head>
@@ -66,81 +121,166 @@ isset($_SESSION['email_feito']);
     <div class="container-sm">
         <div class="teste">
             <div align='center' class="page-header">
-                <h1 id="cabeca">Cadastrar um novo cliente</h1>
+                <h1 id="cabeca">Adicionar um novo cliente</h1>
             </div>
         </div>
         <br>
         <br><br><br>
     </div>
+
     <!-- FORM -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" style="font: 25px Arial;">Adicionar Cliente</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
 
-    <!-- /.card -->
-    <!-- Horizontal Form -->
-    <div class="card card-info">
-        <div class="card-header">
-            <h3 class="card-title">Horizontal Form</h3>
+                <form role="form" name="add_cliente" method="POST" action="cliente_add_action.php">
+
+                    <div class="card-body">
+
+                        <!-- Campo Raça -->
+
+                        <div class="form-group">
+
+                            <div class="row">
+
+
+                                <div class="col-2">
+
+                                    <img id="imagem_syspet" src="img/syspet logo.png" style="width: 170px; height: 170px;" alt="">
+
+                                </div>
+                                <div class="col-1">
+                                    <div class="form-group">
+
+                                        <label for="id">Código</label>
+                                        <div class="input-group-prepend">
+
+                                            <input type="int" disabled name="pk_id_cliente" class="form-control" id="pk_id_cliente" placeholder="Auto">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="form-group">
+
+                                        <label for="label-nome">Nome</label>
+                                        <div class="input-group-prepend">
+                                            <input type="text" required name="nome" id="nome" class="form-control" placeholder="Digite o nome do cliente!">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-2">
+                                    <label for="RG">Número da Carteira de Identidade (RG)</label>
+                                    <input type="text" class="form-control rounded-0" required name="rg" id="rg" placeholder="" data-inputmask-clearmaskonlostfocus="false">
+                                </div>
+
+
+                                <div class="col-2">
+                                    <label>Cidade</label>
+                                    <div class="input-group-prepend">
+
+                                        <input type="text" required name="cidade" id="cidade" onkeypress='keypresshandler(event)' class="form-control" placeholder="EX: Juazeiro do Norte">
+
+
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="col-2">
+                                    <label for="estado">Estado</label>
+                                    <input type="text" required name="estado" class="form-control" id="estado" placeholder="EX: Ceará">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="row">
+                                <div class="col-2">
+
+                                </div>
+
+                                <div class="col-2">
+                                    <label for="estado">CEP</label>
+                                    <input type="text" required name="cep" onkeypress='keypresshandler(event)' class="form-control" id="cep" placeholder="EX: Ceará" data-inputmask-clearmaskonlostfocus="false">
+                                </div>
+
+                                <!-- Campo Idade -->
+                                <div class="col-3">
+                                    <label for="raca">Endereço</label>
+                                    <input type="text" required class="form-control rounded-0" name="endereco" id="endereco" placeholder="">
+                                </div>
+
+                                <div class="col-2">
+
+                                    <!-- Campo Bairro -->
+                                    <label for="altura">Bairro</label>
+                                    <input class="form-control rounded-0" required name="bairro" id="bairro" placeholder="" type="text">
+
+                                </div>
+
+                                <div class="col-2">
+                                    <label for="raca">E-mail</label>
+                                    <input class="form-control rounded-0" type="email" required name="email" id="email" placeholder="">
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+            </div>
+
+
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-6">
+                    </div>
+                    <div>
+                        <button type="submit" id="adicionar" class="btn btn-block bg-gradient-success btn-flat"> <i class="far fa-save"></i>Adicionar</button>
+                    </div>
+
+                </div>
+            </div>
+            <!-- DIV do card-->
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form class="form-horizontal">
-            <div class="card-body">
-                <div class="form-group row">
-                    <label for="nomeLabel" class="col-sm-2 col-form-label">Nome</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira seu nome aqui">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label"></label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="senha"  placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group row">
-                   
-                </div>
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-info">Sign in</button>
-                <button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>
-            <!-- /.card-footer -->
+
         </form>
-    </div>
-    <!-- /.card -->
 
 
 
+        </div>
 
 
-    </div>
+        </div>
 
+    </section>
 
-
-
-    </div>
-
-
-
-
-
-
-    <!-- /.card-body -->
-
-
-    </form>
-    </div>
 
     <!-- FOOTER -->
 
-    <?php
+    <?php include("includes/footer.php") ?>
 
-
-    include("includes/footer.php");
-
-    ?>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -152,6 +292,59 @@ isset($_SESSION['email_feito']);
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <!-- InputMask -->
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- Select2 -->
+    <script src="plugins/select2/js/select2.full.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        $(document).ready(function() {
+            $("#rg").inputmask("99.999.999-9");
+            $("#cep").inputmask("99999-999")
+        });
+
+        $(document).ready(function() {
+
+        });
+
+        function myFunction() {
+            var e = event || window.event; // get event object
+            var key = e.keyCode || e.which; // get key cross-browser
+
+            if (key < 48 || key > 57) { //if it is not a number ascii code
+                //Prevent default action, which is inserting character
+                if (e.preventDefault) e.preventDefault(); //normal browsers
+                e.returnValue = false; //IE
+            }
+        }
+    </script>
+
+
+
+    <!-- Regras relacionadas a prevenir que campos de texto tenham números -->
+    <script>
+        function testInput(event) {
+            var value = String.fromCharCode(event.which);
+            var pattern = new RegExp(/[a-zåäöã ]/i);
+            return pattern.test(value);
+        }
+
+        $('#nome').bind('keypress', testInput);
+        $('#estado').bind('keypress', testInput);
+        $('#cidade').bind('keypress', testInput);
+    </script>
+
+
 
 </body>
 
