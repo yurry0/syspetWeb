@@ -34,7 +34,7 @@ try {
 $conn = null;
 
 
-//header('Location: index_adocao.php');
+header('Location: index_adocao.php');
 
 echo $id;
 echo "<br>";

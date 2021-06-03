@@ -1,3 +1,16 @@
+
+
+<style>
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+
+</style>
 <footer id="footer">
     <div class="container">
       <div class="copyright">

@@ -11,7 +11,7 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page - Amoeba Bootstrap Template</title>
+  <title>Adicionar Pet</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -152,10 +152,10 @@ session_start();
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Inner Page</h2>
+          <h2>Adicionar Pet</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Inner Page</li>
+            <li><a href="painel.php">Home</a></li>
+            <li>Adicionar Pet</li>
           </ol>
         </div>
 
@@ -179,7 +179,7 @@ session_start();
 
                 <div class="col-2">
 
-                  <img id="imagem_syspet" src="img/pet-care_128.png" alt="">
+                  <img id="imagem_syspet" src="img/syspet sem fundo.png" style="width: 125px; height: 125x;"  alt="Logo do SysPet">
 
                 </div>
                 <div class="col-1">
@@ -235,8 +235,9 @@ session_start();
                     <option value="Fêmea">Fêmea</option>
                     <option value="Outro">Outro</option>
                   </select>
+                  
                 </div>
-
+                
 
               </div>
             </div>
@@ -415,11 +416,17 @@ session_start();
             <div class="form-group">
               <div class="row">
                 <div class="col-6">
-                <div>
-                  <button type="submit" id="adicionar"> <i class="far fa-save"></i>Adicionar</button>
+
                 </div>
+                <div class="col-2">
+
                 </div>
-               
+                <div class="col-2">
+                  <div>
+                    <button type="button" class="btn btn-success">Adicionar</button>
+                  </div>
+                </div>
+
 
               </div>
             </div>
@@ -436,11 +443,11 @@ session_start();
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
- <?php 
- 
- include('includes/footer_template.php');
+  <?php
 
- ?>
+  include('includes/footer_template.php');
+
+  ?>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
