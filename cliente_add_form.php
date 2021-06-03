@@ -220,20 +220,20 @@ isset($_SESSION['email_feito']);
 
                                 <!-- Campo Idade -->
                                 <div class="col-3">
-                                    <label for="raca">Endereço</label>
+                                    <label for="endereco">Endereço</label>
                                     <input type="text" required class="form-control rounded-0" name="endereco" id="endereco" placeholder="">
                                 </div>
 
                                 <div class="col-2">
 
                                     <!-- Campo Bairro -->
-                                    <label for="altura">Bairro</label>
+                                    <label for="Bairro">Bairro</label>
                                     <input class="form-control rounded-0" required name="bairro" id="bairro" placeholder="" type="text">
 
                                 </div>
 
                                 <div class="col-2">
-                                    <label for="raca">E-mail</label>
+                                    <label for="Email">E-mail</label>
                                     <input class="form-control rounded-0" type="email" required name="email" id="email" placeholder="">
                                 </div>
 
