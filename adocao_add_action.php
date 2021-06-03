@@ -43,8 +43,10 @@ try {
 
 
 
+$_SESSION['nome'] = $nome;
+
 $conn = null;
 
 
 
-header('Location: index_adocao.php');
+header('Location: recibo.php');

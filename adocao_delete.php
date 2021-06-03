@@ -4,29 +4,20 @@ session_start();
 include "conexao_crud.php";
 
 
-
 try {
   $conn = conexao();
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  // prepare sql and bind parameters
-  $stmt = $conn->prepare("INSERT INTO adocao(deletado) VALUES('sim') WHERE pk_id_adocao=:pk_id_adocao");
+  $stmt = $conn->prepare("UPDATE adocao SET deletado = true WHERE pk_id_adocao = :pk_id_adocao");
   $stmt->bindParam(':pk_id_adocao', $id);
-
-  $id =$_GET['id'];
-
+  $id = $_GET['id'];
   $stmt->execute();
-
-  
-  $_SESSION['del'] = "Deletado com sucesso.";
-  } catch(PDOException $e) {
-  $_SESSION['del'] = "Error: " . $e->getMessage();
+} catch (PDOException $e) {
+  $_SESSION['error'] = "Error: " . $e->getMessage();
 }
 $conn = null;
 
 
-header('Location: index_adocao.php');
+//header('Location: index_adocao.php');
 
-
-?>
+echo $id;
