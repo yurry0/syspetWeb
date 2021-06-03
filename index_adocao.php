@@ -82,8 +82,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     };
                 
                 </script>
-                ";               unset($_SESSION['del']);
-                            
+                ";
+                                unset($_SESSION['del']);
                             } else if (isset($_SESSION['add'])) {
 
                                 $mensagem2 = $_SESSION['add'];
@@ -94,8 +94,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   };
               
               </script>
-              ";                  unset($_SESSION['add']);
-                              
+              ";
+                                unset($_SESSION['add']);
                             } else if (isset($_SESSION['edit'])) {
 
                                 $mensagem3 = $_SESSION['edit'];
@@ -109,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             ";
                                 unset($_SESSION['edit']);
                             }
-                        
+
 
                             ?>
 
@@ -170,19 +170,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 // set the resulting array to associative
                                                 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                                 foreach ($stmt->fetchAll() as $k => $v) {
+                                                    if (!$v['deletado'] == true) {
+                                                        $valid_date = date('d/m/y g:i A', strtotime($v['data_adocao']));
+                                                        echo '<tr>';
+                                                        echo '<td>' . $v['pk_id_adocao'] . '</td>';
+                                                        echo '<td>' . $v['cli_nome'] . '</td>';
+                                                        echo '<td>' . $v['pk_id_cliente'] . '</td>';
+                                                        echo '<td>' . $v['nome'] . '</td>';
+                                                        echo '<td>' . $v['pk_id_pet'] . '</td>';
+                                                        echo '<td>' . $valid_date . '</td>';
 
-                                                    $valid_date = date('d/m/y g:i A', strtotime($v['data_adocao']));
-                                                    echo '<tr>';
-                                                    echo '<td>' . $v['pk_id_adocao'].'</td>';
-                                                    echo '<td>' . $v['cli_nome'] . '</td>';
-                                                    echo '<td>' . $v['pk_id_cliente'] . '</td>';
-                                                    echo '<td>' . $v['nome'].'</td>';
-                                                    echo '<td>' . $v['pk_id_pet'].'</td>';
-                                                    echo '<td>' . $valid_date . '</td>';
 
 
-
-                                                    echo '<td style="text-align:center"> 
+                                                        echo '<td style="text-align:center"> 
                       
                       <a class="btn btn-primary btn-sm" href="adocao_read.php?id=' . $v['pk_id_adocao'] . '">
                       <i class="fa fa-search" aria-hidden="true"></i>
@@ -193,10 +193,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '"data-href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '&id_pet=' . $v['pk_id_pet'] . '"data-href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '&id_pet=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
-                                                    echo '</tr>';
+                                                        echo '</tr>';
+                                                    }
                                                 }
                                             } catch (PDOException $e) {
                                                 echo "Error: " . $e->getMessage();
