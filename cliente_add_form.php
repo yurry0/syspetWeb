@@ -246,11 +246,11 @@ isset($_SESSION['email_feito']);
 
                     </div>
 
-            </div>
+      
 
 
 
-
+         
             <div class="form-group">
                 <div class="row">
                     <div class="col-6">
@@ -266,8 +266,8 @@ isset($_SESSION['email_feito']);
 
         </form>
 
-
-
+        </div>
+        </div>
         </div>
 
 
