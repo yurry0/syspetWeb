@@ -10,7 +10,7 @@ include "conexao_crud.php";
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Indíce Adoções</title>
+  <title>Indíce de Clientes</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -57,24 +57,11 @@ include "conexao_crud.php";
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
+ <?php 
+ 
+ include('includes/navbar_template.php')
 
-      <div class="logo me-auto">
-        <h1><a href="index.html">Amoeba</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
-
-      <?php 
-      
-      include('includes/navbar_template.php');
-
-      ?>
-
-    </div>
-  </header><!-- End #header -->
-
+ ?>
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->

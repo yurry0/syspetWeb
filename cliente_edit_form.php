@@ -1,180 +1,305 @@
-
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Editar Clientes</title>
+<html lang="pt">
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-</head>
-
-<body class="hold-transition sidebar-mini">
-<?php 
-
+<?php
+session_start();
+isset($_SESSION['senha_feita']);
+isset($_SESSION['email_feito']);
 include('conexao_crud.php');
+
+
+
+//Conjunto de funções pra trazer o Pet do Banco de Dados usando o ID passado no GET 
+include('modal/cliente/buscar_cliente.php')
 
 ?>
 
 
-<?php
-                  $conn=conexao();
-                  try {
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stmt = $conn->prepare("SELECT * FROM cliente WHERE pk_id_cliente=:pk_id_cliente");
-                    $stmt->bindParam(':pk_id_cliente', $id);
-                    $id = $_GET['id'];
-                    $stmt->execute();
-                    // set the resulting array to associative
-                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    foreach($stmt->fetchAll() as $k=>$v) {
-                      $nome = $v['cli_nome'];
-                      $cidade = $v['cidade'];
-                      $rg = $v['cli_rg'];
-                      $estado = $v['cli_estado'];
-                      $cep = $v['cli_cep'];
-                      $endereco = $v['cli_endereco'];
-                      $bairro = $v['cli_bairro'];
-                      $email = $v['cli_email'];
-                                            
-                    }
-                  } catch(PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                  }
-                  $conn = null;
-                  //echo "</table>";
-            ?>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Editar Adoção</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Select 2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    /* Estilo do Button - Tentando Centralizar */
+    button {
+      height: 45px;
+      padding: 10px;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 45px;
+    }
 
 
-<div class="wrapper">
+  </style>
 
-     
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+  <script>
+    function keypresshandler(event) {
+      var charCode = event.keyCode;
+      //Non-numeric character range
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+
+  <?php
+
+  include('includes/navbar_template.php');
+
+  ?>
+
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Editar Cliente</h2>
+          <ol>
+            <li><a href="painel.php">Home</a></li>
+            <li><a href="cliente_index.php">Índice de Clientes</a></li>
+            <li>Editar Cliente</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+        <div class="card card-primary">
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        
-     <!-- form start -->
-     <form role="form" name="edit_cliente" method="POST" action="cliente_edit_action.php?id=<?php echo $id; ?>">
+          <!-- /.card-header -->
+          <!-- form start -->
+
+          <form role="form" name="edit_cliente" method="POST" action="cliente_edit_action.php">
+
             <div class="card-body">
-                <!-- <div class="form-group">
-                    <label for="id">Código</label>
-                    <input type="int" disabled name = "id" class="form-control" id="id" placeholder="Auto">
+
+              <!-- Campo Raça -->
+
+              <div class="form-group">
+
+                <div class="row">
+
+
+                  <div class="col-2">
+
+                    <img id="imagem_syspet" src="img/syspet logo.png" style="width: 170px; height: 170px;" alt="">
+
                   </div>
-                  <-->
+                  <div class="col-1">
+                    <div class="form-group">
 
-                  <div class="form-group">
-                    <label for="tituloInput">ID</label>
-                    <input type="text" name="id" required class="form-control" id="id" placeholder="" value="<?php echo $id?>" disabled>
+                      <label for="id">Código</label>
+                      <div class="input-group-prepend">
+
+                        <input type="int" readonly name="pk_id_cliente" value="<?php echo  $id ?>" class="form-control" id="pk_id_cliente" placeholder="Auto">
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-3">
+                    <div class="form-group">
+
+                      <label for="label-nome">Nome</label>
+                      <div class="input-group-prepend">
+                        <input type="text" required name="nome" id="nome" value="<?php echo $v['cli_nome'] ?>" class="form-control" placeholder="">
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-2">
+                    <label for="RG">Carteira de Identidade (RG)</label>
+                    <input type="text" class="form-control rounded-0" required name="rg" value="<?php echo $v['cli_rg']; ?>" id="rg" placeholder="" data-inputmask-clearmaskonlostfocus="false">
+                  </div>
+
+
+                  <div class="col-2">
+                    <label>Cidade</label>
+                    <div class="input-group-prepend">
+
+                      <input type="text" required name="cidade" id="cidade" value="<?php echo $v['cidade'] ?>" onkeypress='keypresshandler(event)' class="form-control" placeholder="">
+
+
+                    </div>
+
+                  </div>
+
+
+
+
+                  <div class="col-2">
+                    <label for="estado">Estado</label>
+                    <input type="text" required name="estado" class="form-control" value="<?php echo $v['cli_estado'] ?>" id="estado" placeholder="EX: Ceará">
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="form-group">
+
+                <div class="row">
+                  <div class="col-2">
+
+                  </div>
+
+                  <div class="col-2">
+                    <label for="estado">CEP</label>
+                    <input type="text" required name="cep" onkeypress='keypresshandler(event)' value="<?php echo $v['cli_cep'] ?>" class="form-control" id="cep" placeholder="EX: Ceará" data-inputmask-clearmaskonlostfocus="false">
+                  </div>
+
+                  <!-- Campo Idade -->
+                  <div class="col-3">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" required class="form-control rounded-0" name="endereco" value="<?php echo $v['cli_endereco'] ?>" id="endereco" placeholder="">
+                  </div>
+
+                  <div class="col-2">
+
+                    <!-- Campo Bairro -->
+                    <label for="Bairro">Bairro</label>
+                    <input class="form-control rounded-0" required name="bairro" id="bairro" value="<?php echo $v['cli_bairro'] ?>" placeholder="" type="text">
+
+                  </div>
+
+                  <div class="col-2">
+                    <label for="Email">E-mail</label>
+                    <input class="form-control rounded-0" type="email" required name="email" value="<?php echo $v['cli_email'] ?>" id="email" placeholder="">
+                  </div>
+
+
                 </div>
 
-                <div class="form-group">
-                    <label for="tituloInput">Nome</label>
-                    <input type="text" name="nome" required class="form-control" id="nome" placeholder="" value="<?php echo $nome  ?>">
-                </div>
-                <div class="form-group">
-                    <label for="autorInput">Cidade</label>
-                    <input type="text" name="cidade" required class="form-control" id="cidade" placeholder=""value="<?php echo $cidade?>" >
-                </div>
+              </div>
 
-                <div class="form-group">
-                    <label for="autorInput">RG</label>
-                    <input type="text" name="rg" required class="form-control" id="rg" placeholder="" value="<?php echo $rg?>" >
-                </div>
+        
 
-                <div class="form-group">
-                    <label for="autorInput">Estado</label>
-                    <input type="text" name="estado" required class="form-control" id="estado" placeholder="" value="<?php echo $estado?>" >
-                </div>
 
-                <div class="form-group">
-                    <label for="autorInput">CEP</label>
-                    <input type="text" name="cep" required class="form-control" min="1" max="2020" id="cep" placeholder="" value="<?php echo $cep?>" >
-                </div>
-                <div class="form-group">
-                    <label for="autorInput">Endereço</label>
-                    <input type="text" name="endereco" required class="form-control" min="1" max="2020" id="endereco" placeholder="" value="<?php echo $endereco?>" >
-                </div>
+            <div class="row">
+              <div class="col-3">
+              </div>
+              <div class="col-2">
+              </div>
 
-                <div class="form-group">
-                    <label for="autorInput">Bairro</label>
-                    <input type="text" name="bairro" required class="form-control" min="1" max="2020" id="bairro" placeholder="" value="<?php echo $bairro?>" >
-                </div>
-                <div class="form-group">
-                    <label for="autorInput">E-Mail</label>
-                    <input type="email" name="email" required class="form-control" min="1" max="2020" id="email" placeholder=" "value="<?php echo $email?>" >
-           
-                <div class="">
-                    <button type="submit" class="btn btn-success">Editar</button>
-                </div>
+              <div class="col-2">
+                <button type="submit" class="btn btn-outline-success">Editar Cliente</button>
+              </div>
+
             </div>
+            <!-- DIV do card-->
+        </div>
+
+        </form>
+
+      </div>
+
+
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <?php
+
+  include('includes/footer_template.php');
+
+  ?>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <!-- InputMask -->
+  <script src="plugins/moment/moment.min.js"></script>
+  <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+
+
+
+ 
+  <script>
+    $(document).ready(function() {
+      $("#rg").inputmask("99.999.999-9");
+      $("#cep").inputmask("99999-999")
+    });
+
+    $(document).ready(function() {
+
+    });
+
+    function myFunction() {
+      var e = event || window.event; // get event object
+      var key = e.keyCode || e.which; // get key cross-browser
+
+      if (key < 48 || key > 57) { //if it is not a number ascii code
+        //Prevent default action, which is inserting character
+        if (e.preventDefault) e.preventDefault(); //normal browsers
+        e.returnValue = false; //IE
+      }
+    }
+  </script>
+
+
+
+  <!-- Regras relacionadas a prevenir que campos de texto tenham números -->
+  <script>
+    function testInput(event) {
+      var value = String.fromCharCode(event.which);
+      var pattern = new RegExp(/[a-zåäöãá ]/i);
+      return pattern.test(value);
+    }
+
+    $('#nome').bind('keypress', testInput);
+    $('#estado').bind('keypress', testInput);
+    $('#cidade').bind('keypress', testInput);
+  </script>
 
 
 
 
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
 </body>
+
 </html>

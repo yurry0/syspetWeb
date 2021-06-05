@@ -11,12 +11,12 @@ try {
 
   // prepare sql and bind parameters
   $id_cliente = substr($_POST['cliente'], 0, 1);
-  $id_pet =  $_POST['ID'];
+  $id_pet = $_POST['ID'];
   $nome = $_POST['nome'];
 
   $adotado = true;
 
-  $stmt = $conn->prepare("UPDATE adocao SET id_cliente = :id_cliente , id_pet = :id_pet WHERE  ");
+  $stmt = $conn->prepare("UPDATE adocao SET id_cliente = :id_cliente , id_pet = :id_pet WHERE id_pet = :id_pet");
 
   $stmt->bindParam(':id_cliente', $id_cliente);
   $stmt->bindParam(':id_pet', $id_pet);

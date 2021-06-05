@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="pt">
+
 <?php
 session_start();
 isset($_SESSION['senha_feita']);
@@ -5,236 +8,254 @@ isset($_SESSION['email_feito']);
 include('conexao_crud.php');
 
 
-$id = $_POST['ID'];
-$nome = $_POST['nome'];
-$raca = $_POST['raca'];
-$sexo = $_POST['sexo'];
-$idade = $_POST['idade'];
-$altura = $_POST['altura'];
-$peso = $_POST['peso'];
-$porte = $_POST['porte'];
-$vacinas = $_POST['vacinas'];
-$especie = $_POST['especie'];
 
-$conn = conexao();
-try {
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM pet WHERE pk_id_pet=:pk_id_pet");
-    $stmt->bindParam(':pk_id_pet', $id);
-    $stmt->execute();
-    // set the resulting array to associative
-    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    foreach ($stmt->fetchAll() as $k => $v) {
-    }
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-$conn = null;
-//echo "</table>";
+//Conjunto de funções pra trazer o Pet do Banco de Dados usando o ID passado no GET 
+include('modal/adocao/add_adocao.php')
 
 ?>
 
-<html>
 
 <head>
-    <!-- Required meta tags -->
-    <!-- DataTables -->
-    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="plugins/toastr/toastr.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <style>
-        h1 {
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-            display: flex;
-            justify-content: center;
-            /* align horizontal */
-            align-items: center;
-            /* align vertical */
+  <title>Realizar Adoção</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-            position: relative;
-            background-image: linear-gradient(to right, #108dc7, #ef8e38);
-            font-family: Arial, Helvetica, sans-serif;
-            color: aliceblue;
-            height: 100px;
-            letter-spacing: 10px;
-        }
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-        label {
-            padding: 2px;
+  <!-- Select 2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
 
-        button {
-            margin-top: 10px;
-            height: 45px;
-            padding: 15px;
-            text-align: center;
-        }
-    </style>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <title>Cadastrar Adoção</title>
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    /* Estilo do Button - Tentando Centralizar */
+    button {
+      height: 45px;
+      padding: 10px;
+      text-align: center;
+    }
+
+   
+  </style>
+
+  <script>
+    function keypresshandler(event) {
+      var charCode = event.keyCode;
+      //Non-numeric character range
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    }
+  </script>
+
 </head>
 
 <body>
-    <br>
 
-    <div class="container-sm">
-        <div class="teste">
-            <div align='center' class="page-header">
-                <h1 id="cabeca">Realizar uma nova adoção</h1>
-            </div>
+  <!-- ======= Header ======= -->
+  
+
+      <?php
+
+      include('includes/navbar_template.php');
+
+      ?>
+
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Realizar Adoção</h2>
+          <ol>
+            <li><a href="painel.php">Home</a></li>
+            <li>Realizar Adoção</li>
+          </ol>
         </div>
-        <br>
-        <br><br><br>
-    </div>
 
-    <!-- FORM -->
-    <!-- /.card-header -->
-    <!-- form start -->
-    <div class="card card-info">
-        <div class="card-header">
-            <h3 class="card-title">Realizar uma nova adoção</h3>
-        </div>
-        <div class="card-body">
-            <form action="adocao_add_action.php" method="POST">
+      </div>
+    </section><!-- End Breadcrumbs -->
 
-                <div class="row">
+    <section class="inner-page">
+      <div class="container">
+        <!-- form start -->
+
+        <form role="form" name="add_adocao" method="POST" action="adocao_add_action.php">
+
+          <div class="card-body">
+
+            <!-- Campo Raça -->
+
+            <div class="card card-info">
+              <div class="card-body">
+              
+
+                  <div class="row">
 
                     <div class="col-1">
-                        <label for="id">ID:</label>
-                        <input type="text" id="ID" name="ID" readonly class="form-control" value="<?php echo $id; ?>" placeholder="">
+                      <label for="id">ID do Pet:</label>
+                      <input type="text" id="ID" name="ID" readonly class="form-control" value="<?php echo $id; ?>" placeholder="">
                     </div>
 
                     <div class="col-2">
-                        <label for="nome">Nome:</label>
-                        <input type="text" id="nome" name="nome" readonly class="form-control" value="<?php echo $nome; ?>" placeholder="">
+                      <label for="nome">Nome:</label>
+                      <input type="text" id="nome" name="nome" readonly class="form-control" value="<?php echo $nome; ?>" placeholder="">
                     </div>
 
                     <div class="col-3">
-                        <label for="especie">Especie:</label>
-                        <input type="text" name="especie" readonly class="form-control" value="<?php echo $especie; ?>" placeholder="">
+                      <label for="especie">Especie:</label>
+                      <input type="text" name="especie" readonly class="form-control" value="<?php echo $especie; ?>" placeholder="">
                     </div>
 
                     <div class="col-2">
-                        <label for="raca">Raça:</label>
-                        <input type="text" id="raca" name="raca" value="<?php echo $raca; ?>" readonly class="form-control" placeholder="">
+                      <label for="raca">Raça:</label>
+                      <input type="text" id="raca" name="raca" value="<?php echo $raca; ?>" readonly class="form-control" placeholder="">
                     </div>
 
-                </div>
+                  </div>
 
-                <div class="row">
-
-
-                </div>
+                  <div class="row">
 
 
-                <div class="row">
+                  </div>
+
+
+                  <div class="row">
                     <br>
                     <div class="col-2">
-                        <label for="sexo">Sexo:</label>
-                        <input type="text" id="sexo" name="sexo" value="<?php echo $sexo; ?>" readonly class="form-control" placeholder="">
+                      <label for="sexo">Sexo:</label>
+                      <input type="text" id="sexo" name="sexo" value="<?php echo $sexo; ?>" readonly class="form-control" placeholder="">
                     </div>
 
                     <div class="col-2">
-                        <label for="idade">Idade:</label>
-                        <input type="text" id="idade" name="idade" readonly class="form-control" value="<?php echo $idade; ?>" placeholder="">
+                      <label for="idade">Idade:</label>
+                      <input type="text" id="idade" name="idade" readonly class="form-control" value="<?php echo $idade; ?>" placeholder="">
                     </div>
 
 
 
                     <div class="col-1">
-                        <label for="altura">Altura:</label>
-                        <input type="text" id="altura" name="altura" readonly class="form-control" value="<?php echo $altura; ?>" placeholder="">
+                      <label for="altura">Altura:</label>
+                      <input type="text" id="altura" name="altura" readonly class="form-control" value="<?php echo $altura; ?>" placeholder="">
                     </div>
 
-                </div>
+                  </div>
 
-                <div class="row">
+                  <div class="row">
                     <div class="col-5">
-                        <label for="vacinas">Vacinas:</label>
-                        <input type="text" id="vacinas" name="vacinas" readonly class="form-control" value="<?php echo $vacinas; ?>" placeholder="">
+                      <label for="vacinas">Vacinas:</label>
+                      <input type="text" id="vacinas" name="vacinas" readonly class="form-control" value="<?php echo $vacinas; ?>" placeholder="">
                     </div>
 
-                </div>
+                  </div>
 
-                <div class="row">
+                  <div class="row">
                     <div class="col-4">
 
-                        <!-- <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
+                      <!-- <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
                     <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
                     <div id="listaRaca"></div> -->
 
-                        <label for="cliente"> Cliente <code> - - Escreva algo, e a lista de clientes irá aparecer</code></label>
-                        <input type="text" required class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="">
-                        <div id="listaCliente" class="listaCliente"></div>
+                      <label for="cliente"> Cliente <code> - - Escreva algo, e a lista de clientes irá aparecer</code></label>
+                      <input type="text" required class="form-control form-control-border border-width-2" id="cliente" name="cliente" placeholder="Selecione um novo cliente">
+                      <div id="listaCliente" class="listaCliente"></div>
                     </div>
 
                     <div class="col-1"></div>
 
 
-                </div>
+                  </div>
 
-                <div class="row">
+                  <div class="row">
                     <div class="col-3">
                     </div>
                     <div class="col-2">
                     </div>
 
                     <div class="col-2">
-                        <button type="submit" class="btn btn-block bg-gradient-success btn-flat">Adicionar Nova Adoção</button>
+                    <button type="submit" class="btn btn-outline-success">Adicionar Adoção</button>
                     </div>
 
-                </div>
+                  </div>
 
-        </div>
+              </div>
         </form>
         <!-- testanto js para introduzir campos -->
 
-        <!-- apaga daqui pra cima -->
-    </div>
+      </div>
+
+      </div>
 
 
-    </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <?php
+
+  include('includes/footer_template.php');
+
+  ?>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <!-- InputMask -->
+  <script src="plugins/moment/moment.min.js"></script>
+  <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
 
 
-    <!-- FOOTER -->
 
-    <?php include("includes/footer.php") ?>
+  <script>
+    $(document).ready(function() {
+      $("#altura").inputmask("9.99");
+    });
+
+    function myFunction() {
+      var e = event || window.event; // get event object
+      var key = e.keyCode || e.which; // get key cross-browser
+
+      if (key < 48 || key > 57) { //if it is not a number ascii code
+        //Prevent default action, which is inserting character
+        if (e.preventDefault) e.preventDefault(); //normal browsers
+        e.returnValue = false; //IE
+      }
+    }
+  </script>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Script para inserir os dados -->
 
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
-</body>
-
-</html>
-
-<!-- Script para inserir os dados -->
-
-<script>
+  <script>
     /** 
     $(document).ready(function() {
 
@@ -337,3 +358,11 @@ $conn = null;
     });
     $("#seeAnotherFieldGroup").trigger("change");
 </script>
+
+
+
+
+
+</body>
+
+</html>

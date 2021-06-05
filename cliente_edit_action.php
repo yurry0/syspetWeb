@@ -22,7 +22,7 @@ try {
   $stmt->bindParam(':cli_email', $email);
   
 
-  $id = $_GET['id'];
+  $id = $_POST['pk_id_cliente'];
   $nome = $_POST['nome'];
   $cidade = $_POST['cidade'];
   $rg = $_POST['rg'];
@@ -44,7 +44,10 @@ $_SESSION['edit'] = "Error: " . $e->getMessage();
 $conn = null;
 
 
-header('Location: index_cliente.php');
+header('Location: cliente_index.php');
+
+
+
 
 
 ?>
