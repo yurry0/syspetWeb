@@ -11,10 +11,10 @@
     <nav id="navbar" class="navbar">
       <ul>
         <li><a class="nav-link scrollto " href="painel.php">Painel Principal</a></li>
-        <li><a class="nav-link scrollto" href="#about">Catálogo de Pets</a></li>
-        <li><a class="nav-link scrollto" href="#services">Lista de Clientes</a></li>
-        <li><a class="nav-link scrollto" href="#portfolio">Lista de Pets</a></li>
-        <li><a class="nav-link scrollto" href="#team">Registros de Adoções</a></li>
+        <li><a class="nav-link scrollto" href="catalogo.php">Catálogo de Pets</a></li>
+        <li><a class="nav-link scrollto" href="cliente_index.php">Lista de Clientes</a></li>
+        <li><a class="nav-link scrollto" href="pet_index.php">Lista de Pets</a></li>
+        <li><a class="nav-link scrollto" href="adocao_index.php">Registros de Adoções</a></li>
         <li><a class="nav-link scrollto" href="logout.php">Logout - Encerrar Sessão</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>

@@ -1,0 +1,20 @@
+button {
+    height: 45px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  #img_pet{
+    margin-left: 140%;
+
+  }
+  address{
+    margin-left: 70px;
+    border-color: cornflowerblue;
+    border-left-style:  solid;
+  }
+
+  #texto_read{
+    padding-left: 15px;
+
+  }

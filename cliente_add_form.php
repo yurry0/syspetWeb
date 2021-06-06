@@ -93,7 +93,7 @@ include('conexao_crud.php');
     <section class="inner-page">
       <div class="container-fluid">
         <div class="card card-primary">
-         
+
           <!-- /.card-header -->
           <!-- form start -->
 
@@ -218,7 +218,7 @@ include('conexao_crud.php');
               </div>
 
               <div class="col-2">
-                <button type="submit" class="btn btn-outline-success">Adicionar Adoção</button>
+                <button type="submit" class="btn btn-outline-success">Adicionar Cliente</button>
               </div>
 
             </div>

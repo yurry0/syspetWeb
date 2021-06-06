@@ -10,7 +10,7 @@ include "conexao_crud.php";
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Indíce Adoções</title>
+  <title>Indíce de Pets</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -46,34 +46,13 @@ include "conexao_crud.php";
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Amoeba - v4.1.1
-  * Template URL: https://bootstrapmade.com/free-one-page-bootstrap-template-amoeba/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-      <div class="logo me-auto">
-        <h1><a href="index.html">Amoeba</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
-
-      <?php
-
-      include('includes/navbar_template.php');
-
-      ?>
-
-    </div>
-  </header><!-- End #header -->
+  <?php include('includes/navbar_template.php')
+  ?>
 
   <main id="main">
 
@@ -82,9 +61,9 @@ include "conexao_crud.php";
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Índice de Clientes - Tabela</h2>
+          <h2>Índice de Pets - Tabela</h2>
           <ol>
-            <li><a href="painel.php">Home</a></li>
+            <li><a href="painel.php">Painel</a></li>
             <li>Índice de Clientes</li>
           </ol>
         </div>
@@ -170,15 +149,11 @@ include "conexao_crud.php";
                   <th>Foto</th>
                   <th>ID</th>
                   <th>Nome</th>
+                  <th>Especie</th>
                   <th>Raca</th>
                   <th>Sexo</th>
                   <th>Idade</th>
                   <th>Vacinas</th>
-                  <th>Altura</th>
-                  <th>Peso</th>
-                  <th>Especie</th>
-                  <th>Pelagem</th>
-                  <th>Porte</th>
                   <th>Adotado?</th>
                   <th>Data de Cadastro</th>
 
@@ -187,75 +162,9 @@ include "conexao_crud.php";
               <tbody>
 
                 <!-- Conexão com o Banco de Dados para puxar todos os dados de Pet -->
-                <?php
-
-                $conexao = conexao();
-
-                try {
-                  $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $stmt = $conexao->prepare("SELECT * FROM pet");
-                  $stmt->execute();
-
-                  // set the resulting array to associative
-                  $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                  foreach ($stmt->fetchAll() as $k => $v) {
-
-                    $valid_date = date('d/m/y g:i A', strtotime($v['data_cadastro']));
-
-
-
-                    echo '<tr>';
-                    echo '<td>' . '<img width="100" src="Uploads/' . $v['img_pet'] . '" />';
-
-                    echo '<td>' . $v['pk_id_pet'] . '</td>';
-                    echo '<td>' . $v['nome'] . '</td>';
-                    echo '<td>' . $v['raca'] . '</td>';
-                    echo '<td>' . $v['sexo'] . '</td>';
-                    echo '<td>' . $v['idade'] . '</td>';
-                    echo '<td>' . $v['vacinas'] . '</td>';
-                    echo '<td>' . $v['altura'] . '</td>';
-                    echo '<td>' . $v['peso'] . '</td>';
-                    echo '<td>' . $v['especie'] . '</td>';
-                    echo '<td>' . $v['pelagem'] . '</td>';
-                    echo '<td>' . $v['porte'] . '</td>';
-
-                    if (!$v['adotado'] == 1) {
-                      echo '<td> Não' . '</td>';
-                    } else {
-                      echo '<td> Sim </td>';
-                    }
-
-                    echo '<td>' .   $valid_date . '</td>';
-
-
-
-                    echo '<td style="text-align:center"> 
-              
-                  <a id="ler" class="btn btn-primary btn-sm"  href="pet_read.php?id=' . $v['pk_id_pet'] . '">
-                  
-                 
-                  <i class="fa fa-search" title="Visualizar mais detalhes sobre o pet." aria-hidden="true">
-                  </i>
-                  </a>
-               
-
-                  <a id="editar" class="btn btn-info btn-sm" href="pet_edit_form.php?id=' . $v['pk_id_pet'] . '">
-                     <i title="Editar as informações do pet."  class="fas fa-pencil-alt">
-                      </i>
-                  </a>
-                  
-                   
-                  <a class="btn btn-danger btn-sm" href="pet_delete.php?id=' . $v['pk_id_pet'] . '"data-href="pet_delete.php?id=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
-                  <i title="Excluir pet." class="fas fa-trash-alt"></i>
-                  </a>';
-                    echo '</tr>';
-                  }
-                } catch (PDOException $e) {
-                  echo "Error: " . $e->getMessage();
-                }
-                $conn = null;
-                //echo "</table>";
-                ?>
+               <?php 
+               include('modal/pet/modal_pet_index.php');
+               ?>
               </tbody>
             </table>
           </div>

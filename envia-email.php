@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 $email = $_POST['email'];
 
 require 'PHPMailer/PHPMailerAutoload.php';

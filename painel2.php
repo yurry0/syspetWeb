@@ -100,17 +100,17 @@
         <div class="row">
           <div class="col-lg-4 col-md-6 icon-box">
             <div class="icon"><i class="bi bi-cpu"></i></div>
-            <h4 class="title"><a href="index_adocao.php">Adoções</a></h4>
+            <h4 class="title"><a href="adocao_index.php">Adoções</a></h4>
             <p class="description">Clique aqui para acessar a tabela de adoções, com opções de remoção de entrada.</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box">
             <div class="icon"><i class="bi bi-clipboard-data"></i></div>
-            <h4 class="title"><a href="index_cliente.php">Clientes</a></h4>
+            <h4 class="title"><a href="cliente_index.php">Clientes</a></h4>
             <p class="description">Clique aqui para acessar a tabela de Clientes, com opções de adição, edição e remoção de entradas.</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box">
             <div class="icon"><i class="bi bi-globe"></i></div>
-            <h4 class="title"><a href="index_pet.php">Pets</a></h4>
+            <h4 class="title"><a href="pet_index.php">Pets</a></h4>
             <p class="description">Clique aqui para acessar a tabela de Pets, com opções de adição, edição e remoção de entradas.</p>
           </div>
          

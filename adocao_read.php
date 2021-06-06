@@ -10,7 +10,7 @@ include('conexao_crud.php');
 
 
 //Conjunto de funções pra trazer o Pet do Banco de Dados usando o ID passado no GET 
-include('modal/pet/buscar_adocao_read.php')
+include('modal/adocao/buscar_adocao_read.php')
 
 ?>
 
