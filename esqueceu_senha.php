@@ -5,6 +5,7 @@ include("conexao.php");
 isset($_SESSION['senha_feita']);
 isset($_SESSION['email_feito']);
 
+
 $erro = array();
 if (isset($_POST['ok'])) {
 
@@ -108,7 +109,7 @@ if (isset($_POST['ok'])) {
         <br><br><br>
         <!-- FORM -->
         <div class="container" style="border-color:#4DA8DA; border-left-style: solid;  border-width: 11px;">
-            <form method="POST" action="envia-email.php">
+            <form method="POST">
                 <div class="form-group">
                     <label for="exampleInputEmail1">E-mail de acesso</label>
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Digite aqui o seu e-mail de acesso">

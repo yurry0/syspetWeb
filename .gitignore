@@ -40,3 +40,5 @@ Thumbs.db
 /js/coverage/
 /node_modules/
 envia-email.php
+includes/send_email.php
+modal/forgot_pass/forgot_pass.php

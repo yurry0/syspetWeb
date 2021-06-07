@@ -12,7 +12,7 @@
 
     $mail->Host = "smtp.gmail.com";
     $mail->Port = "587";
-    $mail->SMTPSecure = "tls";
+    $mail->SMTPSecure = "tsl";
     $mail->SMTPAuth = true;
     $mail->Username= "syspetweb@gmail.com";
     $mail->Password= "sysadmin!";
@@ -33,13 +33,15 @@
     if($mail->send()){
         $_SESSION['email_feito'] = true;
         echo "E-mail enviado com sucesso";
-        header('Location: esqueceu_senha.php'); 
+
+
 
     }
 
     else{
 
         echo "Falha ao enviar e-mail: ".$mail->ErrorInfo;
+
 
     }
 
