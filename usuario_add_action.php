@@ -72,5 +72,5 @@ if ($conexao->query($sql) === TRUE) {
 
 $conexao->close();
 
-header('Location: index2.php');
+header('Location: index.php');
 exit;

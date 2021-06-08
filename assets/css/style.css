@@ -15,7 +15,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #43aea0;
+  color: #85ae43;
 }
 
 a:hover {
@@ -119,7 +119,7 @@ section {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #70b9b0;
+  background: #f1c87f;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -133,7 +133,7 @@ section {
 }
 
 .back-to-top:hover {
-  background: #8bc6bf;
+  background: #f49f9c;
   color: #fff;
 }
 
@@ -150,7 +150,7 @@ section {
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
-  background: #2d6760;
+  background: #a46374;
 }
 
 #header.header-scrolled {
@@ -401,7 +401,7 @@ section {
 
 #hero:before {
   content: "";
-  background: rgba(112, 185, 176, 0.85);
+  background: rgba(255, 119, 141, 0.70);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -518,7 +518,7 @@ section {
 }
 
 .services .icon i {
-  color: #70b9b0;
+  color: #d4a143;
   font-size: 42px;
 }
 
@@ -1012,7 +1012,7 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #073839;
+  background: #a46374;
   padding: 30px 0;
   color: #fff;
   font-size: 14px;

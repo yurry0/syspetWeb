@@ -37,7 +37,7 @@ include('conexao_crud.php');
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
+  <link href="includes/stylesheet/fade_in.css" rel="stylesheet" >
   <style>
     /* Estilo do Button - Tentando Centralizar */
     button {
@@ -47,6 +47,8 @@ include('conexao_crud.php');
       margin-top: 50px;
       margin-bottom: 45px;
     }
+
+    
   </style>
 
   <script>
@@ -60,12 +62,12 @@ include('conexao_crud.php');
 
 </head>
 
-<body>
+<body class="fade-in">
 
   <!-- ======= Header ======= -->
 
 
-  
+
   <?php
 
   include('includes/navbar_cadastro_user.php');
