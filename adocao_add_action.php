@@ -69,7 +69,7 @@ try {
   // prepare sql and bind parameters
 
   //$id_cliente = $_POST['cliente'];
-
+  $nome_cliente = $_POST['cliente'];
   $id_cliente = substr($_POST['cliente'], 0, 1);
   $id_pet =  $_POST['ID'];
   $nome = $_POST['nome'];
@@ -107,9 +107,10 @@ $_SESSION['idade'] = $idade;
 $_SESSION['vacinas'] = $vacinas;
 $_SESSION['altura'] = $altura;
 $_SESSION['peso'] = $peso;
+$_SESSION['nome_cliente'] = $nome_cliente;
 
 $conn = null;
 
 
 
-header('Location: recibo.php');
+header('Location: index_adocao.php');

@@ -123,7 +123,7 @@ include('modal/adocao/buscar_adocao_edit.php')
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Editar Pet</h2>
+          <h2>Editar Adoção</h2>
           <ol>
           <li><a href="painel.php">Home</a></li>
           <li><a href="adocao_index.php">Índice de Adoções</a></li>

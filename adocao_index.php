@@ -18,6 +18,8 @@ include "conexao_crud.php";
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+  <!-- fade in -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Tell the browser to be responsive to screen width -->
@@ -46,15 +48,32 @@ include "conexao_crud.php";
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Amoeba - v4.1.1
-  * Template URL: https://bootstrapmade.com/free-one-page-bootstrap-template-amoeba/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    body {
+      opacity: 1;
+      transition-duration: 0.7s;
+      transition-property: opacity;
+    }
+
+    body.fade {
+      opacity: 0;
+    }
+  </style>
+
 </head>
 
 <body>
+  <script>
+    document.body.classList.add('fade');
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      window.setTimeout(function() {
+        document.body.classList.remove('fade');
+      }, 230);
+    });
+  </script>
+
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -62,16 +81,18 @@ include "conexao_crud.php";
 
       <div class="logo me-auto">
         <h1><a href="index.html">SysPet</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
       </div>
 
-     <?php include('includes/navbar_template.php') ?>
+      <?php include('includes/navbar_template.php') ?>
 
     </div>
   </header><!-- End #header -->
 
   <main id="main">
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
 
     <!-- ======= Breadcrumbs ======= -->
     <section class="breadcrumbs">
@@ -90,21 +111,21 @@ include "conexao_crud.php";
 
     <section class="inner-page">
       <div class="container">
-              <!-- Content Wrapper. Contains page content -->
-              <div class="content-wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
 
-            <!-- Main content -->
-            <div class="content">
-                <div class="container">
-                    <div class="row">
-                        <!-- /.col-md-6 -->
-                        <div class="col-lg-12">
-                            <?php
+          <!-- Main content -->
+          <div class="content">
+            <div class="container">
+              <div class="row">
+                <!-- /.col-md-6 -->
+                <div class="col-lg-12">
+                  <?php
 
-                            if (isset($_SESSION['del'])) {
+                  if (isset($_SESSION['del'])) {
 
-                                $mensagem = $_SESSION['del'];
-                                echo "
+                    $mensagem = $_SESSION['del'];
+                    echo "
                 <script>
                 
                    window.onload = function(){
@@ -113,23 +134,21 @@ include "conexao_crud.php";
                 
                 </script>
                 ";
-                                unset($_SESSION['del']);
-                            } else if (isset($_SESSION['add'])) {
+                  } else if (isset($_SESSION['add'])) {
 
-                                $mensagem2 = $_SESSION['add'];
-                                echo "
+                    $mensagem2 = $_SESSION['add'];
+                    echo "
               <script>
                  window.onload = function(){
-                    toastr.success('$mensagem2');
+                    toastr.info('$mensagem2');
                   };
               
               </script>
               ";
-                                unset($_SESSION['add']);
-                            } else if (isset($_SESSION['edit'])) {
+                  } else if (isset($_SESSION['edit'])) {
 
-                                $mensagem3 = $_SESSION['edit'];
-                                echo "
+                    $mensagem3 = $_SESSION['edit'];
+                    echo "
             <script>
                window.onload = function(){
                   toastr.success('$mensagem3');
@@ -137,82 +156,84 @@ include "conexao_crud.php";
             
             </script>
             ";
-                                unset($_SESSION['edit']);
-                            }
+                    unset($_SESSION['add']);
+                    unset($_SESSION['del']);
+                    unset($_SESSION['edit']);
+                  }
 
 
-                            ?>
+                  ?>
 
-                            <div class="card">
-                                <div class="container-sm">
-                                    <div class="row">
-                                        <div class="col-1">
+                  <div class="card">
+                    <div class="container-sm">
+                      <div class="row">
+                        <div class="col-1">
 
-                                        </div>
-                                        <div class="col-1">
+                        </div>
+                        <div class="col-1">
 
-                                        </div>
+                        </div>
 
-                                        <div class="col-4">
+                        <div class="col-4">
 
-                                        </div>
+                        </div>
 
 
 
-                                        <div class="col-2">
-                                            <?php
-                                            echo '<td style=align-items: center;> 
+                        <div class="col-2">
+                          <?php
+                          echo '<td style=align-items: center;> 
                                             <a id="add" name="add" class="btn btn-primary btn-lg" alt="Adicionar um novo item" href="catalogo.php">
                                     <i class="fas fa-plus"></i></a>'
 
-                                            ?>
-                                        </div>
-                                        <div class="col-sm">
+                          ?>
+                        </div>
+                        <div class="col-sm">
 
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                      </div>
+                    </div>
 
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>ID da Adoção</th>
-                                                <th>Nome do Cliente</th>
-                                                <th>ID do Cliente</th>
-                                                <th>Nome do Pet</th>
-                                                <th>ID do Pet</th>
-                                                <th>Data da Adoção</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                          <tr>
+                            <th>ID da Adoção</th>
+                            <th>Nome do Cliente</th>
+                            <th>ID do Cliente</th>
+                            <th>Nome do Pet</th>
+                            <th>ID do Pet</th>
+                            <th>Data da Adoção</th>
+                          </tr>
+                        </thead>
+                        <tbody>
 
-                                            <?php
+                          <?php
 
-                                            $conexao = conexao();
+                          $conexao = conexao();
 
-                                            try {
-                                                $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                                $stmt = $conexao->prepare("SELECT * FROM adocao INNER JOIN cliente ON adocao.id_cliente = cliente.pk_id_cliente INNER JOIN pet  ON adocao.id_pet = pet.pk_id_pet");
-                                                $stmt->execute();
+                          try {
+                            $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $stmt = $conexao->prepare("SELECT * FROM adocao INNER JOIN cliente ON adocao.id_cliente = cliente.pk_id_cliente INNER JOIN pet  ON adocao.id_pet = pet.pk_id_pet");
+                            $stmt->execute();
 
-                                                // set the resulting array to associative
-                                                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                                foreach ($stmt->fetchAll() as $k => $v) {
-                                                    if (!$v['deletado'] == true) {
-                                                        $valid_date = date('d/m/y g:i A', strtotime($v['data_adocao']));
-                                                        echo '<tr>';
-                                                        echo '<td>' . $v['pk_id_adocao'] . '</td>';
-                                                        echo '<td>' . $v['cli_nome'] . '</td>';
-                                                        echo '<td>' . $v['pk_id_cliente'] . '</td>';
-                                                        echo '<td>' . $v['nome'] . '</td>';
-                                                        echo '<td>' . $v['pk_id_pet'] . '</td>';
-                                                        echo '<td>' . $valid_date . '</td>';
+                            // set the resulting array to associative
+                            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                            foreach ($stmt->fetchAll() as $k => $v) {
+                              if (!$v['deletado'] == true) {
+                                $valid_date = date('d/m/y g:i A', strtotime($v['data_adocao']));
+                                echo '<tr>';
+                                echo '<td>' . $v['pk_id_adocao'] . '</td>';
+                                echo '<td>' . $v['cli_nome'] . '</td>';
+                                echo '<td>' . $v['pk_id_cliente'] . '</td>';
+                                echo '<td>' . $v['nome'] . '</td>';
+                                echo '<td>' . $v['pk_id_pet'] . '</td>';
+                                echo '<td>' . $valid_date . '</td>';
 
 
 
-                                                        echo '<td style="text-align:center"> 
+                                echo '<td style="text-align:center"> 
                       
                       <a class="btn btn-primary btn-sm" href="adocao_read.php?id=' . $v['pk_id_adocao'] . '">
                       <i class="fa fa-search" aria-hidden="true"></i>
@@ -226,50 +247,50 @@ include "conexao_crud.php";
                       <a class="btn btn-danger btn-sm" href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '&id_pet=' . $v['pk_id_pet'] . '"data-href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '&id_pet=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
-                                                        echo '</tr>';
-                                                    }
-                                                }
-                                            } catch (PDOException $e) {
-                                                echo "Error: " . $e->getMessage();
-                                            }
-                                            $conn = null;
-                                            //echo "</table>";
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                echo '</tr>';
+                              }
+                            }
+                          } catch (PDOException $e) {
+                            echo "Error: " . $e->getMessage();
+                          }
+                          $conn = null;
+                          //echo "</table>";
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
 
-                        </div>
+                </div>
 
-                        <!-- /.card-body -->
-                        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        Confimar Exclusão
-                                    </div>
-                                    <div class="modal-body">
-                                        Essa ação vai excluir o conteúdo selecionado. Deseja mesmo excluir?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                        <a class="btn btn-danger btn-ok">Sim, exclua este conteúdo.</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-      </div>
+                <!-- /.card-body -->
+                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        Confimar Exclusão
+                      </div>
+                      <div class="modal-body">
+                        Essa ação vai excluir o conteúdo selecionado. Deseja mesmo excluir?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-danger btn-ok">Sim, exclua este conteúdo.</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
     </section>
 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-<?php
+  <?php
 
-include('includes/footer_template.php');
+  include('includes/footer_template.php');
 
-?>
+  ?>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -289,16 +310,6 @@ include('includes/footer_template.php');
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    $('#confirm-delete').on('show.bs.modal', function(e) {
-      $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
-  </script>
-
-
-
-
   <!-- DataTables -->
   <script src="plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="plugins/toastr/toastr.min.js"></script>

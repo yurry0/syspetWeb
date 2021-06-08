@@ -1,147 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt">
+
 <?php
-
 session_start();
-include("conexao.php");
-isset($_SESSION['senha_feita']);
-isset($_SESSION['email_feito']);
-
-
-$erro = array();
-if (isset($_POST['ok'])) {
-
-    $email = mysqli_real_escape_string($conexao, $_POST['email']);
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erro[] = "E-mail inválido";
-    }
-
-
-    $sql_code = "SELECT senha FROM usuario WHERE usuario = '$email'";
-    $sql_query = mysqli_query($conexao, $sql_code) or die($mysqli->error);
-    $dado = $sql_query->fetch_assoc();
-    $total = $sql_query->num_rows;
-
-
-    if ($total == 0)
-        $erro[] = "O e-mail informado não existe no banco de dados";
-
-    if (count($erro) == 0 && $total > 0) {
-
-        $novasenha = substr(md5(time()), 0, 6);
-        $nscripto = md5(md5($novasenha));
-
-
-        if ($total > 0) {
-            isset($_SESSION['email_success']);
-            $sql_code = "UPDATE usuario SET senha = '$nscripto' WHERE usuario = '$email'";
-            $sql_query = mysqli_query($conexao, $sql_code) or die($mysqli->error);
-
-
-            include("includes/send_email.php");
-            if ($sql_query)
-                $_SESSION['senha_feita'] = true;
-            $erro[] = "Senha Alterada com Sucesso!";
-            header('Location: esqueceu_senha.php');
-        }
-    }
-}
 ?>
 
-<html>
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="plugins/toastr/toastr.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <style>
-        h1 {
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-            display: flex;
-            justify-content: center;
-            /* align horizontal */
-            align-items: center;
-            /* align vertical */
+  <title>Cadastrar Usuário</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-            position: relative;
-            background-image: linear-gradient(to right, #108dc7, #ef8e38);
-            font-family: Arial, Helvetica, sans-serif;
-            color: aliceblue;
-            height: 100px;
-            letter-spacing: 10px;
-        }
+  <!-- Favicons -->
+  <link href="img/pet-care_128.png" rel="icon">
+  <link href="img/pet-care_128.png" rel="apple-touch-icon">
 
-        button {
+  <!-- Select 2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
-            height: 45px;
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
 
-    <title>Recuperar Senha</title>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    /* Estilo do Button - Tentando Centralizar */
+    button {
+      height: 45px;
+      padding: 10px;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 45px;
+    }
+  </style>
+
+  <script>
+    function keypresshandler(event) {
+      var charCode = event.keyCode;
+      //Non-numeric character range
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    }
+  </script>
+
 </head>
 
 <body>
 
-    <br>
+  <!-- ======= Header ======= -->
+  <?php
 
-    <div class="container-sm">
+  include('includes/navbar_cadastro_user.php');
+
+  ?>
+
+
+  <?php
+  include('modal/forgot_pass/forgot_pass.php')
+  ?>
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Recuperar Senha</h2>
+          <ol>
+            <li><a href="index.php">Home</a></li>
+            <li>Recuperar Senha</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+
+
+
+      <div class="container-sm">
         <div class="teste">
-            <div align='center' class="page-header">
-                <h1 id="cabeca">Solicitar uma nova senha</h1>
-            </div>
+          <div align='center' class="page-header">
+            <h1 id="cabeca">Solicitar uma nova senha</h1>
+          </div>
         </div>
         <br>
         <br><br><br>
         <!-- FORM -->
         <div class="container" style="border-color:#4DA8DA; border-left-style: solid;  border-width: 11px;">
-            <form method="POST">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">E-mail de acesso</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Digite aqui o seu e-mail de acesso">
-                    <small id="emailHelp" class="form-text text-muted">Este e-mail já deve ter sido cadastrado anteriormente.</small>
-                </div>
-                <div class="container">
-                    <button type="submit" name="ok" class="btn btn-primary btn-sm">Solicitar uma nova senha</button>
-                </div>
-            </form>
+          <form method="POST">
+            <div class="form-group">
+              <label for="exampleInputEmail1">E-mail de acesso</label>
+              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Digite aqui o seu e-mail de acesso">
+              <small id="emailHelp" class="form-text text-muted">Este e-mail já deve ter sido cadastrado anteriormente.</small>
+            </div>
+            <div class="container">
+              <button type="submit" name="ok" class="btn btn-primary btn-sm">Solicitar uma nova senha</button>
+            </div>
+          </form>
 
         </div>
-    </div>
-    <!-- FOOTER -->
-
-    <?php
+      </div>
 
 
-    include("includes/footer.php");
+    </section>
 
-    ?>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <?php
+
+  include('includes/footer_template.php');
+
+  ?>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <!-- InputMask -->
+  <script src="plugins/moment/moment.min.js"></script>
+  <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+  <!-- Select2 -->
+  <script src="plugins/select2/js/select2.full.min.js"></script>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+  <script>
+    function myFunction() {
+      var e = event || window.event; // get event object
+      var key = e.keyCode || e.which; // get key cross-browser
+
+      if (key < 48 || key > 57) { //if it is not a number ascii code
+        //Prevent default action, which is inserting character
+        if (e.preventDefault) e.preventDefault(); //normal browsers
+        e.returnValue = false; //IE
+      }
+    }
+  </script>
+  <!-- Regras relacionadas a prevenir que campos de texto tenham números -->
+  <script>
+    function testInput(event) {
+      var value = String.fromCharCode(event.which);
+      var pattern = new RegExp(/[a-zåäöãá ]/i);
+      return pattern.test(value);
+    }
+
+    $('#nome').bind('keypress', testInput);
+    $('#estado').bind('keypress', testInput);
+    $('#cidade').bind('keypress', testInput);
+  </script>
+
+
+
+
+
 </body>
 
 </html>
