@@ -1,9 +1,11 @@
 /**
-* Template Name: Amoeba - v4.1.1
-* Template URL: https://bootstrapmade.com/free-one-page-bootstrap-template-amoeba/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
+.color1 {color: #5b1912;}
+.color2 {color: #85351c;}
+.color3 {color: #bd5c25;}
+.color4 {color: #fc953a;}
+.color5 {color: #ffe04c;}
+
 
 /*--------------------------------------------------------------
 # General
@@ -15,11 +17,11 @@ body {
 
 a {
   text-decoration: none;
-  color: #85ae43;
+  color: #ae8c43;
 }
 
 a:hover {
-  color: #00d3b8;
+  color: #1bc6e4e0;
   text-decoration: none;
 }
 
@@ -150,11 +152,11 @@ section {
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
-  background: #a46374;
+  background: #85351c;
 }
 
 #header.header-scrolled {
-  background: #1d443f;
+  background: #d68e22ce;
   height: 60px;
 }
 
@@ -251,7 +253,7 @@ section {
   text-transform: none;
   font-size: 14px;
   font-weight: 500;
-  color: #25564f;
+  color: #8faa16e1;
 }
 
 .navbar .dropdown ul a i {
@@ -259,7 +261,7 @@ section {
 }
 
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  color: #70b9b0;
+  color: #b9b270;
 }
 
 .navbar .dropdown:hover > ul {
@@ -318,7 +320,7 @@ section {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(7, 56, 57, 0.9);
+  background: rgba(160, 150, 13, 0.849);
   transition: 0.3s;
 }
 
@@ -401,7 +403,7 @@ section {
 
 #hero:before {
   content: "";
-  background: rgba(255, 119, 141, 0.70);
+  background: #fffacd8a	;
   position: absolute;
   bottom: 0;
   top: 0;
@@ -429,6 +431,7 @@ section {
   font-weight: 300;
   line-height: 56px;
   color: #fff;
+  text-shadow: 1px 1px 2px black;
 }
 
 #hero h2 {
@@ -436,6 +439,7 @@ section {
   margin-bottom: 50px;
   font-size: 20px;
   font-weight: 300;
+  text-shadow: 1px 1px 2px   black;
 }
 
 #hero .btn-get-started {
@@ -453,7 +457,7 @@ section {
 
 #hero .btn-get-started:hover {
   background: #fff;
-  color: #70b9b0;
+  color: #b9ab70;
   border: 1px solid #70b9b0;
 }
 

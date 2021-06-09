@@ -103,4 +103,4 @@ $conn = null;
 
 echo "<br>" + $id;
 
-//header('Location: index_pet.php');
+header('Location: pet_index.php');

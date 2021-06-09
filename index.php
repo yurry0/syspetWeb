@@ -80,7 +80,7 @@ session_start();
                 </div>
 
             </div>
-            <button class="modal-button">Acessar</button>
+    
         </div>
 
     </form>

@@ -1,8 +1,14 @@
+nav{
+ animation: fadeIn 2s; 
+}
+
 .fade-in {
 
-  animation: fadeIn 2s;
+  animation: fadeIn 4s;
 
 }
+
+
 
 @keyframes fadeIn {
   from {
@@ -10,6 +16,15 @@
   }
 
   to {
+    opacity: 1;
+  }
+}
+
+@keyframes nav {
+  from{
+    opacity: 0;
+  }
+  to{
     opacity: 1;
   }
 }

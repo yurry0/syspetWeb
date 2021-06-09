@@ -138,7 +138,7 @@ include('modal/adocao/buscar_adocao_edit.php')
       <div class="container">
         <!-- form start -->
 
-        <form role="form" name="add_pet" method="POST" action="pet_add_action.php" enctype="multipart/form-data">
+        <form role="form" name="edit_adocao" method="POST" action="adocao_edit_action.php"">
 
           <div class="card-body">
 

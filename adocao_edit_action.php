@@ -27,14 +27,14 @@ try {
 
 
 
-$_SESSION['edit'] = "Dados editados com sucesso! ";
+$_SESSION['edit_adocao'] = "Dados editados com sucesso! ";
 } catch(PDOException $e) {
-$_SESSION['edit'] = "Error: " . $e->getMessage();
+$_SESSION['edit_adocao'] = "Error: " . $e->getMessage();
 }
 $conn = null;
 
 
-header('Location: index_adocao.php');
+header('Location: adocao_index.php');
 
 
 ?>

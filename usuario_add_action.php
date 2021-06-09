@@ -7,9 +7,9 @@ include("conexao.php");
 
 //Obtenção de campos do form:
 
-if (empty(trim(($_POST['nome'])))) {
 
-    $_SESSION['nome_vazio'] = true;
+if (strlen($_POST['nome']) > 0 && strlen(trim($_POST['nome'])) == 0) {
+    $_SESSION['nome_vazio'] = 'Nome do usuário está vazio ou preenchido com espaços!';
     header('Location: usuario_add_form.php');
 }
 
@@ -68,9 +68,9 @@ $sql = "INSERT INTO usuario (usuario, senha, nome, data_cadastro) VALUES ('$emai
 if ($conexao->query($sql) === TRUE) {
 
     $_SESSION['status_cadastro'] = true;
+    header('Location: index.php');
 }
 
 $conexao->close();
 
-header('Location: index.php');
 exit;

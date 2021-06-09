@@ -33,8 +33,7 @@ include "conexao_crud.php";
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <?php include('includes/icon.php') ?>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
@@ -54,26 +53,11 @@ include "conexao_crud.php";
       transition-duration: 0.7s;
       transition-property: opacity;
     }
-
-    body.fade {
-      opacity: 0;
-    }
   </style>
 
 </head>
 
 <body>
-  <script>
-    document.body.classList.add('fade');
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      window.setTimeout(function() {
-        document.body.classList.remove('fade');
-      }, 230);
-    });
-  </script>
-
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -122,9 +106,9 @@ include "conexao_crud.php";
                 <div class="col-lg-12">
                   <?php
 
-                  if (isset($_SESSION['del'])) {
+                  if (isset($_SESSION['del_adocao'])) {
 
-                    $mensagem = $_SESSION['del'];
+                    $mensagem = $_SESSION['del_adocao'];
                     echo "
                 <script>
                 
@@ -134,9 +118,10 @@ include "conexao_crud.php";
                 
                 </script>
                 ";
-                  } else if (isset($_SESSION['add'])) {
+                    unset($_SESSION['del_adocao']);
+                  } else if (isset($_SESSION['add_adocao'])) {
 
-                    $mensagem2 = $_SESSION['add'];
+                    $mensagem2 = $_SESSION['add_adocao'];
                     echo "
               <script>
                  window.onload = function(){
@@ -145,9 +130,10 @@ include "conexao_crud.php";
               
               </script>
               ";
-                  } else if (isset($_SESSION['edit'])) {
+                    unset($_SESSION['add_adocao']);
+                  } else if (isset($_SESSION['edit_adocao'])) {
 
-                    $mensagem3 = $_SESSION['edit'];
+                    $mensagem3 = $_SESSION['edit_adocao'];
                     echo "
             <script>
                window.onload = function(){
@@ -156,14 +142,9 @@ include "conexao_crud.php";
             
             </script>
             ";
-                    unset($_SESSION['add']);
-                    unset($_SESSION['del']);
-                    unset($_SESSION['edit']);
+                    unset($_SESSION['edit_adocao']);
                   }
-
-
                   ?>
-
                   <div class="card">
                     <div class="container-sm">
                       <div class="row">
@@ -244,7 +225,7 @@ include "conexao_crud.php";
                           </i>
                       </a>
                        
-                      <a class="btn btn-danger btn-sm" href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '&id_pet=' . $v['pk_id_pet'] . '"data-href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '&id_pet=' . $v['pk_id_pet'] . '" data-toggle="modal" data-target="#confirm-delete"">
+                      <a class="btn btn-danger btn-sm" href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '&id_pet=' . $v['pk_id_pet'] . '"data-href="adocao_delete.php?id=' . $v['pk_id_adocao'] . '&id_pet=' . $v['pk_id_pet'] . '"data-toggle="modal" data-target="#confirm-delete"">
                       <i class="fas fa-trash-alt"></i>
                       </a>';
                                 echo '</tr>';
@@ -321,12 +302,21 @@ include "conexao_crud.php";
   <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
   <script>
     $(function() {
       $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,
       });
+    });
+  </script>
+
+
+
+  <script>
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+      $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
   </script>
 

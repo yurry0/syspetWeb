@@ -63,9 +63,11 @@ require_once 'includes/pet_rn.php';
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Fade In! -->
+  <link href="includes/stylesheet/fade_in.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="fade-in">
   <!-- ======= Header ======= -->
   <?php
 
@@ -73,7 +75,7 @@ require_once 'includes/pet_rn.php';
 
   ?>
   <main id="main">
-  <section class="breadcrumbs">
+    <section class="breadcrumbs">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -88,14 +90,14 @@ require_once 'includes/pet_rn.php';
     </section><!-- End Breadcrumbs -->
 
     <section class="inner-page">
-    <div class="content">
-      <div class="wrapper">
-        <div class="row">
-          <?php
-          include('modal/catalogo/alimentar_catalogo.php');
-          ?>
+      <div class="content">
+        <div class="wrapper">
+          <div class="row">
+            <?php
+            include('modal/catalogo/alimentar_catalogo.php');
+            ?>
+          </div>
         </div>
-      </div>
       </div>
     </section>
   </main><!-- End #main -->
@@ -118,8 +120,8 @@ require_once 'includes/pet_rn.php';
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
-</body>
+
+</body class="fade-in">
 
 <form action="adocao_add_form.php" method="post">
   <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -137,7 +139,6 @@ require_once 'includes/pet_rn.php';
           <div class="row">
 
             <div class="col-5">
-
             </div>
 
             <div class="col-2">

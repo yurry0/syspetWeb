@@ -85,9 +85,9 @@ include "conexao_crud.php";
 
         <?php
 
-        if (isset($_SESSION['del'])) {
+        if (isset($_SESSION['del_cliente'])) {
 
-          $mensagem = $_SESSION['del'];
+          $mensagem = $_SESSION['del_cliente'];
           echo "
                 <script>
                 
@@ -97,10 +97,10 @@ include "conexao_crud.php";
                 
                 </script>
                 ";
-          unset($_SESSION['del']);
-        } else if (isset($_SESSION['add'])) {
+          unset($_SESSION['del_cliente']);
+        } else if (isset($_SESSION['add_cliente'])) {
 
-          $mensagem2 = $_SESSION['add'];
+          $mensagem2 = $_SESSION['add_cliente'];
           echo "
               <script>
                  window.onload = function(){
@@ -109,7 +109,7 @@ include "conexao_crud.php";
               
               </script>
               ";
-          unset($_SESSION['add']);
+          unset($_SESSION['add_cliente']);
         } else if (isset($_SESSION['edit'])) {
 
           $mensagem3 = $_SESSION['edit'];

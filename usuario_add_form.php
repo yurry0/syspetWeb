@@ -22,6 +22,9 @@ include('conexao_crud.php');
   <link href="img/pet-care_128.png" rel="icon">
   <link href="img/pet-care_128.png" rel="apple-touch-icon">
 
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.css">
+
   <!-- Select 2 -->
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -37,7 +40,10 @@ include('conexao_crud.php');
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link href="includes/stylesheet/fade_in.css" rel="stylesheet" >
+  <!-- fade in! -->
+
+  <link href="includes/stylesheet/fade_in.css" rel="stylesheet">
+
   <style>
     /* Estilo do Button - Tentando Centralizar */
     button {
@@ -47,8 +53,6 @@ include('conexao_crud.php');
       margin-top: 50px;
       margin-bottom: 45px;
     }
-
-    
   </style>
 
   <script>
@@ -64,16 +68,109 @@ include('conexao_crud.php');
 
 <body class="fade-in">
 
+  <!-- Validação e Alerts do Bootstrap -->
+
+  <?php
+  if (isset($_SESSION['usuario_existe'])) :
+  ?>
+
+                <script>
+                
+                   window.onload = function(){
+                      toastr.info('Usuário já existe!');
+                    };
+                
+                </script>
+
+  <?php
+  endif;
+  unset($_SESSION['usuario_existe']);
+
+  ?>
+
+
+
+  <?php
+  if (isset($_SESSION['invalid_email'])) :
+  ?>
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      Campos de e-mail não coincidem.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  <?php
+  endif;
+  unset($_SESSION['invalid_email']);
+
+  ?>
+
+
+
+  <?php
+  if (isset($_SESSION['nome_vazio'])) :
+  ?>
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      Campo de nome está vazio ou inserido com somente espaços!
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  <?php
+  endif;
+  unset($_SESSION['nome_vazio']);
+
+  ?>
+
+
+  <?php
+  if (isset($_SESSION['senha_vazia'])) :
+  ?>
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      Campo de senha está vazio ou inserido com somente espaços!
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  <?php
+  endif;
+  unset($_SESSION['senha_vazia']);
+
+  ?>
+
+
+  <?php
+  if (isset($_SESSION['invalid_senha'])) :
+  ?>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      Campos de senha não coincidem.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  <?php
+  endif;
+  unset($_SESSION['invalid_senha']);
+
+  ?>
+
+
+
   <!-- ======= Header ======= -->
-
-
 
   <?php
 
   include('includes/navbar_cadastro_user.php');
 
   ?>
-
 
   <main id="main">
 
@@ -219,10 +316,6 @@ include('conexao_crud.php');
     $('#estado').bind('keypress', testInput);
     $('#cidade').bind('keypress', testInput);
   </script>
-
-
-
-
 
 </body>
 

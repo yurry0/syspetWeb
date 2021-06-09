@@ -48,6 +48,7 @@ include('modal/adocao/add_adocao.php')
     button {
       height: 45px;
       padding: 10px;
+      margin-top: 50px;
       text-align: center;
     }
 
@@ -157,9 +158,6 @@ include('modal/adocao/add_adocao.php')
                       <input type="text" id="altura" name="altura" readonly class="form-control" value="<?php echo $altura; ?>" placeholder="">
                     </div>
 
-                  </div>
-
-                  <div class="row">
                     <div class="col-5">
                       <label for="vacinas">Vacinas:</label>
                       <input type="text" id="vacinas" name="vacinas" readonly class="form-control" value="<?php echo $vacinas; ?>" placeholder="">
@@ -167,8 +165,13 @@ include('modal/adocao/add_adocao.php')
 
                   </div>
 
+                  <!-- <div class="row"> -->
+                   
+
+                 <!-- </div>-->
+
                   <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
 
                       <!-- <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
                     <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">

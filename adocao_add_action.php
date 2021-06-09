@@ -44,22 +44,10 @@ try {
     $cli_estado = $v['cli_estado'];
     $cli_email = $v['cli_email'];
     $cli_endereco = $v['cli_endereco'];
-    $idade = $v['idade'];
-    $vacinas = $v['vacinas'];
-    $altura = $v['altura'];
-    $peso = $v['peso'];
-    $img_pet = $v['img_pet'];
   }
 } catch (PDOException $e) {
   echo "Error: " . $e->getMessage();
 }
-
-
-
-
-
-
-
 
 
 try {
@@ -84,9 +72,9 @@ try {
 
   $stmt->execute();
 
-  $_SESSION['add'] = "Adicionado com sucesso!";
+  $_SESSION['add_adocao'] = "Adicionado com sucesso!";
 } catch (PDOException $e) {
-  $_SESSION['error'] = "Error: " . $e->getMessage();
+  $_SESSION['error_adocao'] = "Error: " . $e->getMessage();
 }
 
 try {
@@ -94,8 +82,23 @@ try {
   $stmt->bindParam(':pk_id_pet', $id_pet);
   $stmt->execute();
 } catch (PDOException $e) {
+  $_SESSION['error_adocao'] = "Error: " . $e->getMessage();
+}
+
+
+try {
+  $stmt = $conn->prepare("SELECT * from adocao WHERE id_pet = :id_pet");
+  $stmt->bindParam(':id_pet', $id_pet);
+  $stmt->execute();
+  $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  foreach ($stmt->fetchAll() as $k => $v) {
+    $data = $v['data_adocao'];
+    $valid_date = date('d/m/y g:i A', strtotime($data));
+  }
+} catch (PDOException $e) {
   $_SESSION['error'] = "Error: " . $e->getMessage();
 }
+
 
 
 //Preencher variáveis usando SESSION, para que o POST persista por mais de uma tela.
@@ -107,10 +110,14 @@ $_SESSION['idade'] = $idade;
 $_SESSION['vacinas'] = $vacinas;
 $_SESSION['altura'] = $altura;
 $_SESSION['peso'] = $peso;
-$_SESSION['nome_cliente'] = $nome_cliente;
+$_SESSION['nome_cliente'] =  $cli_nome;
+$_SESSION['valid_date'] = $valid_date;
+$_SESSION['foto_pet'] = $img_pet;
+
+echo $valid_date;
+
 
 $conn = null;
 
 
-
-header('Location: index_adocao.php');
+header('Location: recibo.php');

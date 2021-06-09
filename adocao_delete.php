@@ -12,6 +12,7 @@ try {
   $stmt->bindParam(':pk_id_adocao', $id);
   $id = $_GET['id'];
   $stmt->execute();
+  $_SESSION['del_adocao'] = "Deletado com sucesso.";
 } catch (PDOException $e) {
   $_SESSION['error'] = "Error: " . $e->getMessage();
 }
@@ -28,13 +29,10 @@ try {
   $_SESSION['error'] = "Error: " . $e->getMessage();
 }
 
-
-
-
 $conn = null;
 
 
-header('Location: index_adocao.php');
+header('Location: adocao_index.php');
 
 echo $id;
 echo "<br>";

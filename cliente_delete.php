@@ -26,7 +26,7 @@ try {
 $conn = null;
 
 
-header('Location: index_cliente.php');
+header('Location: cliente_index.php');
 
 
 ?>
