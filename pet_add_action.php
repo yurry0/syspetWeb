@@ -95,9 +95,9 @@ try {
     $tipo = "image/" . get_file_extension($img_pet);
 
     $stmt->execute();
-    $_SESSION['add'] = "Adicionado com sucesso!";
+    $_SESSION['add_pet'] = "Adicionado com sucesso!";
 } catch (PDOException $e) {
-    $_SESSION['add'] = "Error: " . $e->getMessage();
+    $_SESSION['add_pet'] = "Error: " . $e->getMessage();
 }
 
 $conn = null;

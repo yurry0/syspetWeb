@@ -8,14 +8,14 @@ include("conexao.php");
 //Obtenção de campos do form:
 
 
-if (strlen($_POST['nome']) > 0 && strlen(trim($_POST['nome'])) == 0) {
+if (empty(trim(($_POST['senha']))) == true) {
     $_SESSION['nome_vazio'] = 'Nome do usuário está vazio ou preenchido com espaços!';
     header('Location: usuario_add_form.php');
 }
 
-if (empty(trim(($_POST['senha'])))) {
+if (empty(trim(($_POST['senha']))) == true) {
 
-    $_SESSION['senha_vazia'] = true;
+    $_SESSION['senha_vazia'] = 'A sua senha está vazia!';
     header('Location: usuario_add_form.php');
 }
 
@@ -36,7 +36,7 @@ $confirm_senha = mysqli_real_escape_string($conexao, trim(md5($_POST['confirm_se
 
 if ($confirm_email !== $email) {
 
-    $_SESSION['invalid_email'] = true;
+    $_SESSION['invalid_email'] = 'Os emails não correspondem!';
     header('Location: usuario_add_form.php');
     exit;
 } else {
@@ -44,7 +44,7 @@ if ($confirm_email !== $email) {
 
 if ($confirm_senha !== $senha) {
 
-    $_SESSION['invalid_senha'] = true;
+    $_SESSION['invalid_senha'] = 'Os senhas não correspondem!';
     header('Location: usuario_add_form.php');
     exit;
 } else {
@@ -56,7 +56,7 @@ $row = mysqli_fetch_assoc($result);
 
 if ($row['total'] == 1) {
 
-    $_SESSION['usuario_existe'] = true;
+    $_SESSION['usuario_existe'] = 'O email inserido já existe no banco de dados!';
 
     header('Location: usuario_add_form.php');
 

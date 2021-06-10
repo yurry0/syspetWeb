@@ -19,9 +19,9 @@ try {
   $stmt->execute();
 
   
-  $_SESSION['del'] = "Deletado com sucesso";
+  $_SESSION['del_pet'] = "Deletado com sucesso";
   } catch(PDOException $e) {
-  $_SESSION['del'] = "Error: " . $e->getMessage();
+  $_SESSION['del_pet'] = "Error: " . $e->getMessage();
 }
 $conn = null;
 

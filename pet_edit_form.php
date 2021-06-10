@@ -24,8 +24,8 @@ include('modal/pet/busca_pet.php')
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
 
   <!-- Select 2 -->
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
@@ -203,7 +203,7 @@ include('modal/pet/busca_pet.php')
                   <div class="col-2">
                     <label for="sexo">Sexo</label>
                     <select class="custom-select form-control-border" required name="sexo" id="sexo">
-                     <option selected="selected" value="<?php null ?>" disabled>Selecione</option>
+                      <option selected="selected" value="<?php null ?>" disabled>Selecione</option>
                       <option value="Macho">Macho</option>
                       <option value="Fêmea">Fêmea</option>
                       <option value="Outro">Outro</option>
@@ -225,7 +225,7 @@ include('modal/pet/busca_pet.php')
 
                   <div class="col-2">
                     <label>Porte</label>
-                    <select class="form-control select2" id="porte"  name="porte" style="width: 100%; " required>
+                    <select class="form-control select2" id="porte" name="porte" style="width: 100%; " required>
                       <option selected="selected" value="<?php null ?>" disabled>Selecione</option>
                       <option>Pequeno</option>
                       <option>Médio</option>
@@ -237,7 +237,7 @@ include('modal/pet/busca_pet.php')
                   <!-- Campo Idade -->
                   <div class="col-1">
                     <label for="raca">Idade</label>
-                    <input type="number" required class="form-control rounded-0" min="0" max="30"  value="<?php echo $v['idade'] ?>" name="idade" id="idade" placeholder="">
+                    <input type="number" required class="form-control rounded-0" min="1" max="30" value="<?php echo $v['idade'] ?>" name="idade" id="idade" placeholder="">
                   </div>
 
                   <div class="col-2">
@@ -253,7 +253,7 @@ include('modal/pet/busca_pet.php')
                   <div class="col-2">
 
                     <label for="raca">Peso</label> <code> - - - - Em quilos;</code>
-                    <input type="text"  value="<?php echo $v['peso'] ?>" required class="form-control rounded-0" name="peso" id="peso" placeholder="ex: 40">
+                    <input type="text" value="<?php echo $v['peso'] ?>" required class="form-control rounded-0" name="peso" id="peso" placeholder="ex: 40">
                   </div>
 
 
@@ -383,18 +383,18 @@ include('modal/pet/busca_pet.php')
                 </div>
               </div>
 
-             
-            <div class="row">
-              <div class="col-3">
-              </div>
-              <div class="col-2">
-              </div>
 
-              <div class="col-2">
-                <button type="submit" class="btn btn-outline-success">Editar Pet</button>
-              </div>
+              <div class="row">
+                <div class="col-3">
+                </div>
+                <div class="col-2">
+                </div>
 
-            </div>
+                <div class="col-2">
+                  <button type="submit" class="btn btn-outline-success">Editar Pet</button>
+                </div>
+
+              </div>
               <!-- DIV do card-->
             </div>
 

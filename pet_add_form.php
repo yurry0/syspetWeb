@@ -128,7 +128,7 @@ session_start();
 
         <form role="form" name="add_pet" method="POST" action="pet_add_action.php" enctype="multipart/form-data">
 
-          <div class="card-body">
+          <div class="card card-primary">
 
             <!-- Campo Raça -->
 
@@ -232,7 +232,7 @@ session_start();
 
                   <!-- Campo Altura -->
                   <label for="altura">Altura</label> <code> - Em metros;</code>
-                  <input class="form-control rounded-0" required name="altura" id="altura" placeholder="" type="text" data-inputmask-clearmaskonlostfocus="false">
+                  <input class="form-control rounded-0" min="0" required name="altura" id="altura" placeholder="" type="text" data-inputmask-clearmaskonlostfocus="false">
 
                 </div>
 
@@ -241,7 +241,7 @@ session_start();
                 <div class="col-2">
 
                   <label for="raca">Peso</label> <code> - - - - Em quilos;</code>
-                  <input type="text" required class="form-control rounded-0" name="peso" id="peso" placeholder="ex: 40">
+                  <input type="text" required class="form-control rounded-0" min="1" name="peso" id="peso" placeholder="ex: 40">
                 </div>
 
 

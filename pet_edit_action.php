@@ -94,9 +94,9 @@ try {
 
 
 
-  $_SESSION['edit'] = "Dados editados com sucesso!";
+  $_SESSION['edit_pet'] = "Dados editados com sucesso!";
 } catch (PDOException $e) {
-  echo $e->getMessage();
+  $_SESSION['edit_pet'] = "Error: " . $e->getMessage();
 }
 $conn = null;
 

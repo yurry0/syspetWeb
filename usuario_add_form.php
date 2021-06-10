@@ -3,12 +3,9 @@
 
 <?php
 session_start();
-isset($_SESSION['senha_feita']);
-isset($_SESSION['email_feito']);
 include('conexao_crud.php');
 
 ?>
-
 
 <head>
   <meta charset="utf-8">
@@ -53,6 +50,10 @@ include('conexao_crud.php');
       margin-top: 50px;
       margin-bottom: 45px;
     }
+
+    #toast-container>.toast-warning {
+      background-color: #068D9D;
+    }
   </style>
 
   <script>
@@ -71,107 +72,84 @@ include('conexao_crud.php');
   <!-- Validação e Alerts do Bootstrap -->
 
   <?php
-  if (isset($_SESSION['usuario_existe'])) :
-  ?>
 
+  if (isset($_SESSION['nome_vazio'])) {
+
+    $mensagem = $_SESSION['nome_vazio'];
+    echo "
                 <script>
                 
-                   window.onload = function(){
-                      toastr.info('Usuário já existe!');
-                    };
+                $(document).Toasts('create', {
+                  class: 'bg-maroon',
+                  title: 'Toast Title',
+                body: 'Teste'
+                }
                 
                 </script>
+                ";
+    unset($_SESSION['nome_vazio']);
+  } else if (isset($_SESSION['senha_vazia'])) {
 
-  <?php
-  endif;
-  unset($_SESSION['usuario_existe']);
+    $mensagem2 = $_SESSION['senha_vazia'];
+    echo "
+              <script>
+                 window.onload = function(){
+                  toastr.warning('$mensagem2');
+                  };
+              
+              </script>
+              ";
+    unset($_SESSION['senha_vazia']);
+  } else if (isset($_SESSION['invalid_email'])) {
+
+    $mensagem3 = $_SESSION['invalid_email'];
+    echo "
+            <script>
+               window.onload = function(){
+                toastr.warning('$mensagem3');
+                };
+            
+            </script>
+            ";
+    unset($_SESSION['invalid_email']);
+  } else if (isset($_SESSION['invalid_senha'])) {
+
+    $mensagem4 = $_SESSION['invalid_senha'];
+    echo "
+            <script>
+               window.onload = function(){
+                toastr.warning('$mensagem4');
+                };
+            
+            </script>
+            ";
+    unset($_SESSION['invalid_email']);
+  } else if (isset($_SESSION['usuario_existe'])) {
+
+    $mensagem5 = $_SESSION['usuario_existe'];
+    echo "
+            <script>
+               window.onload = function(){
+                toastr.warning('$mensagem5');
+                };
+            
+            </script>
+            ";
+    unset($_SESSION['usuario_existe']);
+  }
+
+
+
+
 
   ?>
 
 
-
-  <?php
-  if (isset($_SESSION['invalid_email'])) :
   ?>
-
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      Campos de e-mail não coincidem.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-  <?php
-  endif;
-  unset($_SESSION['invalid_email']);
-
-  ?>
-
-
-
-  <?php
-  if (isset($_SESSION['nome_vazio'])) :
-  ?>
-
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      Campo de nome está vazio ou inserido com somente espaços!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-  <?php
-  endif;
-  unset($_SESSION['nome_vazio']);
-
-  ?>
-
-
-  <?php
-  if (isset($_SESSION['senha_vazia'])) :
-  ?>
-
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      Campo de senha está vazio ou inserido com somente espaços!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-  <?php
-  endif;
-  unset($_SESSION['senha_vazia']);
-
-  ?>
-
-
-  <?php
-  if (isset($_SESSION['invalid_senha'])) :
-  ?>
-
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      Campos de senha não coincidem.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-  <?php
-  endif;
-  unset($_SESSION['invalid_senha']);
-
-  ?>
-
-
-
   <!-- ======= Header ======= -->
-
   <?php
-
   include('includes/navbar_cadastro_user.php');
-
   ?>
-
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -195,7 +173,7 @@ include('conexao_crud.php');
       <div class="container" style="border-color:#4DA8DA; border-left-style: solid;  border-width: 11px;">
 
 
-        <form action="usuario_add_action.php" method="POST">
+        <form name="cad_user" id="cad_user" action="usuario_add_action.php" onsubmit="return validateForm()" method="POST">
 
           <!-- Validação e Alerts do Bootstrap -->
 
@@ -204,7 +182,7 @@ include('conexao_crud.php');
 
           <!-- Campo de Nome -->
           <div class="row mb-2">
-            <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
+            <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
             <div class="col-sm-6">
               <input name="nome" required type="text" onkeypress="return blockSpecialChar(event)" class="form-control" id="nome">
             </div>
@@ -229,7 +207,7 @@ include('conexao_crud.php');
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label">Senha:</label>
             <div class="col-sm-6">
-              <input type="password" required name="senha" pattern="[0-9a-fA-F]{1,8}[^' ']+" class="form-control" min="5" max="20" placeholder="Mínimo 5, máximo 20 caracteres.">
+              <input type="password" required name="senha" keypress id="senha" pattern="[0-9a-fA-F]{4,20}+" class="form-control" min="5" max="20" placeholder="Mínimo 5, máximo 20 caracteres.">
               <code>Atenção: Não é permitido preencher a senha somente com espaços.</code>
             </div>
           </div>
@@ -290,7 +268,8 @@ include('conexao_crud.php');
   <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
   <!-- Select2 -->
   <script src="plugins/select2/js/select2.full.min.js"></script>
-
+  <!-- Toastr -->
+  <script src="plugins/toastr/toastr.min.js"></script>
 
   <script>
     function myFunction() {
@@ -312,9 +291,24 @@ include('conexao_crud.php');
       return pattern.test(value);
     }
 
+    $('#cad_user').submit(function() {
+      if ($.trim($("#nome").val()) === "" || $.trim($("#senha").val()) === "") {
+        alert('Alerta: Nome e/ou senha não estão preenchidos corretamente.');
+        return false;
+      }
+    });
+
+    $(document).ready(function() {
+        $(document).on('keypress', '#senha', function(e){
+         return !(e.keyCode == 32);
+      });
+    });
+
     $('#nome').bind('keypress', testInput);
     $('#estado').bind('keypress', testInput);
     $('#cidade').bind('keypress', testInput);
+
+  
   </script>
 
 </body>

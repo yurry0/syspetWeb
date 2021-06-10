@@ -53,6 +53,18 @@ include "conexao_crud.php";
       transition-duration: 0.7s;
       transition-property: opacity;
     }
+
+    #toast-container>.toast-warning {
+      background-color: #068D9D;
+    }
+
+    #toast-container>.toast-success {
+      background-color: #5B7B7A;
+    }
+
+    #toast-container>.toast-danger {
+      background-color: #6A041D;
+    }
   </style>
 
 </head>
@@ -145,6 +157,7 @@ include "conexao_crud.php";
                     unset($_SESSION['edit_adocao']);
                   }
                   ?>
+
                   <div class="card">
                     <div class="container-sm">
                       <div class="row">

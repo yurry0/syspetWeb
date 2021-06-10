@@ -46,6 +46,22 @@ include "conexao_crud.php";
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <style>
+    #toast-container>.toast-warning {
+      background-color: #068D9D;
+    }
+
+    #toast-container>.toast-success {
+      background-color: #5B7B7A;
+    }
+
+    #toast-container>.toast-danger {
+      background-color: #6A041D;
+    }
+
+    
+  </style>
+
 
 </head>
 
@@ -76,22 +92,20 @@ include "conexao_crud.php";
 
 
         <?php
-
-        if (isset($_SESSION['del'])) {
-
-          $mensagem = $_SESSION['del'];
+        if (isset($_SESSION['del_pet'])) {
+          $mensagem = $_SESSION['del_pet'];
           echo "
             <script>
-            
                window.onload = function(){
-                  toastr.info('$mensagem');
+                  toastr.warning('$mensagem');
                 };
-            
             </script>
             ";
-        } else if (isset($_SESSION['add'])) {
 
-          $mensagem2 = $_SESSION['add'];
+          unset($_SESSION['del_pet']);
+        } else if (isset($_SESSION['add_pet'])) {
+
+          $mensagem2 = $_SESSION['add_pet'];
           echo "
           <script>
              window.onload = function(){
@@ -100,9 +114,10 @@ include "conexao_crud.php";
           
           </script>
           ";
-        } else if (isset($_SESSION['edit'])) {
+          unset($_SESSION['add_pet']);
+        } else if (isset($_SESSION['edit_pet'])) {
 
-          $mensagem3 = $_SESSION['edit'];
+          $mensagem3 = $_SESSION['edit_pet'];
           echo "
         <script>
            window.onload = function(){
@@ -111,8 +126,9 @@ include "conexao_crud.php";
         
         </script>
         ";
+          unset($_SESSION['edit_pet']);
         }
-        session_unset();
+
 
         ?>
 
@@ -162,9 +178,9 @@ include "conexao_crud.php";
               <tbody>
 
                 <!-- Conexão com o Banco de Dados para puxar todos os dados de Pet -->
-               <?php 
-               include('modal/pet/modal_pet_index.php');
-               ?>
+                <?php
+                include('modal/pet/modal_pet_index.php');
+                ?>
               </tbody>
             </table>
           </div>
@@ -211,7 +227,8 @@ include "conexao_crud.php";
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+ <!-- Toastr -->
+ <script src="plugins/toastr/toastr.min.js"></script>
   <!-- SweetAlert2 -->
   <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- jQuery -->
@@ -224,9 +241,6 @@ include "conexao_crud.php";
       $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
   </script>
-
-
-
 
   <!-- DataTables -->
   <script src="plugins/datatables/jquery.dataTables.min.js"></script>

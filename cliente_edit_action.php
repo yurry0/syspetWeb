@@ -37,9 +37,9 @@ try {
 
 
 
-$_SESSION['edit'] = "Dados editados com sucesso!";
+$_SESSION['edit_cliente'] = "Dados editados com sucesso!";
 } catch(PDOException $e) {
-$_SESSION['edit'] = "Error: " . $e->getMessage();
+$_SESSION['edit_cliente'] = "Error: " . $e->getMessage();
 }
 $conn = null;
 

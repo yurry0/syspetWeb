@@ -46,12 +46,16 @@ include "conexao_crud.php";
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Amoeba - v4.1.1
-  * Template URL: https://bootstrapmade.com/free-one-page-bootstrap-template-amoeba/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    #toast-container>.toast-danger {
+      background-color: #068D9D;
+    }
+
+    #toast-container>.toast-success {
+      background-color: #5B7B7A;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -92,7 +96,7 @@ include "conexao_crud.php";
                 <script>
                 
                    window.onload = function(){
-                      toastr.info('$mensagem');
+                      toastr.danger('$mensagem');
                     };
                 
                 </script>
@@ -104,7 +108,7 @@ include "conexao_crud.php";
           echo "
               <script>
                  window.onload = function(){
-                    toastr.success('$mensagem2');
+                    toastr.warning('$mensagem2');
                   };
               
               </script>
@@ -121,7 +125,7 @@ include "conexao_crud.php";
             
             </script>
             ";
-          unset($_SESSION['edit']);
+          unset($_SESSION['edit_cliente']);
         }
 
 
