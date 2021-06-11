@@ -33,7 +33,8 @@ include "conexao_crud.php";
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Favicons -->
-  <?php include('includes/icon.php') ?>
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
@@ -63,6 +64,10 @@ include "conexao_crud.php";
     }
 
     #toast-container>.toast-danger {
+      background-color: #6A041D;
+    }
+
+    #toast-container>.toast-info {
       background-color: #6A041D;
     }
   </style>
@@ -117,6 +122,12 @@ include "conexao_crud.php";
                 <!-- /.col-md-6 -->
                 <div class="col-lg-12">
                   <?php
+
+
+                
+
+
+
 
                   if (isset($_SESSION['del_adocao'])) {
 
@@ -304,9 +315,10 @@ include "conexao_crud.php";
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Toastr -->
+  <script src="plugins/toastr/toastr.min.js"></script>
   <!-- DataTables -->
   <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="plugins/toastr/toastr.min.js"></script>
   <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
   <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>

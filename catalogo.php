@@ -4,6 +4,7 @@
 session_start();
 include "conexao_crud.php";
 require_once 'includes/pet_rn.php';
+include('includes/protect.php');
 ?>
 
 <head>
@@ -19,6 +20,14 @@ require_once 'includes/pet_rn.php';
       position: relative;
       margin-top: 0px;
 
+    }
+
+    #toast-container>.toast-info {
+      background-color: #6A041D;
+    }
+
+    #toast-container>.toast-danger {
+      background-color: #6A041D;
     }
 
     #adotar {
@@ -52,8 +61,8 @@ require_once 'includes/pet_rn.php';
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
   <!-- Vendor CSS Files -->
@@ -75,6 +84,9 @@ require_once 'includes/pet_rn.php';
 
   ?>
   <main id="main">
+
+
+
     <section class="breadcrumbs">
       <div class="container">
 
@@ -82,7 +94,7 @@ require_once 'includes/pet_rn.php';
           <h2>Catálogo de Pets</h2>
           <ol>
             <li><a href="painel.php">Home</a></li>
-            <li>Catálogo de Pets</li>
+            <li>Catálogo de Pets </li>
           </ol>
         </div>
 
@@ -92,7 +104,15 @@ require_once 'includes/pet_rn.php';
     <section class="inner-page">
       <div class="content">
         <div class="wrapper">
+          <p> <?php if (isset($_SESSION['null'])) {
+
+              echo $_SESSION['null'];
+              }
+              unset($_SESSION['null']); ?></p>
           <div class="row">
+
+
+
             <?php
             include('modal/catalogo/alimentar_catalogo.php');
             ?>
@@ -112,6 +132,8 @@ require_once 'includes/pet_rn.php';
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <!-- Toastr -->
+  <script src="plugins/toastr/toastr.min.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <!-- SweetAlert2 -->
@@ -122,6 +144,8 @@ require_once 'includes/pet_rn.php';
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body class="fade-in">
+
+
 
 <form action="adocao_add_form.php" method="post">
   <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <?php
 
-session_start();
+include('includes/protect.php')
 
 ?>
 
@@ -45,8 +45,34 @@ session_start();
                     unset($_SESSION['status_cadastro']);
 
                     ?>
+                    <?php
+                    if (isset($_SESSION['login_invalido'])) :
+                    ?>
 
+                        <div class="alert alert-success" style="background-color: red;" role="alert">
+                            <p style="background-color: yellow;"> Usuário/ </p>
+                        </div>
 
+                    <?php
+                    endif;
+                    unset($_SESSION['login_invalido']);
+
+                    ?>
+
+                    <?php
+
+                    if (isset($_SESSION['senha_feita'])) :
+                    ?>
+
+                        <div class="alert alert-success" style="background-color: red;" role="alert">
+                            <p style="background-color: yellow;">Senha alterada com sucesso!</p>
+                        </div>
+
+                    <?php
+                    endif;
+                    unset($_SESSION['senha_feita']);
+
+                    ?>
 
 
                     <?php
@@ -80,7 +106,7 @@ session_start();
                 </div>
 
             </div>
-    
+
         </div>
 
     </form>

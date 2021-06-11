@@ -6,6 +6,7 @@ session_start();
 isset($_SESSION['senha_feita']);
 isset($_SESSION['email_feito']);
 include('conexao_crud.php');
+include('includes/protect.php')
 
 ?>
 
@@ -14,14 +15,13 @@ include('conexao_crud.php');
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Realizar Adoção</title>
+  <title>Adicionar Cliente</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+<!-- icon -->
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
   <!-- Select 2 -->
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">

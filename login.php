@@ -30,7 +30,7 @@ else{
     $_SESSION['nao_autenticado'] = true;
     unset($_SESSION['usuario']);
     unset($_SESSION['senha']);
-    header('Location: index2.php');
+    header('Location: index.php');
 
 }
 
