@@ -520,6 +520,19 @@ include('modal/pet/busca_pet.php')
     }
   </script>
 
+<!-- Script para prevenir que campos somente com espaço sejam inseridos no banco de dados -->
+
+<script>
+    $('#fpet_edit').submit(function() {
+      if ($.trim($("#nome").val()) === "" || $.trim($("#rg").val()) === "" || $.trim($("#cidade").val()) === "" || $.trim($("#estado").val()) === "" || $.trim($("#cep").val()) === "" || $.trim($("#endereco").val()) === "" || $.trim($("#bairro").val()) === "") {
+           {
+          alert('Existem campos em branco ou inseridos somente com espaços!');
+        };
+        return false;
+      }
+    });
+  </script>
+
 
 </body>
 
