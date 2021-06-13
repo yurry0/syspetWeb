@@ -6,7 +6,7 @@ session_start();
 isset($_SESSION['senha_feita']);
 isset($_SESSION['email_feito']);
 include('conexao_crud.php');
-
+include "verifica_login.php";
 
 
 //Conjunto de funções pra trazer o Pet do Banco de Dados usando o ID passado no GET 

@@ -3,11 +3,17 @@
 session_start();
 include "conexao_crud.php";
 $conn = conexao();
+$vixe = "";
 
 function get_file_extension($img_pet)
 {
     return pathinfo($img_pet, PATHINFO_EXTENSION);
 }
+
+
+
+//$conn = null;
+
 
 
 try {
@@ -51,9 +57,44 @@ try {
     }
 
 
+    try {
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // prepare sql and bind parameters
+        $stmt = $conn->prepare("SELECT * FROM pet WHERE nome = :nome , raca = :raca, sexo = :sexo, idade = :idade, vacinas = :vacinas, altura = :altura, peso = :peso, especie = :especie , pelagem = :pelagem , porte = :porte");
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':raca', $raca);
+        $stmt->bindParam(':sexo', $sexo);
+        $stmt->bindParam(':idade', $idade);
+        $stmt->bindParam(':vacinas', $vacinas);
+        $stmt->bindParam(':altura', $altura);
+        $stmt->bindParam(':peso', $peso);
+        $stmt->bindParam(':especie', $especie);
+        $stmt->bindParam(':pelagem', $pelagem);
+        $stmt->bindParam(':porte', $porte);
+    
+    
+        $nome = $_POST['nome'];
+        $cidade = $_POST['cidade'];
+        $rg = $_POST['rg'];
+        $estado = $_POST['estado'];
+        $cep = $_POST['cep'];
+        $endereco = $_POST['endereco'];
+        $bairro = $_POST['bairro'];
+        $stmt->execute();
 
-
-
+        $resultado = $stmt;
+        if($resultado->rowCount() > 0){
+            $_SESSION['pet_existente'] = "Não é possível duplicar pets.";
+        }
+       
+        
+    } catch (PDOException $e) {
+        $_SESSION['pet_existente'] = "Error: " . $e->getMessage();
+    
+        echo $e->getMessage();
+    }
 
     $stmt = $conn->prepare("INSERT INTO pet(nome, raca, sexo, idade, vacinas, altura, peso, img_pet, tipo, especie, pelagem, porte, adotado)
     VALUES (:nome, :raca, :sexo, :idade, :vacinas , :altura, :peso, :img_pet, :tipo, :especie, :pelagem, :porte, :adotado)");
@@ -83,15 +124,14 @@ try {
     if (!empty($_POST['pelo_cao'])) {
 
         $pelagem = $_POST['pelo_cao'];
-    
-      } else if (!empty($_POST['pelo_gato'])) {
+    } else if (!empty($_POST['pelo_gato'])) {
         $pelagem = $_POST['pelo_gato'];
-      } else if (!empty($_POST['pelo_cavalo'])) {
+    } else if (!empty($_POST['pelo_cavalo'])) {
 
         $pelagem = $_POST['pelo_cavalo'];
-      }
+    }
 
- 
+
     $tipo = "image/" . get_file_extension($img_pet);
 
     $stmt->execute();

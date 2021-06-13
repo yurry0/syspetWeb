@@ -4,6 +4,7 @@
 <?php
 
 session_start();
+include 'verifica_login.php'
 ?>
 
 
@@ -15,9 +16,9 @@ session_start();
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- icon -->
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
 
   <!-- Select 2 -->
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
@@ -126,7 +127,7 @@ session_start();
       <div class="container">
         <!-- form start -->
 
-        <form role="form" name="add_pet" method="POST" action="pet_add_action.php" enctype="multipart/form-data">
+        <form role="form" name="add_pet" id="add_pet" method="POST" onsubmit="return validateForm()" action="pet_add_action.php" enctype="multipart/form-data">
 
           <div class="card card-primary">
 
@@ -366,7 +367,7 @@ session_start();
                 <div class="col-2"></div>
                 <div class="col-6">
                   <label for="img_pet">Adicionar Foto</label>
-                  <div><input name="img_pet" id="img_pet" type="file" /></div>
+                  <div><input name="img_pet" required id="img_pet" type="file" /></div>
                 </div>
               </div>
             </div>
@@ -448,6 +449,18 @@ session_start();
   </script>
 
   <script>
+    function testInput(event) {
+      var value = String.fromCharCode(event.which);
+      var pattern = new RegExp(/[a-zåäöãá ]/i);
+      return pattern.test(value);
+    }
+
+    $('#raca').bind('keypress', testInput);
+    $('#nome').bind('keypress', testInput);
+
+  </script>
+
+  <script>
     $(function() {
       //Initialize Select2 Elements
       $('.select2').select2()
@@ -510,6 +523,18 @@ session_start();
     }
   </script>
 
+  <!-- Script para prevenir que campos somente com espaço sejam inseridos no banco de dados -->
+
+  <script>
+    $('#add_pet').submit(function() {
+      if ($.trim($("#nome").val()) === "" || $.trim($("#raca").val()) === "" || $.trim($("#idade").val()) === "" || $.trim($("#peso").val()) === "" || $.trim($("#altura").val()) === "") {
+        {
+          alert('Existem campos em branco ou inseridos somente com espaços!');
+        };
+        return false;
+      }
+    });
+  </script>
 </body>
 
 </html>

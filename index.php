@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <?php
-
+session_start();
 include('includes/protect.php')
 
 ?>
@@ -13,6 +13,10 @@ include('includes/protect.php')
     <link rel="stylesheet" href="css/modal_login_style.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
+    
+    <!-- icon -->
+    <link href="img/syspet sem fundo.png" rel="icon">
+    <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
 
 
 </head>
@@ -43,7 +47,6 @@ include('includes/protect.php')
                     <?php
                     endif;
                     unset($_SESSION['status_cadastro']);
-
                     ?>
                     <?php
                     if (isset($_SESSION['login_invalido'])) :
@@ -97,7 +100,7 @@ include('includes/protect.php')
                     </div>
                     <div class="modal-buttons">
                         <a href="esqueceu_senha.php" class="">Esqueceu sua senha?</a>
-                        <button class="input-button">Login</button>
+                        <button type="submit" class="input-button">Login</button>
                     </div>
                     <p class="sign-up">Não tem uma conta?<a href="usuario_add_form.php">Cadastre-se</a></p>
                 </div>

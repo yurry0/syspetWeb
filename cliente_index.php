@@ -2,8 +2,8 @@
 <html lang="pt">
 <?php
 session_start();
-$_SESSION['usuario'];
 include "conexao_crud.php";
+include "verifica_login.php"
 ?>
 
 <head>
@@ -30,9 +30,9 @@ include "conexao_crud.php";
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- icon -->
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
@@ -54,6 +54,10 @@ include "conexao_crud.php";
     #toast-container>.toast-success {
       background-color: #5B7B7A;
     }
+
+    #toast-container>.toast-info {
+      background-color: #368F8B;
+    }
   </style>
 
 </head>
@@ -61,11 +65,11 @@ include "conexao_crud.php";
 <body>
 
   <!-- ======= Header ======= -->
- <?php 
- 
- include('includes/navbar_template.php')
+  <?php
 
- ?>
+  include('includes/navbar_template.php')
+
+  ?>
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -96,27 +100,28 @@ include "conexao_crud.php";
                 <script>
                 
                    window.onload = function(){
-                      toastr.danger('$mensagem');
+                      toastr.success('$mensagem');
                     };
                 
                 </script>
                 ";
           unset($_SESSION['del_cliente']);
+
         } else if (isset($_SESSION['add_cliente'])) {
 
           $mensagem2 = $_SESSION['add_cliente'];
           echo "
               <script>
                  window.onload = function(){
-                    toastr.warning('$mensagem2');
+                    toastr.success('$mensagem2');
                   };
               
               </script>
               ";
           unset($_SESSION['add_cliente']);
-        } else if (isset($_SESSION['edit'])) {
+        } else if (isset($_SESSION['edit_cliente'])) {
 
-          $mensagem3 = $_SESSION['edit'];
+          $mensagem3 = $_SESSION['edit_cliente'];
           echo "
             <script>
                window.onload = function(){

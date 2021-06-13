@@ -15,9 +15,9 @@ include('conexao_crud.php');
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="img/pet-care_128.png" rel="icon">
-  <link href="img/pet-care_128.png" rel="apple-touch-icon">
+  <!-- icon -->
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
 
   <!-- Toastr -->
   <link rel="stylesheet" href="plugins/toastr/toastr.css">

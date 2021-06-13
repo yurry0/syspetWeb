@@ -2,8 +2,8 @@
 <html lang="pt">
 <?php
 session_start();
-$_SESSION['usuario'];
 include "conexao_crud.php";
+include "verifica_login.php"
 ?>
 
 <head>
@@ -30,13 +30,11 @@ include "conexao_crud.php";
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <!-- icon -->
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -103,7 +101,9 @@ include "conexao_crud.php";
             ";
 
           unset($_SESSION['del_pet']);
-        } else if (isset($_SESSION['add_pet'])) {
+        } 
+        
+        else if (isset($_SESSION['add_pet'])) {
 
           $mensagem2 = $_SESSION['add_pet'];
           echo "

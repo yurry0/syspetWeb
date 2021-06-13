@@ -6,6 +6,7 @@ session_start();
 isset($_SESSION['senha_feita']);
 isset($_SESSION['email_feito']);
 include('conexao_crud.php');
+include 'verifica_login.php';
 
 
 
@@ -19,11 +20,11 @@ include('modal/pet/busca_pet.php')
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Editar Adoção</title>
+  <title>Editar Pet</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
+  <!-- icon -->
   <link href="img/syspet sem fundo.png" rel="icon">
   <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
 
@@ -142,7 +143,7 @@ include('modal/pet/busca_pet.php')
           <!-- /.card-header -->
           <!-- form start -->
 
-          <form role="form" name="edit_pet" id="fpet_edit" method="POST" action="pet_edit_action.php" enctype="multipart/form-data">
+          <form role="form" name="edit_pet" id="pet_edit" onsubmit="return validateForm()" method="POST" action="pet_edit_action.php" enctype="multipart/form-data">
 
             <div class="card-body">
 
@@ -153,7 +154,7 @@ include('modal/pet/busca_pet.php')
                 <div class="row">
                   <div class="col-2">
 
-                    <img id="imagem_syspet" src="img/pet-care_128.png" alt="">
+                    <img id="imagem_syspet" src="img/syspet sem fundo.png" style="width: 128px; height: 128px;" alt="">
 
                   </div>
                   <div class="col-1">
@@ -183,7 +184,7 @@ include('modal/pet/busca_pet.php')
                     <div class="input-group-prepend">
 
                       <select id="especie" value="<?php echo $especie; ?>" name="especie" required class="form-control select2" style="width: 100%;" onchange="showTextBox()">
-                        <option selected="selected" value="<?php null ?>" disabled>Selecione</option>
+                        <option selected="selected" value="<?php null ?>"  disabled>Selecione</option>
                         <option value="Cachorro">Cão</option>
                         <option value="Gato">Gato</option>
                         <option value="Cavalo">Cavalo</option>
@@ -378,7 +379,7 @@ include('modal/pet/busca_pet.php')
                   <div class="col-2"></div>
                   <div class="col-6">
                     <label for="img_pet">Adicionar Foto</label>
-                    <div><input name="img_pet" required id="img_pet" type="file" /></div>
+                    <div><input name="img_pet" id="img_pet" type="file" /></div>
                   </div>
                 </div>
               </div>
@@ -520,12 +521,12 @@ include('modal/pet/busca_pet.php')
     }
   </script>
 
-<!-- Script para prevenir que campos somente com espaço sejam inseridos no banco de dados -->
+  <!-- Script para prevenir que campos somente com espaço sejam inseridos no banco de dados -->
 
-<script>
-    $('#fpet_edit').submit(function() {
-      if ($.trim($("#nome").val()) === "" || $.trim($("#rg").val()) === "" || $.trim($("#cidade").val()) === "" || $.trim($("#estado").val()) === "" || $.trim($("#cep").val()) === "" || $.trim($("#endereco").val()) === "" || $.trim($("#bairro").val()) === "") {
-           {
+  <script>
+    $('#pet_edit').submit(function() {
+      if ($.trim($("#nome").val()) === "" || $.trim($("#raca").val()) === "" || $.trim($("#idade").val()) === "" || $.trim($("#peso").val()) === "" || $.trim($("#especie").val()) === "" ||$.trim($("#altura").val())==="") {
+        {
           alert('Existem campos em branco ou inseridos somente com espaços!');
         };
         return false;
@@ -533,6 +534,17 @@ include('modal/pet/busca_pet.php')
     });
   </script>
 
+
+  <script>
+    function testInput(event) {
+      var value = String.fromCharCode(event.which);
+      var pattern = new RegExp(/[a-zåäöãá ]/i);
+      return pattern.test(value);
+    }
+
+    $('#raca').bind('keypress', testInput);
+    $('#nome').bind('keypress', testInput);
+  </script>
 
 </body>
 

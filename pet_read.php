@@ -25,9 +25,10 @@ include('modal/pet/busca_pet.php')
 
   <link rel="stylesheet" href="includes/stylesheet/read.css">
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- icon -->
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
+
 
   <!-- Select 2 -->
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
@@ -45,7 +46,7 @@ include('modal/pet/busca_pet.php')
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  
+
   <script>
     function keypresshandler(event) {
       var charCode = event.keyCode;
@@ -112,20 +113,21 @@ include('modal/pet/busca_pet.php')
             <!-- info row -->
             <div class="row invoice-info">
               <div class="col-sm-4 invoice-col">
-              <?php echo "" . '<img id="img_pet" width="150" src="Uploads/' . $v['img_pet'] . '" />' ?><br>
+                <?php echo "" . '<img id="img_pet" width="150" src="Uploads/' . $v['img_pet'] . '" />' ?><br>
                 <address>
                   <div id="texto_read">
-                  <?php echo "Raça: " . $raca ?><br>
-                  <?php echo "Sexo: " . $sexo ?> <br>
-                  <?php echo "Espécie: " . $especie ?><br>
-                  <?php echo "Idade: " . $idade ?><br>
-                  <?php echo "Vacinas: " . $vacinas ?><br>
-                  <?php echo "Altura: " . $altura ?><br>
-                  <?php echo "Peso: " . $peso ?><br>
-                  <?php echo "Porte: " . $porte ?><br>
-                  <?php echo "Adotado?: " . $adotado ?><br>
-                  <?php echo "Data de Cadastro: " . $valid_date ?><br>
-                  
+                    <?php echo "Raça: " . $raca ?><br>
+                    <?php echo "Sexo: " . $sexo ?> <br>
+                    <?php echo "Espécie: " . $especie ?><br>
+                    <?php echo "Idade: " . $idade ?><br>
+                    <?php echo "Vacinas: " . $vacinas ?><br>
+                    <?php echo "Altura: " . $altura ?><br>
+                    <?php echo "Peso: " . $peso ?><br>
+                    <?php echo "Porte: " . $porte ?><br>
+                    <?php echo "Pelagem: ". $pelagem?><br>
+                    <?php echo "Adotado?: " . $adotado ?><br>
+                    <?php echo "Data de Cadastro: " . $valid_date ?><br>
+
                   </div>
                 </address>
                 <a href="pet_index.php"> <img title="Voltar" alt="Voltar" style="width: 50px; height: 50px;" src="img/back-button.png"> </a>

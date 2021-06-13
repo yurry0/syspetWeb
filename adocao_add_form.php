@@ -5,7 +5,7 @@
 session_start();
 isset($_SESSION['senha_feita']);
 isset($_SESSION['email_feito']);
-include('includes/protect.php');
+include "verifica_login.php";
 include('conexao_crud.php');
 
 
@@ -52,6 +52,12 @@ include('modal/adocao/add_adocao.php')
 
     #toast-container>.toast-danger {
       background-color: #6A041D;
+    }
+
+    #botao_adocao {
+
+      margin-top: 50px;
+
     }
   </style>
 
@@ -132,6 +138,8 @@ include('modal/adocao/add_adocao.php')
                     <input type="text" id="ID" name="ID" readonly class="form-control" value="<?php echo $id; ?>" placeholder="">
                   </div>
 
+
+
                   <div class="col-2">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" readonly class="form-control" value="<?php echo $nome; ?>" placeholder="">
@@ -148,6 +156,7 @@ include('modal/adocao/add_adocao.php')
                   </div>
 
                 </div>
+
 
                 <div class="row">
 
@@ -179,15 +188,13 @@ include('modal/adocao/add_adocao.php')
                     <input type="text" id="vacinas" name="vacinas" readonly class="form-control" value="<?php echo $vacinas; ?>" placeholder="">
                   </div>
 
+
                 </div>
 
-                <!-- <div class="row"> -->
-
-
-                <!-- </div>-->
 
                 <div class="row">
-                  <div class="col-6">
+
+                  <div id="botao_adocao" class="col-6">
 
                     <!-- <label for="animal_raca"> Pet <code> - - Selecione um dos pets já cadastrados</code></label>
                     <input type="text" class="form-control form-control-border border-width-2" id="raca" name="raca" placeholder="">
@@ -203,6 +210,17 @@ include('modal/adocao/add_adocao.php')
 
                 </div>
 
+
+                <div class="row">
+                  <div class="col-10">
+
+                  </div>
+                  <div class="col-2">
+
+                    <img id="imagem_syspet" src="img/syspet logo.png" style="width: 170px; height: 170px;" alt="">
+
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-3">
                   </div>

@@ -18,15 +18,10 @@ try {
 
   $stmt->execute();
 
-  
   $_SESSION['del_cliente'] = "Deletado com sucesso";
   } catch(PDOException $e) {
   $_SESSION['del_cliente'] = "Error: " . $e->getMessage();
 }
 $conn = null;
-
-
 header('Location: cliente_index.php');
-
-
 ?>

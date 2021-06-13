@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt">
 
+<?php 
+session_start();
+include 'verifica_login.php'
+?>
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
   <title>SysPet - Inicio</title>
   <meta content="" name="description">
@@ -66,17 +73,17 @@
 
         <div class="row">
           <div class="col-lg-4 col-md-6 icon-box">
-            <div class="icon"><i class="bi bi-cpu"></i></div>
+            <div class="icon"><i class="bi bi-check2-circle"></i></div>
             <h4 class="title"><a href="adocao_index.php">Adoções</a></h4>
             <p class="description">Clique aqui para acessar a tabela de adoções, com opções de remoção de entrada.</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box">
-            <div class="icon"><i class="bi bi-clipboard-data"></i></div>
+            <div class="icon"><i class="bi bi-person"></i></div>
             <h4 class="title"><a href="cliente_index.php">Clientes</a></h4>
             <p class="description">Clique aqui para acessar a tabela de Clientes, com opções de adição, edição e remoção de entradas.</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box">
-            <div class="icon"><i class="bi bi-globe"></i></div>
+            <div class="icon"><i class="fas fa-dog"></i></div>
             <h4 class="title"><a href="pet_index.php">Pets</a></h4>
             <p class="description">Clique aqui para acessar a tabela de Pets, com opções de adição, edição e remoção de entradas.</p>
           </div>
@@ -86,7 +93,7 @@
           </div>
           <div class="col-lg-4 col-md-6 icon-box">
             <div class="icon"><i class="bi bi-images"></i></div>
-            <h4 class="title"><a href="">Catálogo de Pets</a></h4>
+            <h4 class="title"><a href="catalogo.php">Catálogo de Pets</a></h4>
             <p class="description">Clique aqui para acessar a Catalogo de Pets, com opções de efetuar novas adoções.</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box">
@@ -104,7 +111,8 @@
         <div class="text-center">
           <h3>Confira o projeto no GitHub!</h3>
           <p> O código fonte do projeto está disponível em um repositório hospedado no GitHub.</p>
-          <a class="cta-btn" href="https://github.com/yurry0/syspetWeb/">GitHub</a>
+          <a class="cta-btn" href="https://github.com/yurry0/syspetWeb/"><i class="bi bi-github"></i>
+</a>
         </div>
 
       </div>

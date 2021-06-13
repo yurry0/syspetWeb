@@ -3,9 +3,9 @@
 
 <?php
 session_start();
-isset($_SESSION['senha_feita']);
-isset($_SESSION['email_feito']);
+include('includes/protect.php');
 include('conexao_crud.php');
+include "verifica_login.php";
 
 
 
@@ -19,14 +19,12 @@ include('modal/cliente/buscar_cliente.php')
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Editar Adoção</title>
+  <title>Editar Cliente</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <!-- icon -->
+  <link href="img/syspet sem fundo.png" rel="icon">
+  <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
   <!-- Select 2 -->
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -52,8 +50,6 @@ include('modal/cliente/buscar_cliente.php')
       margin-top: 50px;
       margin-bottom: 45px;
     }
-
-
   </style>
 
   <script>
@@ -103,7 +99,7 @@ include('modal/cliente/buscar_cliente.php')
           <!-- /.card-header -->
           <!-- form start -->
 
-          <form role="form" name="edit_cliente" method="POST" action="cliente_edit_action.php">
+          <form role="form" name="edit_cliente" id="edit_cliente" onsubmit="return validateForm()" method="POST" action="cliente_edit_action.php">
 
             <div class="card-body">
 
@@ -186,7 +182,7 @@ include('modal/cliente/buscar_cliente.php')
                   <!-- Campo Idade -->
                   <div class="col-3">
                     <label for="endereco">Endereço</label>
-                    <input type="text" required class="form-control rounded-0" name="endereco" value="<?php echo $v['cli_endereco'] ?>" id="endereco" placeholder="">
+                    <input type="text" required class="form-control rounded-0" name="endereco" onkeypress='keypresshandler(event)' value="<?php echo $v['cli_endereco'] ?>" id="endereco" placeholder="">
                   </div>
 
                   <div class="col-2">
@@ -207,26 +203,26 @@ include('modal/cliente/buscar_cliente.php')
 
               </div>
 
-        
 
 
-            <div class="row">
-              <div class="col-3">
+
+              <div class="row">
+                <div class="col-3">
+                </div>
+                <div class="col-2">
+                </div>
+
+                <div class="col-2">
+                  <button type="submit" class="btn btn-outline-success">Editar Cliente</button>
+                </div>
+
               </div>
-              <div class="col-2">
-              </div>
-
-              <div class="col-2">
-                <button type="submit" class="btn btn-outline-success">Editar Cliente</button>
-              </div>
-
+              <!-- DIV do card-->
             </div>
-            <!-- DIV do card-->
+
+          </form>
+
         </div>
-
-        </form>
-
-      </div>
 
 
     </section>
@@ -259,7 +255,7 @@ include('modal/cliente/buscar_cliente.php')
 
 
 
- 
+
   <script>
     $(document).ready(function() {
       $("#rg").inputmask("99.999.999-9");
@@ -297,7 +293,17 @@ include('modal/cliente/buscar_cliente.php')
     $('#cidade').bind('keypress', testInput);
   </script>
 
-
+ <!-- Script que impede que campos sejam preenchidos só com espaços-->
+ <script>
+    $('#edit_cliente').submit(function() {
+      if ($.trim($("#nome").val()) === "" || $.trim($("#rg").val()) === "" || $.trim($("#cidade").val()) === "" || $.trim($("#estado").val()) === "" || $.trim($("#cep").val()) === "" || $.trim($("#endereco").val()) === "" || $.trim($("#bairro").val()) === "") {
+           {
+          alert('Existem campos em branco ou inseridos somente com espaços!');
+        };
+        return false;
+      }
+    });
+  </script>
 
 
 </body>

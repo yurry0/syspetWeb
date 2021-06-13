@@ -2,8 +2,8 @@
 <html lang="pt">
 <?php
 session_start();
-$_SESSION['usuario'];
 include "conexao_crud.php";
+include "verifica_login.php";
 ?>
 
 <head>

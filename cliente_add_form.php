@@ -6,7 +6,7 @@ session_start();
 isset($_SESSION['senha_feita']);
 isset($_SESSION['email_feito']);
 include('conexao_crud.php');
-include('includes/protect.php')
+include "verifica_login.php";
 
 ?>
 
@@ -19,7 +19,9 @@ include('includes/protect.php')
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-<!-- icon -->
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.css">
+  <!-- icon -->
   <link href="img/syspet sem fundo.png" rel="icon">
   <link href="img/syspet sem fundo.png" rel="apple-touch-icon">
   <!-- Select 2 -->
@@ -47,6 +49,10 @@ include('includes/protect.php')
       margin-top: 50px;
       margin-bottom: 45px;
     }
+
+    #toast-container>.toast-info {
+      background-color: #4F5D75;
+    }
   </style>
 
   <script>
@@ -57,6 +63,9 @@ include('includes/protect.php')
         return false;
     }
   </script>
+
+
+
 
 </head>
 
@@ -73,6 +82,20 @@ include('includes/protect.php')
 
 
   <main id="main">
+    <?php
+    if (isset($_SESSION['email_error'])) {
+
+      $mensagem = $_SESSION['email_error'];
+      echo "
+    <script>
+      window.onload = function() {
+        toastr.info('$mensagem');
+      };
+    </script>
+    ";
+      unset($_SESSION['email_error']);
+    }
+    ?>
 
     <!-- ======= Breadcrumbs ======= -->
     <section class="breadcrumbs">
@@ -97,7 +120,7 @@ include('includes/protect.php')
           <!-- /.card-header -->
           <!-- form start -->
 
-          <form role="form" name="add_cliente" method="POST" action="cliente_add_action.php">
+          <form role="form" name="add_cliente" id="add_cliente" onsubmit="return validateForm()" method="POST" action="cliente_add_action.php">
 
             <div class="card-body">
 
@@ -180,14 +203,14 @@ include('includes/protect.php')
                   <!-- Campo Idade -->
                   <div class="col-3">
                     <label for="endereco">Endereço</label>
-                    <input type="text" required class="form-control rounded-0" name="endereco" id="endereco" placeholder="">
+                    <input type="text" required class="form-control rounded-0" onkeypress='keypresshandler(event)' name="endereco" id="endereco" placeholder="">
                   </div>
 
                   <div class="col-2">
 
                     <!-- Campo Bairro -->
                     <label for="Bairro">Bairro</label>
-                    <input class="form-control rounded-0" required name="bairro" id="bairro" placeholder="" type="text">
+                    <input class="form-control rounded-0"  onkeypress='keypresshandler(event)'  required name="bairro" id="bairro" placeholder="" type="text">
 
                   </div>
 
@@ -261,6 +284,9 @@ include('includes/protect.php')
   <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
   <!-- Select2 -->
   <script src="plugins/select2/js/select2.full.min.js"></script>
+  <!-- Toastr -->
+  <script src="plugins/toastr/toastr.min.js"></script>
+
 
 
   <script>
@@ -300,8 +326,17 @@ include('includes/protect.php')
     $('#cidade').bind('keypress', testInput);
   </script>
 
-
-
+  <!-- Script que impede que campos sejam preenchidos só com espaços-->
+  <script>
+    $('#add_cliente').submit(function() {
+      if ($.trim($("#nome").val()) === "" || $.trim($("#rg").val()) === "" || $.trim($("#cidade").val()) === "" || $.trim($("#estado").val()) === "" || $.trim($("#cep").val()) === "" || $.trim($("#endereco").val()) === "" || $.trim($("#bairro").val()) === "") {
+           {
+          alert('Existem campos em branco ou inseridos somente com espaços!');
+        };
+        return false;
+      }
+    });
+  </script>
 
 
 </body>

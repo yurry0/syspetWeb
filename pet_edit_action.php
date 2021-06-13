@@ -43,58 +43,145 @@ try {
       mkdir($folder);
     }
     move_uploaded_file($_FILES['img_pet']['tmp_name'], $pathFolder);
-    }
+  }
 
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  // prepare sql and bind parameters
-  $stmt = $conn->prepare("UPDATE pet SET pk_id_pet=:pk_id_pet , nome=:nome, raca=:raca, sexo=:sexo, idade=:idade, vacinas=:vacinas, altura=:altura, peso=:peso, img_pet=:img_pet, tipo=:tipo, especie=:especie, pelagem=:pelagem, porte=:porte, adotado=:adotado  WHERE pk_id_pet=:pk_id_pet");
-  $stmt->bindParam(':pk_id_pet', $id);
-  $stmt->bindParam(':nome', $nome);
-  $stmt->bindParam(':raca', $raca);
-  $stmt->bindParam(':sexo', $sexo);
-  $stmt->bindParam(':idade', $idade);
-  $stmt->bindParam(':vacinas', $vacinas);
-  $stmt->bindParam(':altura', $altura);
-  $stmt->bindParam(':peso', $peso);
-  $stmt->bindParam(':tipo', $tipo);
-  $stmt->bindParam(':especie', $especie);
-  $stmt->bindParam(':pelagem', $pelagem);
-  $stmt->bindParam(':porte', $porte);
-  $stmt->bindParam(':img_pet', $newName);
-  $stmt->bindParam(':adotado', $adotado);
+  if ($_POST['img_pet'] == null) {
+    try {
+      // set the PDO error mode to exception
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  
-  $id = $_POST['id'];
-  $raca = $_POST['raca'];
-  $sexo = $_POST['sexo'];
-  $idade = $_POST['idade'];
-  $nome = $_POST['nome'];
-  $raca = $_POST['raca'];
-  $sexo = $_POST['sexo'];
-  $idade = $_POST['idade'];
-  $especie = $_POST['especie'];
-  if (!empty($_POST['pelo_cao'])) {
+      // prepare sql and bind parameters
 
-    $pelagem = $_POST['pelo_cao'];
+      if (!$_POST['vacina_cao_gato'] == NULL) {
+        $result =  implode(" , ", $_POST['vacina_cao_gato']);
+      } else {
+        $result2 = implode(",", $_POST['vacina_cavalo']);
+      }
 
-  } else if (!empty($_POST['pelo_gato'])) {
-    $pelagem = $_POST['pelo_gato'];
-  } else if (!empty($_POST['pelo_cavalo'])) {
+      if ($result2 == NULL) {
+        $vacinas = $result;
+      } else {
+        $vacinas = $result2;
+      }
 
-    $pelagem = $_POST['pelo_cavalo'];
+      $altura = $_POST['altura'];
+      $peso = $_POST['peso'];
+      $img_pet = $_FILES['img_pet'];
+      //verificação para ver se existe um arquivo enviado junto com o novo chamado 
+      if (!empty($img_pet['name'])) {
+        $anexo = $img_pet['name'];
+        $extensao = pathinfo($anexo, PATHINFO_EXTENSION);
+        $name = pathinfo($anexo, PATHINFO_FILENAME);
+        $newName = $name . uniqid() . '.' . $extensao; //criando o h
+        $folder = "Uploads/";
+        $pathFolder = $folder . $newName;
+        if (!file_exists($folder)) {
+          mkdir($folder);
+        }
+        move_uploaded_file($_FILES['img_pet']['tmp_name'], $pathFolder);
+      }
+
+      if ($_POST['img_pet'] == null) {
+        $stmt = $conn->prepare("UPDATE pet SET pk_id_pet=:pk_id_pet , nome=:nome, raca=:raca, sexo=:sexo, idade=:idade, vacinas=:vacinas, altura=:altura, peso=:peso, especie=:especie, pelagem=:pelagem, porte=:porte, adotado=:adotado  WHERE pk_id_pet=:pk_id_pet");
+
+
+        $stmt = $conn->prepare("UPDATE pet SET pk_id_pet=:pk_id_pet , nome=:nome, raca=:raca, sexo=:sexo, idade=:idade, vacinas=:vacinas, altura=:altura, peso=:peso, especie=:especie, pelagem=:pelagem, porte=:porte, adotado=:adotado  WHERE pk_id_pet=:pk_id_pet");
+        $stmt->bindParam(':pk_id_pet', $id);
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':raca', $raca);
+        $stmt->bindParam(':sexo', $sexo);
+        $stmt->bindParam(':idade', $idade);
+        $stmt->bindParam(':vacinas', $vacinas);
+        $stmt->bindParam(':altura', $altura);
+        $stmt->bindParam(':peso', $peso);
+        $stmt->bindParam(':especie', $especie);
+        $stmt->bindParam(':pelagem', $pelagem);
+        $stmt->bindParam(':porte', $porte);
+        $stmt->bindParam(':adotado', $adotado);
+
+
+        $id = $_POST['id'];
+        $raca = $_POST['raca'];
+        $sexo = $_POST['sexo'];
+        $idade = $_POST['idade'];
+        $nome = $_POST['nome'];
+        $raca = $_POST['raca'];
+        $sexo = $_POST['sexo'];
+        $idade = $_POST['idade'];
+        $especie = $_POST['especie'];
+        if (!empty($_POST['pelo_cao'])) {
+
+          $pelagem = $_POST['pelo_cao'];
+        } else if (!empty($_POST['pelo_gato'])) {
+          $pelagem = $_POST['pelo_gato'];
+        } else if (!empty($_POST['pelo_cavalo'])) {
+
+          $pelagem = $_POST['pelo_cavalo'];
+        }
+        $porte = $_POST['porte'];
+        $adotado = 0;
+        $stmt->execute();
+
+
+
+
+
+        $_SESSION['edit_pet'] = "Dados editados com sucesso!";
+      }
+    } catch (PDOException $e) {
+      $_SESSION['edit_pet'] = "Error: " . $e->getMessage();
+    }
+  } else {
+    // prepare sql and bind parameters
+    $stmt = $conn->prepare("UPDATE pet SET pk_id_pet=:pk_id_pet , nome=:nome, raca=:raca, sexo=:sexo, idade=:idade, vacinas=:vacinas, altura=:altura, peso=:peso, img_pet=:img_pet, tipo=:tipo, especie=:especie, pelagem=:pelagem, porte=:porte, adotado=:adotado  WHERE pk_id_pet=:pk_id_pet");
+    $stmt->bindParam(':pk_id_pet', $id);
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':raca', $raca);
+    $stmt->bindParam(':sexo', $sexo);
+    $stmt->bindParam(':idade', $idade);
+    $stmt->bindParam(':vacinas', $vacinas);
+    $stmt->bindParam(':altura', $altura);
+    $stmt->bindParam(':peso', $peso);
+    $stmt->bindParam(':tipo', $tipo);
+    $stmt->bindParam(':especie', $especie);
+    $stmt->bindParam(':pelagem', $pelagem);
+    $stmt->bindParam(':porte', $porte);
+    $stmt->bindParam(':img_pet', $newName);
+    $stmt->bindParam(':adotado', $adotado);
+
+
+    $id = $_POST['id'];
+    $raca = $_POST['raca'];
+    $sexo = $_POST['sexo'];
+    $idade = $_POST['idade'];
+    $nome = $_POST['nome'];
+    $raca = $_POST['raca'];
+    $sexo = $_POST['sexo'];
+    $idade = $_POST['idade'];
+    $especie = $_POST['especie'];
+    if (!empty($_POST['pelo_cao'])) {
+
+      $pelagem = $_POST['pelo_cao'];
+    } else if (!empty($_POST['pelo_gato'])) {
+      $pelagem = $_POST['pelo_gato'];
+    } else if (!empty($_POST['pelo_cavalo'])) {
+
+      $pelagem = $_POST['pelo_cavalo'];
+    }
+    $porte = $_POST['porte'];
+    $adotado = 0;
+    $tipo = "image/" . get_file_extension($img_pet);
+    $stmt->execute();
+
+
+
+
+
+    $_SESSION['edit_pet'] = "Dados editados com sucesso!";
   }
-  $porte = $_POST['porte'];
-  $adotado = 0;
-  $tipo = "image/" . get_file_extension($img_pet);
-  $stmt->execute();
-
-  
-
-
-
-  $_SESSION['edit_pet'] = "Dados editados com sucesso!";
 } catch (PDOException $e) {
   $_SESSION['edit_pet'] = "Error: " . $e->getMessage();
 }

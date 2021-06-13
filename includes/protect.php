@@ -2,15 +2,13 @@
 
 if(!function_exists("protect")){
 
-
         function protect(){
 
             if(!isset($_SESSION))
-                session_start();
 
-            if(!isset($_SESSION['usuario']) || !is_string($_SESSION['usuario']))
+            if($_SESSION['usuario'] == null){
             header("Location: index.php");
-
+        }
         }
 
 }

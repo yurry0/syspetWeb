@@ -6,6 +6,7 @@ session_start();
 isset($_SESSION['senha_feita']);
 isset($_SESSION['email_feito']);
 include('conexao_crud.php');
+include 'verifica_login.php';
 
 ?>
 
@@ -101,11 +102,11 @@ width: 25%;
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Adicionar Cliente</h2>
+          <h2>Resultado - Aodoção</h2>
           <ol>
             <li><a href="painel.php">Home</a></li>
-            <li><a href="cliente_index.php">Índice de Clientes</a></li>
-            <li>Adicionar Cliente</li>
+            <li><a href="catalogo.php">Catalogo</a></li>
+            <li>Resultado - Adoção</li>
           </ol>
         </div>
 
@@ -122,9 +123,9 @@ width: 25%;
           <h5 class="card-title"></h5>
           <?php echo "<img id='img_pet' src="."Uploads/".$_SESSION['foto_pet'].'>'?>
           <p class="card-text">O pet <?php echo $_SESSION['nome'] ?>, da raça <?php echo $_SESSION['raca'] ?>,foi</p>
-          <p class="card-text">foi adotado por <?php echo $_SESSION['nome_cliente'] ?> na data <?php echo $_SESSION['valid_date'] ?> </p>
+          <p class="card-text">adotado por <?php echo $_SESSION['nome_cliente'] ?> na data <?php echo $_SESSION['valid_date'] ?> </p>
           <p class="card-text"></p>
-          <a href="catalogo.php" class="btn btn-primary">Voltar ao Catálogo de Pets</a>
+          <a href="catalogo.php" class="btn btn-primary">Voltar ao Catálogo de Pets</a> 
         </div>
         <div style="color: white;" class="card-footer text-muted">
           <p>Creative Code - SyspetWeb</p> 
